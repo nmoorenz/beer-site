@@ -1,0 +1,31 @@
+# Local photos to sync (never committed — they live in S3).
+# Keep the empty folder in the repo, but ignore everything dropped into it.
+/photos/*
+!/photos/.gitkeep
+
+# Generated at build time
+site/config.js
+
+# Local manifest copy (source of truth is S3)
+manifest.json
+site/manifest.json
+
+# Secrets / env
+.env
+
+# Terraform
+infrastructure/.terraform/
+infrastructure/*.tfstate
+infrastructure/*.tfstate.*
+infrastructure/terraform.tfvars
+infrastructure/.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db

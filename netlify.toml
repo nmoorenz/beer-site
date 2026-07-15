@@ -1,0 +1,6 @@
+[build]
+  publish = "site"
+  command = "pip install -r requirements.txt && python scripts/generate_config.py"
+
+[build.environment]
+  PYTHON_VERSION = "3.10"

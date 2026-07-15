@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beer log</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🍺</span>
+        <h1>Beer log</h1>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="controls" id="controls" hidden>
+      <div class="filter-group" id="rating-filters" role="group" aria-label="Filter by rating">
+        <button class="chip is-active" data-rating="all">All</button>
+        <button class="chip" data-rating="yeah"><span aria-hidden="true">👍</span> Yeah</button>
+        <button class="chip" data-rating="eh"><span aria-hidden="true">😐</span> Eh</button>
+        <button class="chip" data-rating="nah"><span aria-hidden="true">👎</span> Nah</button>
+      </div>
+      <div class="filter-spacer"></div>
+      <label class="sr-only" for="brewery-filter">Filter by brewery</label>
+      <select id="brewery-filter"><option value="all">All breweries</option></select>
+      <label class="sr-only" for="sort-order">Sort</label>
+      <select id="sort-order">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="brewery">By brewery</option>
+      </select>
+    </div>
+
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <p class="empty" id="empty" hidden>No beers match these filters.</p>
+    <p class="empty" id="loading">Pouring…</p>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Beer detail">
+    <div class="lightbox-backdrop" data-close></div>
+    <div class="lightbox-card" role="document">
+      <button class="lb-close" data-close aria-label="Close">&times;</button>
+      <div class="lb-photo-wrap">
+        <img class="lb-photo" id="lb-photo" alt="" />
+        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous photo">&#8249;</button>
+        <button class="lb-nav lb-next" id="lb-next" aria-label="Next photo">&#8250;</button>
+        <div class="lb-dots" id="lb-dots"></div>
+      </div>
+      <div class="lb-body">
+        <div class="lb-head">
+          <div>
+            <div class="lb-brewery" id="lb-brewery"></div>
+            <div class="lb-name" id="lb-name"></div>
+          </div>
+          <span class="rating-pill" id="lb-rating"></span>
+        </div>
+        <div class="lb-meta">
+          <span id="lb-type"></span>
+          <span id="lb-date"></span>
+        </div>
+        <p class="lb-notes" id="lb-notes"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

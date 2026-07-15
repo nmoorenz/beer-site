@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 6.0"
     }
   }
 
@@ -33,7 +33,7 @@ provider "aws" {
 variable "aws_region" {
   description = "AWS region to deploy into"
   type        = string
-  default     = "ap-southeast-2"
+  default     = "ap-southeast-6"
 }
 
 variable "aws_profile" {

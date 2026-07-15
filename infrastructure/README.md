@@ -18,12 +18,16 @@ You only run this once (plus the odd `terraform apply` if you change something).
 - [AWS CLI](https://aws.amazon.com/cli/)
 - An AWS account and a Netlify account
 
+> Requires a recent AWS Terraform provider — the `ap-southeast-6` (New Zealand) region is only recognised by newer versions, so `main.tf` pins `~> 6.0`.
+
 ```bash
 pip install -r ../requirements.txt
 aws configure --profile your-aws-profile
 ```
 
 ## Steps
+
+> **Shell:** these commands assume a POSIX shell (macOS/Linux, WSL, or Git Bash on Windows). In **PowerShell**, quote the Terraform `-target` value as shown below, and use `python`/`copy` in place of `python3`/`cp`. See the [shell note](../README.md#a-note-on-shell) in the main README.
 
 ### 1. Configure variables
 
@@ -36,7 +40,7 @@ Edit `terraform.tfvars`:
 | Variable          | What to set                                                  |
 | ----------------- | ------------------------------------------------------------ |
 | `bucket_name`     | A globally-unique S3 bucket name, e.g. `nmoore-beer-photos`  |
-| `aws_region`      | Your region, e.g. `ap-southeast-2`                           |
+| `aws_region`      | Your region, e.g. `ap-southeast-6` (Asia Pacific, New Zealand) |
 | `aws_profile`     | The AWS CLI profile you configured above                     |
 | `cdn_domain`      | The CDN subdomain, e.g. `cdn.beer.nmoore.nz`                 |
 | `allowed_origins` | Your site origin(s), e.g. `["https://beer.nmoore.nz"]`       |
@@ -47,11 +51,28 @@ CloudFront won't build until the certificate is validated, so do the cert on its
 
 ```bash
 terraform init
-terraform apply -target=aws_acm_certificate.beer
+terraform apply -target="aws_acm_certificate.beer"
 terraform output acm_certificate_validation_options
 ```
 
-Add the CNAME it prints at your DNS registrar, then wait until the certificate shows **Issued** in the ACM console (region **us-east-1**) — usually 5–10 minutes.
+`acm_certificate_validation_options` prints a validation record — ACM's way of confirming you control the domain before it issues a certificate. It gives you three fields — add these as a CNAME record in your DNS provider:
+
+| Field    | Looks like                          | Goes in the registrar's…       |
+| -------- | ----------------------------------- | ------------------------------ |
+| name     | `_a1b2c3….cdn.beer.example.com`     | Host / Name                    |
+| type     | `CNAME`                             | Record type                    |
+| value    | `_x7y8z9….acm-validations.aws.`     | Value / Points to              |
+
+You don't click anything to validate — ACM polls DNS and flips the certificate to **Issued** on its own once the CNAME resolves. Check status in the ACM console in region **us-east-1** (CloudFront only accepts certs from there, regardless of your bucket's region). Usually 5–10 minutes, occasionally longer if DNS is slow to propagate.
+
+Or check from the CLI:
+
+```bash
+aws acm list-certificates --region us-east-1
+aws acm describe-certificate --region us-east-1 --certificate-arn <arn> --query "Certificate.Status"
+```
+
+> **Leave the validation CNAME in place permanently.** ACM reuses it to auto-renew the certificate each year — delete it and renewal silently fails later.
 
 ### 3. Provision the rest
 
@@ -101,7 +122,12 @@ Set one environment variable:
 | ------------------- | -------------------------------------------------------- |
 | `BEER_MANIFEST_URL` | `https://cdn.beer.example.com/manifest.json`             |
 
-Then point `beer.example.com` at Netlify.
+Then wire the site's own domain to Netlify:
+
+- Add a **CNAME** record at your registrar: host `beer`, value your Netlify app name `<your-site-name>.netlify.app`.
+- In Netlify → Site configuration → **Domain management**, add the subdomain `beer.example.com`, then **Verify DNS configuration** and let Netlify provision the HTTPS certificate (a few minutes).
+
+This is separate from the `cdn.beer.example.com` record above — that one points at CloudFront for the photos; this one points the site itself at Netlify.
 
 ## DNS summary
 

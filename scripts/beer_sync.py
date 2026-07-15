@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-beer_sync.py — Beer log CLI tool
+beer_sync.py — Beer Necessities CLI tool
 
 Everything about a beer is encoded in its photo filenames. There is no
 separate metadata file to maintain — you name the photos, the CLI does the
@@ -56,7 +56,7 @@ load_dotenv()
 # ── Config ────────────────────────────────────────────────────────────────────
 
 BUCKET     = os.environ.get("S3_BUCKET")
-REGION     = os.environ.get("AWS_REGION", "ap-southeast-2")
+REGION     = os.environ.get("AWS_REGION", "ap-southeast-6")
 PHOTOS_DIR = Path(os.environ.get("LOCAL_PHOTOS_DIR", "./photos"))
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
@@ -350,7 +350,7 @@ def cmd_manifest() -> None:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Beer log CLI")
+    parser = argparse.ArgumentParser(description="Beer Necessities CLI")
     parser.add_argument(
         "command",
         choices=["sync", "manifest", "check"],

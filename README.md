@@ -1,6 +1,6 @@
 # beer-site
 
-A personal beer log. Every beer is a set of photos; everything about it — brewery, name, style, date, rating, notes — is encoded in the photo filenames. No database, no admin screen, no comments, no stars.
+**Beer Necessities** — a personal beer log. Every beer is a set of photos; everything about it — brewery, name, style, date, rating, notes — is encoded in the photo filenames. No database, no admin screen, no comments, no stars.
 
 Photos live in a private S3 bucket served through CloudFront. The static front-end is hosted on Netlify and reads a single `manifest.json`. It's a standalone AWS stack, independent of any other site. The site is **open** — anyone with the URL can view it.
 
@@ -26,6 +26,14 @@ Split on **underscores** into five fields: `metadata_brewery_name_type_notes`.
 - **notes** — freeform, optional, last; hyphens and underscores become spaces.
 
 A **beer** = every photo sharing the same `date-group` (e.g. `20260701-a`), ordered by photo number. The rating and text should be identical across a beer's photos; a mismatch is reported when you sync.
+
+## A note on shell
+
+Command examples in all of these READMEs assume a **POSIX shell** — macOS/Linux, WSL, or **Git Bash** on Windows. If you're in **PowerShell** or **CMD**, most commands work but a few differ:
+
+- Use `python` instead of `python3`, and `copy` instead of `cp`.
+- Quote Terraform target addresses: `terraform apply -target="aws_acm_certificate.beer"` (PowerShell can otherwise split the `.beer` off and you'll get `Invalid target "aws_acm_certificate"`).
+- `Select-String` replaces `grep`.
 
 ## The three READMEs
 

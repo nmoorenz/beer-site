@@ -77,6 +77,17 @@ select {
   border-radius: 8px; padding: 8px 12px; cursor: pointer;
 }
 
+/* ── Tag filter cloud ── */
+.tag-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.tag {
+  font: inherit; font-size: 13px; cursor: pointer;
+  background: var(--card); color: var(--amber-deep);
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.tag:hover { border-color: var(--amber); }
+.tag.is-active { background: var(--amber); border-color: var(--amber); color: #fff; }
+
 /* ── Grid ── */
 .grid {
   display: grid;
@@ -91,7 +102,7 @@ select {
 }
 .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(80,55,20,.12); }
 .card-thumb {
-  position: relative; aspect-ratio: 1 / 1; background: var(--amber-soft);
+  position: relative; aspect-ratio: 3 / 4; background: var(--amber-soft);
   display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
 .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -138,8 +149,8 @@ select {
   width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
   background: rgba(43,32,22,.55); color: #fff; font-size: 22px; line-height: 1;
 }
-.lb-photo-wrap { position: relative; aspect-ratio: 4 / 3; background: var(--amber-soft); display: flex; align-items: center; justify-content: center; }
-.lb-photo { width: 100%; height: 100%; object-fit: contain; display: block; }
+.lb-photo-wrap { position: relative; background: var(--amber-soft); display: flex; align-items: center; justify-content: center; min-height: 200px; max-height: 72vh; }
+.lb-photo { max-width: 100%; max-height: 72vh; width: auto; height: auto; object-fit: contain; display: block; }
 .lb-nav {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;

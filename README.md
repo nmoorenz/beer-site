@@ -1,31 +1,42 @@
 # beer-site
 
-**Beer Necessities** — a personal beer log. Every beer is a set of photos; everything about it — brewery, name, style, date, rating, notes — is encoded in the photo filenames. No database, no admin screen, no comments, no stars.
+**Beer Necessities** — a personal beer log. Every beer is a set of photos named just enough to identify them; all the details — brewery, name, style, ABV, size, rating, notes — live in a single `beers.csv` you edit in Excel or any text editor. No database, no admin screen, no comments, no stars.
 
 Photos live in a private S3 bucket served through CloudFront. The static front-end is hosted on Netlify and reads a single `manifest.json`. It's a standalone AWS stack, independent of any other site. The site is **open** — anyone with the URL can view it.
 
-## How a beer is named
+## How it works: filenames + beers.csv
 
-This one convention drives the whole site, so it's worth getting familiar with:
+Two simple pieces. Photo filenames identify and order the shots; `beers.csv` holds everything descriptive.
+
+**Filenames** carry only date, group, and photo number:
 
 ```
-20260701-a-1-yeah_garage-project_hapi-daze_pale-ale_notes.jpg
-└──────┬─────┘ │ └──┬──┘ └────┬────┘ └───┬───┘ └──┬──┘
-   metadata    │  rating   brewery      name    type   notes (freeform, optional)
-               └ photo #
+20260701-a-1.jpg
+└──┬───┘ │ └ photo number (orders photos within a beer)
+   │     └ group letter (a, b, c … for multiple beers on one day)
+   └ date, YYYYMMDD
 ```
 
-Split on **underscores** into five fields: `metadata_brewery_name_type_notes`.
+A **beer** = every photo sharing the same `date-group` prefix — its **id**, e.g. `20260701-a`.
 
-- **metadata** splits on **hyphens**: `date-group-photo#-rating`
-  - `date` — `YYYYMMDD`
-  - `group` — a letter (`a`, `b`, `c`…) so you can log more than one beer on the same day
-  - `photo#` — orders photos within a beer (`1`, `2`, `3`…)
-  - `rating` — `yeah` 👍 · `eh` 😐 · `nah` 👎
-- **brewery / name / type** — hyphens become spaces (`garage-project` → "Garage Project"). Common styles like `ipa`/`apa` stay upper-cased.
-- **notes** — freeform, optional, last; hyphens and underscores become spaces.
+**`beers.csv`** has one row per beer, keyed by that id:
 
-A **beer** = every photo sharing the same `date-group` (e.g. `20260701-a`), ordered by photo number. The rating and text should be identical across a beer's photos; a mismatch is reported when you sync.
+```
+id,brewery,name,type,abv,size,rating,notes
+20260701-a,Garage Project,Hāpi Daze,Pale Ale,5.8,330ml,yeah,hazy and tropical
+20260701-b,Epic,Armageddon,IPA,6.66,330ml,nah,
+20260703-a,Parrotdog,Birdlife,IPA,5.8,440ml,eh,a bit too bitter for me
+```
+
+- `id` matches the filename prefix exactly (`20260701-a`)
+- `brewery` / `name` — free text, written how you want it shown
+- `type` — space-separated style words; each becomes a filterable `#tag` (e.g. `sorbet sour` → #sorbet #sour). Hyphenate to keep a multi-word tag together (`west-coast ipa` → #west-coast #ipa)
+- `abv` — e.g. `5.8` (a trailing `%` is fine; it's added on display)
+- `size` — e.g. `330ml`, `440ml`, `pint` (free text)
+- `rating` — `yeah` 👍 · `eh` 😐 · `nah` 👎
+- `notes` — free text, optional
+
+To change any detail — including a rating — you edit a cell in `beers.csv`; no renaming photos. Photos with no matching row (and rows with no photos) are reported when you sync.
 
 ## A note on shell
 
@@ -59,6 +70,7 @@ beer-site/
 │   ├── main.tf
 │   └── terraform.tfvars.example
 ├── photos/                # local photos to sync (contents gitignored)
+├── beers.csv              # the metadata — one row per beer (committed)
 ├── netlify.toml
 ├── requirements.txt
 ├── env.example

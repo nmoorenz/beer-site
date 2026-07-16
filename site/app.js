@@ -7,7 +7,7 @@
     nah:  { emoji: "👎", label: "Nah" },
   };
 
-  var state = { beers: [], rating: "all", brewery: "all", sort: "newest" };
+  var state = { beers: [], rating: "all", brewery: "all", sort: "newest", tags: [] };
   var lb = { beer: null, index: 0 };
 
   var els = {
@@ -18,6 +18,7 @@
     controls: document.getElementById("controls"),
     brewery:  document.getElementById("brewery-filter"),
     sort:     document.getElementById("sort-order"),
+    tagBar:   document.getElementById("tag-bar"),
     lightbox: document.getElementById("lightbox"),
   };
 
@@ -32,7 +33,19 @@
     });
   }
 
-  // ── Load ──
+  function setMeta(id, value) {
+    var el = document.getElementById(id);
+    el.textContent = value || "";
+    el.style.display = value ? "" : "none";
+  }
+
+  function tagString(b) {
+    return (b.tags && b.tags.length)
+      ? b.tags.map(function (t) { return "#" + t; }).join(" ")
+      : (b.type || "");
+  }
+
+  // -- Load --
   fetch(manifestUrl(), { cache: "no-store" })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
@@ -41,6 +54,7 @@
       if (!state.beers.length) { els.empty.hidden = false; renderStats(data); return; }
       els.controls.hidden = false;
       populateBreweries();
+      renderTagBar();
       renderStats(data);
       render();
     })
@@ -76,11 +90,29 @@
     });
   }
 
-  // ── Filter / sort / render ──
+  function renderTagBar() {
+    var set = {};
+    state.beers.forEach(function (b) {
+      (b.tags || []).forEach(function (t) { set[t] = true; });
+    });
+    var tags = Object.keys(set).sort();
+    if (!tags.length) return;
+    els.tagBar.hidden = false;
+    els.tagBar.innerHTML = tags.map(function (t) {
+      return '<button class="tag" data-tag="' + esc(t) + '">#' + esc(t) + "</button>";
+    }).join("");
+  }
+
+  // -- Filter / sort / render --
   function visibleBeers() {
+    var hasTags = state.tags.length > 0;
     var list = state.beers.filter(function (b) {
-      return (state.rating === "all" || b.rating === state.rating) &&
-             (state.brewery === "all" || b.brewery === state.brewery);
+      var okRating  = state.rating === "all" || b.rating === state.rating;
+      var okBrewery = state.brewery === "all" || b.brewery === state.brewery;
+      var okTags = !hasTags || (b.tags || []).some(function (t) {
+        return state.tags.indexOf(t) >= 0;
+      });
+      return okRating && okBrewery && okTags;
     });
     if (state.sort === "brewery") {
       list.sort(function (a, b) { return (a.brewery || "").localeCompare(b.brewery || ""); });
@@ -105,18 +137,20 @@
     el.className = "card";
     el.setAttribute("aria-label", b.brewery + " " + b.name);
     var thumb = b.photos && b.photos.length
-      ? '<img src="' + esc(b.photos[0]) + '" alt="" loading="lazy" />'
+      ? '<img src="' + esc(b.photos[0].thumb) + '" alt="" loading="lazy" />'
       : '<span class="placeholder" aria-hidden="true">🍺</span>';
     var count = b.photos && b.photos.length > 1
       ? '<span class="photo-count" aria-hidden="true">▦ ' + b.photos.length + "</span>"
       : "";
+    var typeLine = esc(tagString(b));
+    if (b.abv) typeLine += (typeLine ? " · " : "") + esc(b.abv) + "%";
     el.innerHTML =
       '<div class="card-thumb">' + thumb + count + "</div>" +
       '<div class="card-body">' +
         '<div class="card-brewery">' + esc(b.brewery) + "</div>" +
         '<div class="card-name">' + esc(b.name) + "</div>" +
         '<div class="card-foot">' +
-          '<span class="card-type">' + esc(b.type) + "</span>" +
+          '<span class="card-type">' + typeLine + "</span>" +
           '<span class="rating-pill ' + esc(b.rating) + '">' + r.emoji + " " + r.label + "</span>" +
         "</div>" +
       "</div>";
@@ -124,13 +158,15 @@
     return el;
   }
 
-  // ── Lightbox ──
+  // -- Lightbox --
   function openLightbox(b) {
     lb.beer = b; lb.index = 0;
     document.getElementById("lb-brewery").textContent = b.brewery;
     document.getElementById("lb-name").textContent = b.name;
-    document.getElementById("lb-type").textContent = b.type;
-    document.getElementById("lb-date").textContent = b.dateDisplay || "";
+    setMeta("lb-type", tagString(b));
+    setMeta("lb-abv", b.abv ? b.abv + "%" : "");
+    setMeta("lb-size", b.size);
+    setMeta("lb-date", b.dateDisplay);
     document.getElementById("lb-notes").textContent = b.notes || "";
     var r = RATING[b.rating] || { emoji: "", label: b.rating };
     var pill = document.getElementById("lb-rating");
@@ -153,7 +189,7 @@
   function showPhoto() {
     if (!lb.beer) return;
     var photos = lb.beer.photos || [];
-    document.getElementById("lb-photo").src = photos[lb.index] || "";
+    document.getElementById("lb-photo").src = (photos[lb.index] && photos[lb.index].full) || "";
     var dots = els.lightbox.querySelectorAll(".lb-dot");
     dots.forEach(function (d, i) { d.classList.toggle("is-active", i === lb.index); });
   }
@@ -175,12 +211,20 @@
     showPhoto();
   }
 
-  // ── Events ──
+  // -- Events --
   document.getElementById("rating-filters").addEventListener("click", function (e) {
     var btn = e.target.closest(".chip"); if (!btn) return;
     state.rating = btn.dataset.rating;
     this.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("is-active"); });
     btn.classList.add("is-active");
+    render();
+  });
+  els.tagBar.addEventListener("click", function (e) {
+    var btn = e.target.closest(".tag"); if (!btn) return;
+    var t = btn.dataset.tag;
+    var i = state.tags.indexOf(t);
+    if (i >= 0) state.tags.splice(i, 1); else state.tags.push(t);
+    btn.classList.toggle("is-active");
     render();
   });
   els.brewery.addEventListener("change", function () { state.brewery = this.value; render(); });

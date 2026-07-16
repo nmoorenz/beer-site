@@ -29,20 +29,28 @@ Each beer in the manifest looks like:
   "date": "20260701",
   "dateDisplay": "1 Jul 2026",
   "brewery": "Garage Project",
-  "name": "Hapi Daze",
+  "name": "Hāpi Daze",
   "type": "Pale Ale",
+  "tags": ["pale", "ale"],
+  "abv": "5.8",
+  "size": "330ml",
   "rating": "yeah",
   "notes": "hazy and tropical",
-  "photos": ["https://cdn.beer.example.com/20260701-a/…-1-….jpg", "…"]
+  "photos": [
+    { "thumb": "https://cdn.beer.example.com/20260701-a/thumb/20260701-a-1.jpg",
+      "full":  "https://cdn.beer.example.com/20260701-a/full/20260701-a-1.jpg" }
+  ]
 }
 ```
+
+Each photo carries a `thumb` (grid) and a `full` (lightbox) URL. The untouched original is archived in S3 under `…/orig/` but deliberately kept out of the manifest, so the browser never downloads it. The CLI builds all this by joining the bucket with `beers.csv`; the front-end only ever sees the manifest — it has no knowledge of filenames, the CSV, or S3.
 
 ## What the UI does
 
 - **Header stats** — total logged plus a three-way 👍 / 😐 / 👎 count, read from `manifest.counts`.
-- **Filters** — rating chips (all / yeah / eh / nah) and a brewery dropdown, plus a sort (newest / oldest / by brewery). All filtering happens client-side in `app.js`; no reload.
-- **Grid** — one card per beer: cover photo, brewery, name, style, a rating pill, and a photo-count badge when there's more than one shot.
-- **Lightbox** — clicking a card opens a detail view with a photo carousel (arrow keys and on-screen arrows, dots for position), the full metadata, and any notes. `Esc` closes it.
+- **Filters** — rating chips (all / yeah / eh / nah), a brewery dropdown, a sort (newest / oldest / by brewery), and a `#tag` cloud built from every distinct style tag. Clicking tags narrows the grid to beers matching any selected tag; all filtering happens client-side in `app.js` with no reload.
+- **Grid** — one card per beer: cover photo, brewery, name, its `#tags` · ABV, a rating pill, and a photo-count badge when there's more than one shot. Thumbnails are a uniform 3:4 portrait crop (center-cropped); the detail view shows each photo at its true aspect ratio, so portrait and landscape both display fully.
+- **Lightbox** — clicking a card opens a detail view with a photo carousel (arrow keys and on-screen arrows, dots for position), the full metadata (style, ABV, size, date), and any notes. `Esc` closes it. Empty fields are hidden.
 
 ## Theme
 

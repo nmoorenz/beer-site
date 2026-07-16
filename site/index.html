@@ -31,6 +31,10 @@
       <div class="filter-spacer"></div>
       <label class="sr-only" for="brewery-filter">Filter by brewery</label>
       <select id="brewery-filter"><option value="all">All breweries</option></select>
+      <label class="sr-only" for="type-filter">Filter by type</label>
+      <select id="type-filter"><option value="all">All types</option></select>
+      <label class="sr-only" for="tag-filter">Filter by hashtag</label>
+      <select id="tag-filter"><option value="all">All hashtags</option></select>
       <label class="sr-only" for="sort-order">Sort</label>
       <select id="sort-order">
         <option value="newest">Newest first</option>
@@ -39,11 +43,9 @@
       </select>
     </div>
 
-    <div class="tag-bar" id="tag-bar" role="group" aria-label="Filter by tag" hidden></div>
-
     <div class="grid" id="grid" aria-live="polite"></div>
     <p class="empty" id="empty" hidden>No beers match these filters.</p>
-    <p class="empty" id="loading">Pouring…</p>
+    <p class="empty" id="loading">Pouring...</p>
   </main>
 
   <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Beer detail">
@@ -70,6 +72,7 @@
           <span id="lb-size"></span>
           <span id="lb-date"></span>
         </div>
+        <div class="lb-tags" id="lb-tags"></div>
         <p class="lb-notes" id="lb-notes"></p>
       </div>
     </div>

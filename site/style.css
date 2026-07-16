@@ -165,6 +165,9 @@ select {
 .lb-brewery { font-size: 13px; font-weight: 600; color: var(--amber-deep); text-transform: uppercase; letter-spacing: .03em; }
 .lb-name { font-family: "Fraunces", serif; font-weight: 600; font-size: 22px; line-height: 1.2; }
 .lb-meta { display: flex; gap: 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+.lb-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.lb-tags:empty { display: none; }
+.lb-tags span { font-size: 12px; background: var(--amber-soft); color: var(--amber-deep); padding: 3px 9px; border-radius: 999px; }
 .lb-notes { margin: 14px 0 0; font-size: 15px; color: var(--ink); }
 .lb-notes:empty { display: none; }
 

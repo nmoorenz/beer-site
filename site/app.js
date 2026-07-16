@@ -177,10 +177,24 @@
     document.body.style.overflow = "";
     lb.beer = null;
   }
+  function sizeCardToPhoto(img) {
+    var card = els.lightbox.querySelector(".lightbox-card");
+    if (!card) return;
+    var maxH = window.innerHeight * 0.72;
+    var maxW = Math.min(window.innerWidth * 0.92, 900);
+    var nw = img.naturalWidth || 4, nh = img.naturalHeight || 3;
+    var w = nw * (maxH / nh);          // width if the photo is scaled to the height cap
+    w = Math.min(w, maxW, nw);         // never exceed the width cap or upscale past native
+    w = Math.max(w, 300);              // keep a sensible minimum for portraits
+    card.style.width = Math.round(w) + "px";
+  }
   function showPhoto() {
     if (!lb.beer) return;
     var photos = lb.beer.photos || [];
-    document.getElementById("lb-photo").src = (photos[lb.index] && photos[lb.index].full) || "";
+    var img = document.getElementById("lb-photo");
+    img.onload = function () { sizeCardToPhoto(img); };
+    img.src = (photos[lb.index] && photos[lb.index].full) || "";
+    if (img.complete && img.naturalWidth) sizeCardToPhoto(img);
     var dots = els.lightbox.querySelectorAll(".lb-dot");
     dots.forEach(function (d, i) { d.classList.toggle("is-active", i === lb.index); });
   }

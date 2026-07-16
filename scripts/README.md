@@ -61,6 +61,25 @@ Because the details live in `beers.csv`, edits are just cell changes — no rena
 - **Fix a typo / add ABV or size**: edit the cell and rebuild. No re-upload of photos needed — use `manifest` if the photos haven't changed.
 - **Remove a beer**: delete its objects from the S3 bucket (AWS console or CLI) and its row from `beers.csv`, then run `python scripts/beer_sync.py manifest` to rebuild without it. Removing from `photos/` locally alone won't delete them from S3.
 
+### Replacing an edited photo
+
+`sync` skips any photo already in S3, and CloudFront caches the resized images as **immutable for a year** — so swapping in an edited version takes a forced replace *plus* a cache invalidation. For photo `20260319-a-1` (use your admin profile):
+
+```bash
+# 1. delete the three tiers so sync re-uploads them
+aws s3 rm s3://YOUR-BUCKET/20260319-a/thumb/20260319-a-1.jpg --profile nmoorenz-admin
+aws s3 rm s3://YOUR-BUCKET/20260319-a/full/20260319-a-1.jpg  --profile nmoorenz-admin
+aws s3 rm s3://YOUR-BUCKET/20260319-a/orig/20260319-a-1.jpg  --profile nmoorenz-admin
+
+# 2. re-sync (re-uploads + rebuilds the manifest)
+python scripts/beer_sync.py sync
+
+# 3. invalidate CloudFront so the CDN drops the stale copy
+aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/20260319-a/*" --profile nmoorenz-admin
+```
+
+`YOUR_DIST_ID` is `terraform output cloudfront_distribution_id`. Then hard-refresh the browser. Invalidating the whole beer (`/20260319-a/*`) is simplest; you can target a single file if you prefer.
+
 ## Ratings
 
 `yeah` 👍 · `eh` 😐 · `nah` 👎 — these three exact words are the only valid ratings. Anything else in a row's `rating` cell is reported when you run the CLI.

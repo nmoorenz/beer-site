@@ -36,7 +36,7 @@ id,brewery,name,type,abv,size,rating,notes
 - `rating` — `yeah` 👍 · `eh` 😐 · `nah` 👎
 - `notes` — free text, optional
 
-To change any detail — including a rating — you edit a cell in `beers.csv`; no renaming photos. Photos with no matching row (and rows with no photos) are reported when you sync.
+To change any detail — including a rating — you edit a cell in `beers.csv`. Photos with no matching row (and rows with no photos) are reported when you sync.
 
 ## A note on shell
 

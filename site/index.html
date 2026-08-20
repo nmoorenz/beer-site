@@ -28,13 +28,15 @@
 
   <main class="wrap">
     <div class="controls" id="controls" hidden>
-      <div class="filter-group" id="rating-filters" role="group" aria-label="Filter by rating">
-        <button class="chip is-active" data-rating="all">All</button>
-        <button class="chip" data-rating="yeah"><span aria-hidden="true">👍</span> Yeah</button>
-        <button class="chip" data-rating="eh"><span aria-hidden="true">😐</span> Eh</button>
-        <button class="chip" data-rating="nah"><span aria-hidden="true">👎</span> Nah</button>
-      </div>
-      <div class="filter-spacer"></div>
+      <label class="sr-only" for="year-filter">Filter by year</label>
+      <select id="year-filter"><option value="all">All years</option></select>
+      <label class="sr-only" for="rating-filter">Filter by rating</label>
+      <select id="rating-filter">
+        <option value="all">All ratings</option>
+        <option value="yeah">👍 Yeah</option>
+        <option value="eh">😐 Eh</option>
+        <option value="nah">👎 Nah</option>
+      </select>
       <label class="sr-only" for="brewery-filter">Filter by brewery</label>
       <select id="brewery-filter"><option value="all">All breweries</option></select>
       <label class="sr-only" for="type-filter">Filter by type</label>

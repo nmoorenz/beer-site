@@ -197,6 +197,7 @@ def build_manifest(groups, meta, base):
         beers.append({
             "id":          group_id,
             "date":        group_id.split("-")[0],
+            "year":        group_id[:4],
             "dateDisplay": format_date(group_id),
             "brewery":     row["brewery"],
             "name":        row["name"],

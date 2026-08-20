@@ -7,7 +7,7 @@
     nah:  { emoji: "👎", label: "Nah" },
   };
 
-  var state = { beers: [], rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest" };
+  var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest" };
   var lb = { beer: null, index: 0 };
 
   var els = {
@@ -16,6 +16,8 @@
     loading:  document.getElementById("loading"),
     stats:    document.getElementById("stats"),
     controls: document.getElementById("controls"),
+    year:     document.getElementById("year-filter"),
+    rating:   document.getElementById("rating-filter"),
     brewery:  document.getElementById("brewery-filter"),
     type:     document.getElementById("type-filter"),
     tag:      document.getElementById("tag-filter"),
@@ -40,6 +42,10 @@
     el.style.display = value ? "" : "none";
   }
 
+  function yearOf(b) {
+    return b.year || String(b.date || "").slice(0, 4);
+  }
+
   // -- Load --
   fetch(manifestUrl(), { cache: "no-store" })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -57,13 +63,8 @@
       console.error("manifest load failed:", err);
     });
 
-  function renderStats(data) {
-    var c = (data && data.counts) || countLocal();
-    els.stats.innerHTML =
-      stat(c.total, "logged") +
-      stat(c.yeah + " 👍", "yeah") +
-      stat(c.eh + " 😐", "eh") +
-      stat(c.nah + " 👎", "nah");
+  function renderStats() {
+    els.stats.innerHTML = "";
   }
   function countLocal() {
     var c = { total: state.beers.length, yeah: 0, eh: 0, nah: 0 };
@@ -74,31 +75,45 @@
     return '<div class="stat"><b>' + esc(value) + "</b><span>" + esc(label) + "</span></div>";
   }
 
-  function distinct(getter) {
-    var set = {};
+  function countMap(getter) {
+    var m = {};
     state.beers.forEach(function (b) {
       var v = getter(b);
-      (Array.isArray(v) ? v : [v]).forEach(function (x) { if (x) set[x] = true; });
+      (Array.isArray(v) ? v : [v]).forEach(function (x) { if (x) m[x] = (m[x] || 0) + 1; });
     });
-    return Object.keys(set).sort();
+    return m;
+  }
+
+  function fillSelect(sel, allLabel, getter, order, prefix) {
+    var m = countMap(getter);
+    sel.options[0].textContent = allLabel + " (" + state.beers.length + ")";
+    var keys = Object.keys(m).sort();
+    if (order === "desc") keys.reverse();
+    keys.forEach(function (k) {
+      sel.appendChild(new Option((prefix || "") + k + " (" + m[k] + ")", k));
+    });
   }
 
   function populateFilters() {
-    distinct(function (b) { return b.brewery; }).forEach(function (n) {
-      els.brewery.appendChild(new Option(n, n));
-    });
-    distinct(function (b) { return b.type; }).forEach(function (n) {
-      els.type.appendChild(new Option(n, n));
-    });
-    distinct(function (b) { return b.tags || []; }).forEach(function (t) {
-      els.tag.appendChild(new Option("#" + t, t));
+    fillSelect(els.year, "All years", yearOf, "desc", "");
+    fillSelect(els.brewery, "All breweries", function (b) { return b.brewery; }, "asc", "");
+    fillSelect(els.type, "All types", function (b) { return b.type; }, "asc", "");
+    fillSelect(els.tag, "All hashtags", function (b) { return b.tags || []; }, "asc", "#");
+
+    // rating select is static markup; annotate the options with counts
+    var rc = countMap(function (b) { return b.rating; });
+    var names = { yeah: "\uD83D\uDC4D Yeah", eh: "\uD83D\uDE10 Eh", nah: "\uD83D\uDC4E Nah" };
+    Array.prototype.forEach.call(els.rating.options, function (o) {
+      if (o.value === "all") o.textContent = "All ratings (" + state.beers.length + ")";
+      else o.textContent = (names[o.value] || o.value) + " (" + (rc[o.value] || 0) + ")";
     });
   }
 
   // -- Filter / sort / render --
   function visibleBeers() {
     var list = state.beers.filter(function (b) {
-      return (state.rating === "all" || b.rating === state.rating) &&
+      return (state.year === "all" || yearOf(b) === state.year) &&
+             (state.rating === "all" || b.rating === state.rating) &&
              (state.brewery === "all" || b.brewery === state.brewery) &&
              (state.type === "all" || b.type === state.type) &&
              (state.tag === "all" || (b.tags || []).indexOf(state.tag) >= 0);
@@ -148,6 +163,17 @@
   }
 
   // -- Lightbox --
+  function sizeCardToPhoto(img) {
+    var card = els.lightbox.querySelector(".lightbox-card");
+    if (!card) return;
+    var maxH = window.innerHeight * 0.72;
+    var maxW = Math.min(window.innerWidth * 0.92, 900);
+    var nw = img.naturalWidth || 4, nh = img.naturalHeight || 3;
+    var w = nw * (maxH / nh);
+    w = Math.min(w, maxW, nw);
+    w = Math.max(w, 300);
+    card.style.width = Math.round(w) + "px";
+  }
   function openLightbox(b) {
     lb.beer = b; lb.index = 0;
     document.getElementById("lb-brewery").textContent = b.brewery;
@@ -176,17 +202,6 @@
     els.lightbox.hidden = true;
     document.body.style.overflow = "";
     lb.beer = null;
-  }
-  function sizeCardToPhoto(img) {
-    var card = els.lightbox.querySelector(".lightbox-card");
-    if (!card) return;
-    var maxH = window.innerHeight * 0.72;
-    var maxW = Math.min(window.innerWidth * 0.92, 900);
-    var nw = img.naturalWidth || 4, nh = img.naturalHeight || 3;
-    var w = nw * (maxH / nh);          // width if the photo is scaled to the height cap
-    w = Math.min(w, maxW, nw);         // never exceed the width cap or upscale past native
-    w = Math.max(w, 300);              // keep a sensible minimum for portraits
-    card.style.width = Math.round(w) + "px";
   }
   function showPhoto() {
     if (!lb.beer) return;
@@ -217,13 +232,8 @@
   }
 
   // -- Events --
-  document.getElementById("rating-filters").addEventListener("click", function (e) {
-    var btn = e.target.closest(".chip"); if (!btn) return;
-    state.rating = btn.dataset.rating;
-    this.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("is-active"); });
-    btn.classList.add("is-active");
-    render();
-  });
+  els.year.addEventListener("change", function () { state.year = this.value; render(); });
+  els.rating.addEventListener("change", function () { state.rating = this.value; render(); });
   els.brewery.addEventListener("change", function () { state.brewery = this.value; render(); });
   els.type.addEventListener("change", function () { state.type = this.value; render(); });
   els.tag.addEventListener("change", function () { state.tag = this.value; render(); });

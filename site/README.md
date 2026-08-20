@@ -47,8 +47,8 @@ Each photo carries a `thumb` (grid) and a `full` (lightbox) URL. The untouched o
 
 ## What the UI does
 
-- **Header stats** — total logged plus a three-way 👍 / 😐 / 👎 count, read from `manifest.counts`.
-- **Filters** — rating chips (all / yeah / eh / nah), a brewery dropdown, a sort (newest / oldest / by brewery), and a `#tag` cloud built from every distinct style tag. Clicking tags narrows the grid to beers matching any selected tag; all filtering happens client-side in `app.js` with no reload.
+- **Header** — just the title. All counts live next to the filter options now.
+- **Filters** — dropdowns for year, rating, brewery, type, and hashtag, plus a sort (newest / oldest / by brewery). Each dropdown option shows a count, e.g. `2025 (13)`, `#ipa (20)`. `year` is derived from the date (in the manifest but never shown on a card). All filtering is client-side in `app.js`, combined with AND, no reload.
 - **Grid** — one card per beer: cover photo, brewery, name, its `#tags` · ABV, a rating pill, and a photo-count badge when there's more than one shot. Thumbnails are a uniform 3:4 portrait crop (center-cropped); the detail view shows each photo at its true aspect ratio, so portrait and landscape both display fully.
 - **Lightbox** — clicking a card opens a detail view with a photo carousel (arrow keys and on-screen arrows, dots for position), the full metadata (style, ABV, size, date), and any notes. `Esc` closes it. Empty fields are hidden.
 

@@ -86,7 +86,7 @@
 
   function fillSelect(sel, allLabel, getter, order, prefix) {
     var m = countMap(getter);
-    sel.options[0].textContent = allLabel + " (" + state.beers.length + ")";
+    sel.options[0].textContent = allLabel;
     var keys = Object.keys(m).sort();
     if (order === "desc") keys.reverse();
     keys.forEach(function (k) {
@@ -104,7 +104,7 @@
     var rc = countMap(function (b) { return b.rating; });
     var names = { yeah: "\uD83D\uDC4D Yeah", eh: "\uD83D\uDE10 Eh", nah: "\uD83D\uDC4E Nah" };
     Array.prototype.forEach.call(els.rating.options, function (o) {
-      if (o.value === "all") o.textContent = "All ratings (" + state.beers.length + ")";
+      if (o.value === "all") o.textContent = "All ratings";
       else o.textContent = (names[o.value] || o.value) + " (" + (rc[o.value] || 0) + ")";
     });
   }

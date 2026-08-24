@@ -1,0 +1,46 @@
+name: Publish beer site
+
+# Runs when beers.csv is pushed (from the GitHub mobile app), or manually.
+# Path-filtered to beers.csv so the manifest commit this makes doesn't re-trigger it.
+on:
+  push:
+    branches: [main]
+    paths: ['beers.csv']
+  workflow_dispatch:
+
+permissions:
+  contents: write   # to commit the rebuilt manifest.json back
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Process incoming photos and rebuild the manifest
+        env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CLOUDFRONT_URL: ${{ secrets.CLOUDFRONT_URL }}
+        run: python scripts/beer_sync.py process-incoming
+
+      - name: Commit manifest.json if it changed
+        run: |
+          if ! git diff --quiet -- manifest.json; then
+            git config user.name "beer-site bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add manifest.json
+            git commit -m "Rebuild manifest [skip ci]"
+            git push
+          else
+            echo "manifest.json unchanged"
+          fi

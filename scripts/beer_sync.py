@@ -366,12 +366,55 @@ def cmd_download():
     print(f"Downloaded {downloaded} original(s) to {PHOTOS_DIR}; {present} already present.")
 
 
+def cmd_process_incoming():
+    import tempfile
+    s3 = _s3()
+    meta = load_beers_csv()
+    incoming = [o["Key"] for o in list_objects(s3)
+                if o["Key"].startswith("incoming/")
+                and Path(o["Key"]).suffix.lower() in IMAGE_EXTS]
+    if incoming:
+        info(f"\nProcessing {len(incoming)} incoming photo(s)\n")
+    processed = 0
+    for key in incoming:
+        fname = Path(key).name
+        parsed = parse_photo_filename(fname)
+        if not parsed:
+            warn(f"WARN: leaving '{key}' in incoming (name must be <date>-<group>-<photo#>).")
+            continue
+        group_id = parsed[0]
+        stem = Path(fname).stem
+        with tempfile.NamedTemporaryFile(suffix=Path(fname).suffix, delete=False) as tf:
+            tmp = tf.name
+        try:
+            s3.download_file(BUCKET, key, tmp)
+            info(f"   process {fname} -> {group_id}/ ...", end="")
+            put_jpeg(s3, f"{group_id}/thumb/{stem}.jpg", resize_jpeg(Path(tmp), THUMB_MAX))
+            put_jpeg(s3, f"{group_id}/full/{stem}.jpg", resize_jpeg(Path(tmp), FULL_MAX))
+            s3.copy_object(Bucket=BUCKET, Key=f"{group_id}/orig/{fname}",
+                           CopySource={"Bucket": BUCKET, "Key": key},
+                           ContentType=mime_type(Path(fname)),
+                           CacheControl="public, max-age=31536000, immutable",
+                           MetadataDirective="REPLACE")
+            s3.delete_object(Bucket=BUCKET, Key=key)
+            info(" done")
+            processed += 1
+        finally:
+            os.remove(tmp)
+    print(f"Processed {processed} incoming photo(s).")
+    groups = group_photos(s3_full_filenames(list_objects(s3)))
+    manifest = build_manifest(groups, meta, base_url())
+    write_manifest_s3(s3, manifest)
+    report(manifest)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Beer Necessities CLI")
-    parser.add_argument("command", choices=["sync", "check", "download"],
+    parser.add_argument("command", choices=["sync", "check", "download", "process-incoming"],
                         help="sync: upload new photos + rebuild manifest from S3 | "
                              "check: join local photos + beers.csv (no AWS) | "
-                             "download: pull originals from S3 into ./photos")
+                             "download: pull originals from S3 into ./photos | "
+                             "process-incoming: turn S3 incoming/ originals into tiers + rebuild (used by CI)")
     g = parser.add_mutually_exclusive_group()
     g.add_argument("-q", "--quiet", action="store_true",
                    help="only errors and summaries")
@@ -380,7 +423,8 @@ def main():
     args = parser.parse_args()
     global LEVEL
     LEVEL = 0 if args.quiet else (2 if args.verbose else 1)
-    {"sync": cmd_sync, "check": cmd_check, "download": cmd_download}[args.command]()
+    {"sync": cmd_sync, "check": cmd_check, "download": cmd_download,
+     "process-incoming": cmd_process_incoming}[args.command]()
 
 
 if __name__ == "__main__":

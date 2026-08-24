@@ -52,6 +52,7 @@ Commands run from the repo root and read your `.env`. Output has three levels:
 | `python scripts/beer_sync.py check`    | Join `photos/` with `beers.csv`, print the beers, write local `manifest.json`. | No     |
 | `python scripts/beer_sync.py sync`     | Upload new photos, then rebuild + upload the manifest from all of S3.      | Yes         |
 | `python scripts/beer_sync.py download` | Print the bucket size, then pull originals from S3 into `photos/`.         | Yes         |
+| `python scripts/beer_sync.py process-incoming` | Turn S3 `incoming/` originals into tiers, then rebuild the manifest (the phone/CI flow). | Yes |
 
 ## Editing a detail (rating, type, ABV, size, notes, name)
 
@@ -105,6 +106,24 @@ git add -A
 git commit -m "Add beers"
 git push
 ```
+
+## Updating from your phone (Android)
+
+Edit `beers.csv` in the GitHub mobile app, upload photos to S3 with **S3Drive**, and a GitHub Action does the resize + manifest rebuild.
+
+One-time setup:
+
+- **GitHub:** in the repo, Settings → Secrets and variables → Actions, add `S3_BUCKET`, `AWS_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `CLOUDFRONT_URL` — the same values as your `.env`. Make sure Actions is enabled.
+- **Phone:** install S3Drive, add an S3 account (provider AWS, your bucket, region `ap-southeast-6` — or endpoint `s3.ap-southeast-6.amazonaws.com`, the uploader key/secret). Leave S3Drive's own encryption **off** (the Action needs plain files). Bookmark the bucket's `incoming/` folder.
+
+Each beer:
+
+1. Name the photos `date-group-photo#.jpg` (e.g. `20260112-a-1.jpg`); rename them in S3Drive before/after adding to the upload if needed.
+2. Upload them to `incoming/`.
+3. In the GitHub app, add the `beers.csv` row(s), commit, push.
+4. The Action turns `incoming/` into the tiers, rebuilds + uploads the manifest, and commits `manifest.json` back. The site updates in a minute or two.
+
+Upload the photos **before** pushing `beers.csv` so the same run sees both. If they get out of sync, open the repo's Actions tab and hit "Run workflow" (or push a trivial `beers.csv` change).
 
 ## Ratings
 

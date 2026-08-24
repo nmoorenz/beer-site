@@ -1,10 +1,10 @@
 {
-  "generated": "2026-08-24T21:04:48.192561+00:00",
+  "generated": "2026-08-24T21:07:16.335811+00:00",
   "counts": {
     "total": 166,
-    "nah": 0,
-    "yeah": 132,
-    "eh": 0
+    "yeah": 166,
+    "eh": 0,
+    "nah": 0
   },
   "beers": [
     {
@@ -731,13 +731,15 @@
       "date": "20191020",
       "year": "2019",
       "dateDisplay": "20 Oct 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Lakeman",
+      "name": "Regal Royale",
+      "type": "Barleywine",
+      "tags": [
+        "barleywine"
+      ],
+      "abv": "11",
+      "size": "440ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -759,13 +761,15 @@
       "date": "20191012",
       "year": "2019",
       "dateDisplay": "12 Oct 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Baltika",
+      "name": "Zatecky Gus Svetly",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "4.6",
+      "size": "900ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -779,13 +783,15 @@
       "date": "20191008",
       "year": "2019",
       "dateDisplay": "8 Oct 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Tuatara",
+      "name": "Iti",
+      "type": "APA",
+      "tags": [
+        "apa"
+      ],
+      "abv": "3.3",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -803,13 +809,13 @@
       "date": "20190929",
       "year": "2019",
       "dateDisplay": "29 Sep 2019",
-      "brewery": "",
+      "brewery": "Hallertau",
       "name": "",
       "type": "",
       "tags": [],
       "abv": "",
       "size": "",
-      "rating": "",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -823,13 +829,16 @@
       "date": "20190928",
       "year": "2019",
       "dateDisplay": "28 Sep 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Altitude",
+      "name": "The Posturing Professional",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -851,13 +860,16 @@
       "date": "20190928",
       "year": "2019",
       "dateDisplay": "28 Sep 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Baylands",
+      "name": "Slackline Sour",
+      "type": "Boysenberry Gose",
+      "tags": [
+        "boysenberry",
+        "gose"
+      ],
+      "abv": "4",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -879,13 +891,17 @@
       "date": "20190921",
       "year": "2019",
       "dateDisplay": "21 Sep 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Baylands",
+      "name": "Night Ryder",
+      "type": "Chocolate Rye Stout",
+      "tags": [
+        "chocolate",
+        "rye",
+        "stout"
+      ],
+      "abv": "5.8",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -907,13 +923,15 @@
       "date": "20190921",
       "year": "2019",
       "dateDisplay": "21 Sep 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Baylands",
+      "name": "Britannia",
+      "type": "Bitter",
+      "tags": [
+        "bitter"
+      ],
+      "abv": "4.5",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -935,13 +953,15 @@
       "date": "20190921",
       "year": "2019",
       "dateDisplay": "21 Sep 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Baylands",
+      "name": "Party Pils",
+      "type": "Pilsner",
+      "tags": [
+        "pilsner"
+      ],
+      "abv": "5",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -963,14 +983,18 @@
       "date": "20190825",
       "year": "2019",
       "dateDisplay": "25 Aug 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
-      "notes": "",
+      "brewery": "Garage Project",
+      "name": "Golden Path",
+      "type": "Hazy Pale Ale",
+      "tags": [
+        "hazy",
+        "pale",
+        "ale"
+      ],
+      "abv": "4",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "Burger Wellington; Blueberry Burger; Masters Trials",
       "photos": [
         {
           "thumb": "https://cdn.beer.nmoore.nz/20190825-a/thumb/20190825-a-1.jpg",
@@ -987,13 +1011,17 @@
       "date": "20190622",
       "year": "2019",
       "dateDisplay": "22 Jun 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Mata",
+      "name": "+64",
+      "type": "NZ Pale Ale",
+      "tags": [
+        "nz",
+        "pale",
+        "ale"
+      ],
+      "abv": "5.5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1015,13 +1043,16 @@
       "date": "20190622",
       "year": "2019",
       "dateDisplay": "22 Jun 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Shakespeare",
+      "name": "The Bard",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "4.5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1039,13 +1070,15 @@
       "date": "20190607",
       "year": "2019",
       "dateDisplay": "7 Jun 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Steinlager",
+      "name": "Pure",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "5",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1059,13 +1092,16 @@
       "date": "20190525",
       "year": "2019",
       "dateDisplay": "25 May 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Moa",
+      "name": "Bonus",
+      "type": "Mandarin IPA",
+      "tags": [
+        "mandarin",
+        "ipa"
+      ],
+      "abv": "6.5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1083,13 +1119,16 @@
       "date": "20190430",
       "year": "2019",
       "dateDisplay": "30 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Galway Bay",
+      "name": "Red Ale (Probably)",
+      "type": "Red Ale",
+      "tags": [
+        "red",
+        "ale"
+      ],
+      "abv": "4.6",
+      "size": "568ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1103,13 +1142,15 @@
       "date": "20190430",
       "year": "2019",
       "dateDisplay": "30 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Galway Bay",
+      "name": "Full Sail, Saison, Peach Sour, Founders",
+      "type": "Paddle",
+      "tags": [
+        "paddle"
+      ],
+      "abv": "5",
+      "size": "800ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1123,13 +1164,15 @@
       "date": "20190430",
       "year": "2019",
       "dateDisplay": "30 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
+      "brewery": "Galway Bay",
+      "name": "Bar",
+      "type": "Bar",
+      "tags": [
+        "bar"
+      ],
+      "abv": "5",
       "size": "",
-      "rating": "",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1151,13 +1194,16 @@
       "date": "20190430",
       "year": "2019",
       "dateDisplay": "30 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Five Lamps",
+      "name": "Pale Ale",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "4.8",
+      "size": "568ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1195,13 +1241,16 @@
       "date": "20190425",
       "year": "2019",
       "dateDisplay": "25 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Smithwick's",
+      "name": "Red Ale",
+      "type": "Red Ale",
+      "tags": [
+        "red",
+        "ale"
+      ],
+      "abv": "3.8",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1219,13 +1268,16 @@
       "date": "20190425",
       "year": "2019",
       "dateDisplay": "25 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Smithwick's",
+      "name": "Pale Ale",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "4.5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1243,13 +1295,15 @@
       "date": "20190425",
       "year": "2019",
       "dateDisplay": "25 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Brooklyn",
+      "name": "Brooklyn Lager",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "5.2",
+      "size": "355ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1267,13 +1321,16 @@
       "date": "20190419",
       "year": "2019",
       "dateDisplay": "19 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Sierra Nevada",
+      "name": "Pale Ale",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "5.6",
+      "size": "473ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1287,13 +1344,16 @@
       "date": "20190419",
       "year": "2019",
       "dateDisplay": "19 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Treaty City",
+      "name": "Harris",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1315,13 +1375,17 @@
       "date": "20190419",
       "year": "2019",
       "dateDisplay": "19 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Eight Degrees",
+      "name": "Full Irish",
+      "type": "Single Malt IPA",
+      "tags": [
+        "single",
+        "malt",
+        "ipa"
+      ],
+      "abv": "6",
+      "size": "440ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1339,13 +1403,16 @@
       "date": "20190419",
       "year": "2019",
       "dateDisplay": "19 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Rascals",
+      "name": "Happy Days",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "4.1",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1367,13 +1434,15 @@
       "date": "20190419",
       "year": "2019",
       "dateDisplay": "19 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Brewdog",
+      "name": "Elvis Juice",
+      "type": "IPA",
+      "tags": [
+        "ipa"
+      ],
+      "abv": "6.5",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1387,13 +1456,15 @@
       "date": "20190417",
       "year": "2019",
       "dateDisplay": "17 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Guinness",
+      "name": "Hop House 13",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "4.1",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1407,13 +1478,15 @@
       "date": "20190417",
       "year": "2019",
       "dateDisplay": "17 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Brewdog",
+      "name": "Punk IPA",
+      "type": "IPA",
+      "tags": [
+        "ipa"
+      ],
+      "abv": "5.6",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1427,13 +1500,16 @@
       "date": "20190415",
       "year": "2019",
       "dateDisplay": "15 Apr 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Guinness",
+      "name": "Rye Pale Ale",
+      "type": "Amber Ale",
+      "tags": [
+        "amber",
+        "ale"
+      ],
+      "abv": "5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1451,13 +1527,16 @@
       "date": "20190330",
       "year": "2019",
       "dateDisplay": "30 Mar 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Parrotdog",
+      "name": "Keith",
+      "type": "Hazy IPA",
+      "tags": [
+        "hazy",
+        "ipa"
+      ],
+      "abv": "6",
+      "size": "440ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1475,13 +1554,16 @@
       "date": "20190316",
       "year": "2019",
       "dateDisplay": "16 Mar 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Hallertau",
+      "name": "3",
+      "type": "Red Ale",
+      "tags": [
+        "red",
+        "ale"
+      ],
+      "abv": "4.9",
+      "size": "330ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1503,13 +1585,15 @@
       "date": "20190210",
       "year": "2019",
       "dateDisplay": "10 Feb 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Wild on Waiheke",
+      "name": "Platter",
+      "type": "Tasting",
+      "tags": [
+        "tasting"
+      ],
+      "abv": "5",
+      "size": "900ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1523,13 +1607,17 @@
       "date": "20190206",
       "year": "2019",
       "dateDisplay": "6 Feb 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "B.Effect",
+      "name": "Secret Garden",
+      "type": "Central Otago IPA",
+      "tags": [
+        "central",
+        "otago",
+        "ipa"
+      ],
+      "abv": "6.8",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -1547,13 +1635,17 @@
       "date": "20190120",
       "year": "2019",
       "dateDisplay": "20 Jan 2019",
-      "brewery": "",
-      "name": "",
-      "type": "",
-      "tags": [],
-      "abv": "",
-      "size": "",
-      "rating": "",
+      "brewery": "Behemoth",
+      "name": "Chur!",
+      "type": "NZ Pale Ale",
+      "tags": [
+        "nz",
+        "pale",
+        "ale"
+      ],
+      "abv": "5.5",
+      "size": "500ml",
+      "rating": "yeah",
       "notes": "",
       "photos": [
         {
@@ -4281,7 +4373,7 @@
       "date": "20151227",
       "year": "2015",
       "dateDisplay": "27 Dec 2015",
-      "brewery": "Baylands Brewery",
+      "brewery": "Baylands",
       "name": "Petone Pale Ale",
       "type": "Pale Ale",
       "tags": [

@@ -2,31 +2,30 @@
 """
 beer_sync.py - Beer Necessities CLI tool
 
-Photos are named only enough to identify and order them; everything
-descriptive lives in beers.csv. Editing any detail (including ratings) is a
-spreadsheet cell change - no renaming.
+Photo filenames carry only identity: 20260112-a-1.jpg = <date>-<group>-<photo#>.
+A beer is every photo sharing the same date-group prefix (its id). All the
+descriptive detail lives in beers.csv, keyed by that id:
 
-Filename convention: 20260701-a-1.jpg  = <date YYYYMMDD>-<group letter>-<photo#>
-A "beer" = every photo sharing the same date-group prefix (its id), ordered by
-photo number.
-
-beers.csv (one row per beer, keyed by id):
     id,brewery,name,type,abv,size,rating,notes
-  - id matches the filename prefix exactly (e.g. 20260701-a)
-  - type: space-separated style words; each becomes a filter tag
-          (e.g. "sorbet sour" -> #sorbet #sour). Hyphenate to keep a
-          multi-word tag together (e.g. "west-coast ipa").
-  - abv e.g. 5.8 (a trailing % is fine); rating is yeah | eh | nah; notes optional
 
-Photo tiers in S3 (created on sync):
+Photos are stored in S3 in three tiers per beer:
     <id>/thumb/<stem>.jpg   small, for the grid            (in manifest)
     <id>/full/<stem>.jpg    display size, for the lightbox (in manifest)
     <id>/orig/<filename>    untouched original, archived   (NOT in manifest)
 
-Usage:
-    python scripts/beer_sync.py sync       # resize + upload + regenerate manifest
-    python scripts/beer_sync.py manifest   # regenerate manifest from S3 (no upload)
-    python scripts/beer_sync.py check      # join local photos + beers.csv, no AWS
+Commands:
+    python scripts/beer_sync.py sync        # upload new local photos, then rebuild
+                                            # manifest from EVERYTHING in S3
+    python scripts/beer_sync.py check       # join local photos + beers.csv, no AWS
+    python scripts/beer_sync.py download    # pull originals from S3 into ./photos
+                                            # (also prints bucket size)
+
+Output levels:
+    default       upload/sync progress + summaries (no CSV warnings)
+    -v/--verbose  also show CSV warnings (bad rating, no photo/row match) + per-beer listing
+    -q/--quiet    only errors and summaries
+
+Config: copy env.example to .env and fill in your values.
 """
 
 import argparse
@@ -60,13 +59,40 @@ JPEG_QUALITY = 82
 MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+LEVEL = 1  # 0 = quiet, 1 = normal (default), 2 = verbose
+
+
+def info(msg, end="\n"):
+    if LEVEL >= 1:
+        print(msg, end=end, flush=True)
+
+
+def warn(msg):
+    if LEVEL >= 2:
+        print(msg, file=sys.stderr)
+
+
+def detail(msg):
+    if LEVEL >= 2:
+        print(msg)
+
+
+def human_size(n):
+    x = float(n)
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
+        if x < 1024:
+            return f"{x:.1f} {unit}"
+        x /= 1024
+    return f"{x:.1f} PB"
+
+
+# -- Filename + metadata parsing --------------------------------------------
 
 def parse_photo_filename(filename):
     stem = Path(filename).stem
     m = FILENAME_RE.match(stem)
     if not m:
-        print(f"WARN: skipping '{filename}': expected <date>-<group>-<photo#>, "
-              f"e.g. 20260701-a-1.jpg")
+        warn(f"WARN: skipping '{filename}': expected <date>-<group>-<photo#>, e.g. 20260112-a-1.jpg")
         return None
     date, group, photo_num = m.group(1), m.group(2).lower(), int(m.group(3))
     return f"{date}-{group}", photo_num
@@ -86,9 +112,6 @@ def norm_abv(value):
 
 
 def tags_from_type(type_str):
-    """'Sorbet Sour' -> ['sorbet', 'sour']. Split on spaces/commas, lowercased,
-    de-duplicated, order preserved. Hyphenate to keep a multi-word tag together,
-    e.g. 'west-coast ipa' -> ['west-coast', 'ipa']."""
     seen = []
     for part in re.split(r"[,\s]+", (type_str or "").strip().lower()):
         if part and part not in seen:
@@ -115,8 +138,7 @@ def load_beers_csv():
                 continue
             rating = (row.get("rating") or "").strip().lower()
             if rating not in VALID_RATINGS:
-                print(f"WARN: beer {beer_id}: rating '{rating}' is not one of "
-                      f"{sorted(VALID_RATINGS)}. Leaving it as-is.")
+                warn(f"WARN: beer {beer_id}: rating '{rating}' is not one of {sorted(VALID_RATINGS)}.")
             rows[beer_id] = {
                 "brewery": (row.get("brewery") or "").strip(),
                 "name":    (row.get("name") or "").strip(),
@@ -129,6 +151,8 @@ def load_beers_csv():
     return rows
 
 
+# -- AWS --------------------------------------------------------------------
+
 def _s3():
     import boto3
     if not BUCKET:
@@ -140,6 +164,14 @@ def _s3():
         aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
         aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
     )
+
+
+def list_objects(s3):
+    objs = []
+    paginator = s3.get_paginator("list_objects_v2")
+    for page in paginator.paginate(Bucket=BUCKET):
+        objs.extend(page.get("Contents", []))
+    return objs
 
 
 def mime_type(path):
@@ -170,6 +202,8 @@ def base_url():
     return os.environ.get("CLOUDFRONT_URL", f"https://{BUCKET}.s3.{REGION}.amazonaws.com")
 
 
+# -- Grouping / manifest ----------------------------------------------------
+
 def group_photos(filenames):
     groups = defaultdict(list)
     for fn in filenames:
@@ -191,8 +225,7 @@ def build_manifest(groups, meta, base):
     for group_id, filenames in groups.items():
         row = meta.get(group_id)
         if row is None:
-            print(f"WARN: {group_id}: {len(filenames)} photo(s) but no row in "
-                  f"{BEERS_CSV.name} - skipping. Add an 'id={group_id}' row.")
+            warn(f"WARN: {group_id}: {len(filenames)} photo(s) but no row in {BEERS_CSV.name} - skipping.")
             continue
         beers.append({
             "id":          group_id,
@@ -211,7 +244,7 @@ def build_manifest(groups, meta, base):
         })
     for beer_id in meta:
         if beer_id not in groups:
-            print(f"WARN: {beer_id}: row in {BEERS_CSV.name} but no photos found.")
+            warn(f"WARN: {beer_id}: row in {BEERS_CSV.name} but no photos found.")
     beers.sort(key=lambda b: (b["date"], b["id"]), reverse=True)
     counts = {r: sum(1 for b in beers if b["rating"] == r) for r in VALID_RATINGS}
     return {"generated": datetime.now(timezone.utc).isoformat(),
@@ -221,13 +254,12 @@ def build_manifest(groups, meta, base):
 
 def report(manifest):
     c = manifest["counts"]
-    print(f"\nManifest: {c['total']} beer(s) - yeah {c['yeah']}  eh {c['eh']}  nah {c['nah']}")
     for b in manifest["beers"]:
         abv = f" {b['abv']}%" if b["abv"] else ""
         size = f" {b['size']}" if b["size"] else ""
-        tags = " " + " ".join("#" + t for t in b["tags"]) if b["tags"] else ""
-        print(f"   - {b['id']}  {b['brewery']} - {b['name']} "
-              f"({b['type']}{abv}{size}){tags} [{b['rating']}, {len(b['photos'])} photo(s)]")
+        detail(f"   - {b['id']}  {b['brewery']} - {b['name']} ({b['type']}{abv}{size}) "
+             f"[{b['rating']}, {len(b['photos'])} photo(s)]")
+    print(f"Manifest: {c['total']} beer(s) - yeah {c['yeah']}  eh {c['eh']}  nah {c['nah']}")
 
 
 def write_manifest_local(manifest):
@@ -235,9 +267,8 @@ def write_manifest_local(manifest):
         json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def write_manifest_s3(manifest):
+def write_manifest_s3(s3, manifest):
     write_manifest_local(manifest)
-    s3 = _s3()
     s3.put_object(Bucket=BUCKET, Key="manifest.json",
                   Body=json.dumps(manifest, indent=2, ensure_ascii=False).encode("utf-8"),
                   ContentType="application/json; charset=utf-8",
@@ -246,14 +277,25 @@ def write_manifest_s3(manifest):
 
 def scan_local_filenames():
     if not PHOTOS_DIR.exists():
-        print(f"ERROR: photos directory not found: {PHOTOS_DIR}", file=sys.stderr)
-        sys.exit(1)
+        return []
     return sorted(p.name for p in PHOTOS_DIR.iterdir()
                   if p.is_file() and p.suffix.lower() in IMAGE_EXTS)
 
 
+def s3_full_filenames(objs):
+    # Rebuild from the full-size derivatives: keys look like <id>/full/<stem>.jpg
+    out = []
+    for o in objs:
+        parts = o["Key"].split("/")
+        if len(parts) == 3 and parts[1] == "full":
+            out.append(parts[2])
+    return out
+
+
+# -- Commands ---------------------------------------------------------------
+
 def cmd_check():
-    print(f"\nJoining photos in {PHOTOS_DIR} with {BEERS_CSV} (no upload)\n")
+    info(f"\nJoining photos in {PHOTOS_DIR} with {BEERS_CSV} (no upload)\n")
     groups = group_photos(scan_local_filenames())
     manifest = build_manifest(groups, load_beers_csv(), base_url())
     write_manifest_local(manifest)
@@ -264,62 +306,81 @@ def cmd_sync():
     from botocore.exceptions import ClientError
     s3 = _s3()
     meta = load_beers_csv()
-    groups = group_photos(scan_local_filenames())
-    print(f"\nSyncing photos from {PHOTOS_DIR} -> s3://{BUCKET}\n")
+
+    # 1. upload any new local photos (resized tiers + original)
+    local = group_photos(scan_local_filenames())
     uploaded = skipped = 0
-    for group_id, group_files in groups.items():
-        for fn in group_files:
-            stem = Path(fn).stem
-            thumb_key = f"{group_id}/thumb/{stem}.jpg"
-            full_key = f"{group_id}/full/{stem}.jpg"
-            orig_key = f"{group_id}/orig/{fn}"
-            local_path = PHOTOS_DIR / fn
-            try:
-                s3.head_object(Bucket=BUCKET, Key=full_key)
-                print(f"   skip {group_id}/{fn} (already synced)")
-                skipped += 1
-                continue
-            except ClientError:
-                pass
-            print(f"   up   {group_id}/{fn}  (thumb + full + orig) ...", end="", flush=True)
-            put_jpeg(s3, thumb_key, resize_jpeg(local_path, THUMB_MAX))
-            put_jpeg(s3, full_key, resize_jpeg(local_path, FULL_MAX))
-            s3.upload_file(str(local_path), BUCKET, orig_key,
-                           ExtraArgs={"ContentType": mime_type(local_path),
-                                      "CacheControl": "public, max-age=31536000, immutable"})
-            print(" done")
-            uploaded += 1
-    print(f"\nSync complete: {uploaded} uploaded, {skipped} skipped")
+    if local:
+        info(f"\nSyncing photos from {PHOTOS_DIR} -> s3://{BUCKET}\n")
+        for group_id, files in local.items():
+            for fn in files:
+                stem = Path(fn).stem
+                full_key = f"{group_id}/full/{stem}.jpg"
+                local_path = PHOTOS_DIR / fn
+                try:
+                    s3.head_object(Bucket=BUCKET, Key=full_key)
+                    info(f"   skip {group_id}/{fn}")
+                    skipped += 1
+                    continue
+                except ClientError:
+                    pass
+                info(f"   up   {group_id}/{fn}  (thumb + full + orig) ...", end="")
+                put_jpeg(s3, f"{group_id}/thumb/{stem}.jpg", resize_jpeg(local_path, THUMB_MAX))
+                put_jpeg(s3, full_key, resize_jpeg(local_path, FULL_MAX))
+                s3.upload_file(str(local_path), BUCKET, f"{group_id}/orig/{fn}",
+                               ExtraArgs={"ContentType": mime_type(local_path),
+                                          "CacheControl": "public, max-age=31536000, immutable"})
+                info(" done")
+                uploaded += 1
+        print(f"Uploaded {uploaded}, skipped {skipped}.")
+    else:
+        info(f"\nNo local photos in {PHOTOS_DIR}; rebuilding manifest from S3 only.")
+
+    # 2. rebuild the manifest from EVERYTHING in S3 (all machines' uploads)
+    groups = group_photos(s3_full_filenames(list_objects(s3)))
     manifest = build_manifest(groups, meta, base_url())
-    write_manifest_s3(manifest)
+    write_manifest_s3(s3, manifest)
     report(manifest)
 
 
-def cmd_manifest():
+def cmd_download():
     s3 = _s3()
-    objects = []
-    paginator = s3.get_paginator("list_objects_v2")
-    for page in paginator.paginate(Bucket=BUCKET):
-        objects.extend(page.get("Contents", []))
-    filenames = []
-    for obj in objects:
-        parts = obj["Key"].split("/")
-        if len(parts) == 3 and parts[1] == "full":
-            filenames.append(parts[2])
-    groups = group_photos(filenames)
-    manifest = build_manifest(groups, load_beers_csv(), base_url())
-    write_manifest_s3(manifest)
-    report(manifest)
+    objs = list_objects(s3)
+    total = sum(o.get("Size", 0) for o in objs)
+    print(f"Bucket {BUCKET}: {len(objs)} objects, {human_size(total)} total")
+
+    PHOTOS_DIR.mkdir(parents=True, exist_ok=True)
+    downloaded = present = 0
+    for o in objs:
+        parts = o["Key"].split("/")
+        if len(parts) == 3 and parts[1] == "orig":
+            fn = parts[2]
+            dest = PHOTOS_DIR / fn
+            if dest.exists():
+                present += 1
+                continue
+            info(f"   down {fn} ...", end="")
+            s3.download_file(BUCKET, o["Key"], str(dest))
+            info(" done")
+            downloaded += 1
+    print(f"Downloaded {downloaded} original(s) to {PHOTOS_DIR}; {present} already present.")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Beer Necessities CLI")
-    parser.add_argument("command", choices=["sync", "manifest", "check"],
-                        help="sync: resize + upload + regenerate manifest | "
-                             "manifest: regenerate from S3 | "
-                             "check: join local photos + beers.csv (no AWS)")
+    parser.add_argument("command", choices=["sync", "check", "download"],
+                        help="sync: upload new photos + rebuild manifest from S3 | "
+                             "check: join local photos + beers.csv (no AWS) | "
+                             "download: pull originals from S3 into ./photos")
+    g = parser.add_mutually_exclusive_group()
+    g.add_argument("-q", "--quiet", action="store_true",
+                   help="only errors and summaries")
+    g.add_argument("-v", "--verbose", action="store_true",
+                   help="also show CSV warnings and the per-beer listing")
     args = parser.parse_args()
-    {"sync": cmd_sync, "manifest": cmd_manifest, "check": cmd_check}[args.command]()
+    global LEVEL
+    LEVEL = 0 if args.quiet else (2 if args.verbose else 1)
+    {"sync": cmd_sync, "check": cmd_check, "download": cmd_download}[args.command]()
 
 
 if __name__ == "__main__":

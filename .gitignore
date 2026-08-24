@@ -6,8 +6,7 @@
 # Generated at build time
 site/config.js
 
-# Local manifest copy (source of truth is S3)
-manifest.json
+# Local preview manifest only (the tracked one is ./manifest.json at the repo root)
 site/manifest.json
 
 # Secrets / env

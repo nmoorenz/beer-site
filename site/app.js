@@ -8,7 +8,7 @@
   };
 
   var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest", page: 0 };
-  var PAGE_SIZE = 30;
+  var PAGE_SIZE = 36;
   var lb = { beer: null, index: 0 };
 
   var els = {

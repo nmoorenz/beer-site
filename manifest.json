@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-24T23:17:42.938829+00:00",
+  "generated": "2026-08-25T08:39:00.125632+00:00",
   "counts": {
     "total": 166,
     "eh": 0,
@@ -816,7 +816,7 @@
       "abv": "",
       "size": "",
       "rating": "yeah",
-      "notes": "",
+      "notes": "Disc Golf Prize",
       "photos": [
         {
           "thumb": "https://cdn.beer.nmoore.nz/20190929-a/thumb/20190929-a-1.jpg",
@@ -1012,7 +1012,7 @@
       "year": "2019",
       "dateDisplay": "22 Jun 2019",
       "brewery": "Mata",
-      "name": "+64",
+      "name": "64",
       "type": "NZ Pale Ale",
       "tags": [
         "nz",

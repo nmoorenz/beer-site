@@ -7,7 +7,8 @@
     nah:  { emoji: "👎", label: "Nah" },
   };
 
-  var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest" };
+  var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest", page: 0 };
+  var PAGE_SIZE = 30;
   var lb = { beer: null, index: 0 };
 
   var els = {
@@ -22,6 +23,7 @@
     type:     document.getElementById("type-filter"),
     tag:      document.getElementById("tag-filter"),
     sort:     document.getElementById("sort-order"),
+    pager:    document.getElementById("pager"),
     lightbox: document.getElementById("lightbox"),
   };
 
@@ -44,6 +46,15 @@
 
   function yearOf(b) {
     return b.year || String(b.date || "").slice(0, 4);
+  }
+
+  var MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function monthYear(b) {
+    var d = String(b.date || "");
+    if (d.length < 6) return "";
+    var m = parseInt(d.slice(4, 6), 10);
+    return (MONTHS[m] || "") + " " + d.slice(0, 4);
   }
 
   // -- Load --
@@ -130,9 +141,27 @@
 
   function render() {
     var list = visibleBeers();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    if (state.page > pages - 1) state.page = pages - 1;
+    if (state.page < 0) state.page = 0;
+    var start = state.page * PAGE_SIZE;
     els.grid.innerHTML = "";
     els.empty.hidden = list.length > 0;
-    list.forEach(function (b) { els.grid.appendChild(card(b)); });
+    list.slice(start, start + PAGE_SIZE).forEach(function (b) { els.grid.appendChild(card(b)); });
+    renderPager(list.length, pages);
+  }
+
+  function renderPager(total, pages) {
+    if (!els.pager) return;
+    if (total <= PAGE_SIZE) { els.pager.hidden = true; els.pager.innerHTML = ""; return; }
+    els.pager.hidden = false;
+    els.pager.innerHTML =
+      '<button class="pg-btn" id="pg-prev"' + (state.page === 0 ? " disabled" : "") + ">\u2039 Prev</button>" +
+      '<span class="pg-info">Page ' + (state.page + 1) + " of " + pages + "</span>" +
+      '<button class="pg-btn" id="pg-next"' + (state.page >= pages - 1 ? " disabled" : "") + ">Next \u203a</button>";
+    var prev = document.getElementById("pg-prev"), next = document.getElementById("pg-next");
+    if (prev) prev.addEventListener("click", function () { if (state.page > 0) { state.page--; render(); window.scrollTo(0, 0); } });
+    if (next) next.addEventListener("click", function () { if (state.page < pages - 1) { state.page++; render(); window.scrollTo(0, 0); } });
   }
 
   function card(b) {
@@ -151,7 +180,8 @@
     el.innerHTML =
       '<div class="card-thumb">' + thumb + count + "</div>" +
       '<div class="card-body">' +
-        '<div class="card-brewery">' + esc(b.brewery) + "</div>" +
+        '<div class="card-brewery"><span>' + esc(b.brewery) + '</span>' +
+          '<span class="card-date">' + esc(monthYear(b)) + '</span></div>' +
         '<div class="card-name">' + esc(b.name) + "</div>" +
         '<div class="card-foot">' +
           '<span class="card-type">' + typeLine + "</span>" +
@@ -232,12 +262,12 @@
   }
 
   // -- Events --
-  els.year.addEventListener("change", function () { state.year = this.value; render(); });
-  els.rating.addEventListener("change", function () { state.rating = this.value; render(); });
-  els.brewery.addEventListener("change", function () { state.brewery = this.value; render(); });
-  els.type.addEventListener("change", function () { state.type = this.value; render(); });
-  els.tag.addEventListener("change", function () { state.tag = this.value; render(); });
-  els.sort.addEventListener("change", function () { state.sort = this.value; render(); });
+  els.year.addEventListener("change", function () { state.year = this.value; state.page = 0; render(); });
+  els.rating.addEventListener("change", function () { state.rating = this.value; state.page = 0; render(); });
+  els.brewery.addEventListener("change", function () { state.brewery = this.value; state.page = 0; render(); });
+  els.type.addEventListener("change", function () { state.type = this.value; state.page = 0; render(); });
+  els.tag.addEventListener("change", function () { state.tag = this.value; state.page = 0; render(); });
+  els.sort.addEventListener("change", function () { state.sort = this.value; state.page = 0; render(); });
 
   document.getElementById("lb-prev").addEventListener("click", function () { nav(-1); });
   document.getElementById("lb-next").addEventListener("click", function () { nav(1); });

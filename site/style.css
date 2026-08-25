@@ -81,7 +81,7 @@ select {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 20px; padding-bottom: 60px;
+  gap: 20px; padding-bottom: 24px;
 }
 .card {
   background: var(--card); border: 1px solid var(--line);
@@ -105,7 +105,9 @@ select {
 .card-brewery {
   font-size: 12px; font-weight: 600; color: var(--amber-deep);
   text-transform: uppercase; letter-spacing: .03em; margin-bottom: 2px;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
 }
+.card-date { text-transform: none; letter-spacing: 0; color: var(--ink-soft); font-weight: 500; white-space: nowrap; }
 .card-name {
   font-family: "Fraunces", serif; font-weight: 600; font-size: 17px;
   line-height: 1.25; margin: 0 0 10px;
@@ -164,3 +166,15 @@ select {
   .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
   .stats { gap: 12px; }
 }
+
+/* -- Pagination -- */
+.pager { display: flex; justify-content: center; align-items: center; gap: 16px; padding: 8px 0 60px; }
+.pager[hidden] { display: none; }
+.pg-btn {
+  font: inherit; font-size: 14px; padding: 8px 16px; cursor: pointer;
+  background: var(--card); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.pg-btn:hover:not(:disabled) { border-color: var(--amber); }
+.pg-btn:disabled { opacity: .45; cursor: default; }
+.pg-info { font-size: 14px; color: var(--ink-soft); }

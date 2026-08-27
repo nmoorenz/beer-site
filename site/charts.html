@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Beer Necessities — Charts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <style>
+    .chart-section { margin: 0 0 44px; }
+    .chart-section h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: 18px; margin: 0 0 6px; }
+    .chart-section .sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+    .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .bar { fill: var(--amber); }
+    .bar:hover { fill: var(--amber-deep); }
+    .axis text { fill: var(--ink-soft); font-size: 11px; }
+    .axis path, .axis line { stroke: var(--line); }
+    .bar-label { fill: var(--ink-soft); font-size: 11px; }
+    .charts-note { color: var(--ink-soft); font-size: 13px; margin: 0 0 28px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🍺</span>
+        <h1>Beer Necessities — Charts</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="charts-note" id="summary">Loading…</p>
+
+    <section class="chart-section"><h2>Breweries</h2><p class="sub">by count, most first</p><div class="chart" id="c-brewery"></div></section>
+    <section class="chart-section"><h2>Types</h2><p class="sub">by count, most first</p><div class="chart" id="c-type"></div></section>
+    <section class="chart-section"><h2>Hashtags</h2><p class="sub">by count, most first</p><div class="chart" id="c-tag"></div></section>
+    <section class="chart-section"><h2>By year</h2><div class="chart" id="c-year"></div></section>
+    <section class="chart-section"><h2>By month</h2><div class="chart" id="c-ym"></div></section>
+    <section class="chart-section"><h2>ABV</h2><p class="sub">%, in 0.1 steps from 0 to the strongest</p><div class="chart" id="c-abv"></div></section>
+    <section class="chart-section"><h2>Size</h2><div class="chart" id="c-size"></div></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="config.js"></script>
+  <script src="charts.js"></script>
+</body>
+</html>

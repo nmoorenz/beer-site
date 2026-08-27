@@ -93,9 +93,9 @@
         }
       } },
     { v: "type", label: "Types", sub: "more than one",
-      render: function () { drawVBar("#chart", sortedByCount(countBy(function (b) { return b.type; })).filter(function (d) { return d.value > 1; }), { rotate: true }); } },
+      render: function () { drawHBar("#chart", sortedByCount(countBy(function (b) { return b.type; })).filter(function (d) { return d.value > 1; })); } },
     { v: "tag", label: "Hashtags", sub: "more than one",
-      render: function () { drawVBar("#chart", sortedByCount(countBy(function (b) { return b.tags || []; })).filter(function (d) { return d.value > 1; }), { rotate: true }); } },
+      render: function () { drawHBar("#chart", sortedByCount(countBy(function (b) { return b.tags || []; })).filter(function (d) { return d.value > 1; })); } },
     { v: "year", label: "By year", sub: "",
       render: function () { drawVBar("#chart", dataYear(), {}); } },
     { v: "ym", label: "By month", sub: "",

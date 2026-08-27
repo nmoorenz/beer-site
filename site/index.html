@@ -26,8 +26,8 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="controls" id="controls" hidden>
+  <main class="wrap layout">
+    <aside class="sidebar" id="controls" hidden>
       <label class="sr-only" for="year-filter">Filter by year</label>
       <select id="year-filter"><option value="all">All years</option></select>
       <label class="sr-only" for="rating-filter">Filter by rating</label>
@@ -53,13 +53,14 @@
         <option value="oldest">Oldest first</option>
         <option value="brewery">By brewery</option>
       </select>
+    </aside>
+
+    <div class="content">
+      <div class="grid" id="grid" aria-live="polite"></div>
+      <p class="empty" id="empty" hidden>No beers match these filters.</p>
+      <p class="empty" id="loading">Pouring...</p>
+      <div class="pager" id="pager" hidden></div>
     </div>
-
-    <div class="grid" id="grid" aria-live="polite"></div>
-    <p class="empty" id="empty" hidden>No beers match these filters.</p>
-    <p class="empty" id="loading">Pouring...</p>
-
-    <div class="pager" id="pager" hidden></div>
   </main>
 
   <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Beer detail">

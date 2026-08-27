@@ -11,7 +11,7 @@ A plain static site: no framework, one small build step. Netlify serves this fol
 | `app.js`     | Fetches the manifest and handles filtering, sorting, and the lightbox.        |
 | `config.js`  | Written at deploy time by `scripts/generate_config.py`; holds the manifest URL. Gitignored — never edit or commit. |
 | `favicon.svg`, `favicon-16/32.png`, `favicon.ico`, `apple-touch-icon.png` | Pint-glass favicon and fallbacks. |
-| `charts.html` / `charts.js` | Unlinked stats page (D3 bar charts) at `/charts.html`; not in any nav, `noindex`. |
+| `charts.html` / `charts.js` | Unlinked stats page at `/charts.html` — a dropdown picks one D3 bar chart at a time (brewery, type, hashtag, year, month, ABV, size). Not in any nav, `noindex`. |
 
 ## How it loads
 

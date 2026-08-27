@@ -12,16 +12,18 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <style>
-    .chart-section { margin: 0 0 44px; }
-    .chart-section h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: 18px; margin: 0 0 6px; }
-    .chart-section .sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+    .chart-controls { margin: 24px 0 18px; }
+    .chart-title { font-family: "Fraunces", serif; font-weight: 600; font-size: 20px; margin: 0 0 4px; }
+    .chart-sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
+    .chart-sub:empty { display: none; }
     .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
     .bar { fill: var(--amber); }
     .bar:hover { fill: var(--amber-deep); }
     .axis text { fill: var(--ink-soft); font-size: 11px; }
     .axis path, .axis line { stroke: var(--line); }
     .bar-label { fill: var(--ink-soft); font-size: 11px; }
-    .charts-note { color: var(--ink-soft); font-size: 13px; margin: 0 0 28px; }
+    .charts-note { color: var(--ink-soft); font-size: 13px; margin: 0; }
+    .others { font-size: 13px; color: var(--ink-soft); line-height: 1.7; margin: 18px 0 0; }
   </style>
 </head>
 <body>
@@ -36,14 +38,13 @@
 
   <main class="wrap">
     <p class="charts-note" id="summary">Loading…</p>
-
-    <section class="chart-section"><h2>Breweries</h2><p class="sub">by count, most first</p><div class="chart" id="c-brewery"></div></section>
-    <section class="chart-section"><h2>Types</h2><p class="sub">by count, most first</p><div class="chart" id="c-type"></div></section>
-    <section class="chart-section"><h2>Hashtags</h2><p class="sub">by count, most first</p><div class="chart" id="c-tag"></div></section>
-    <section class="chart-section"><h2>By year</h2><div class="chart" id="c-year"></div></section>
-    <section class="chart-section"><h2>By month</h2><div class="chart" id="c-ym"></div></section>
-    <section class="chart-section"><h2>ABV</h2><p class="sub">%, in 0.1 steps from 0 to the strongest</p><div class="chart" id="c-abv"></div></section>
-    <section class="chart-section"><h2>Size</h2><div class="chart" id="c-size"></div></section>
+    <div class="chart-controls">
+      <label class="sr-only" for="chart-picker">Choose a chart</label>
+      <select id="chart-picker"></select>
+    </div>
+    <h2 class="chart-title" id="chart-title"></h2>
+    <p class="chart-sub" id="chart-sub"></p>
+    <div class="chart" id="chart"></div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>

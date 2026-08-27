@@ -51,7 +51,7 @@ Each photo has a `thumb` (grid) and `full` (lightbox) URL. The untouched origina
 ## What the UI does
 
 - **Header** — just the title.
-- **Filters** — dropdowns for year, rating, brewery, type, and hashtag, plus a sort (newest / oldest / by brewery). Each option shows a count, e.g. `2025 (13)`, `#ipa (20)`. Filters combine with AND; all client-side, no reload. `year` is used only for filtering and is never shown on a card.
+- **Filters** — dropdowns for year, rating, brewery, type, hashtag, ABV (banded: `0-0.9`, `1-1.9`, … `10+`), and size, plus a sort (newest / oldest / by brewery). Each option shows a count, e.g. `2025 (13)`, `#ipa (20)`. Filters combine with AND; all client-side, no reload. `year` is used only for filtering and is never shown on a card.
 - **Grid** — one card per beer: cover photo, brewery with the month and year (e.g. `Jun 2026`) right-aligned on the same line, name, type · ABV, a rating pill, and a photo-count badge when there's more than one shot. Thumbnails are a uniform 3:4 portrait crop. The grid is paginated at 36 beers per page, with Prev/Next controls at the bottom.
 - **Lightbox** — a card opens to a photo carousel (arrow keys, on-screen arrows, dots), then brewery, name, notes, the type / ABV / size / date row, and the `#hashtags`. The card sizes to each photo's aspect ratio, so landscape shots display wider than portraits. `Esc` closes it; empty fields are hidden.
 

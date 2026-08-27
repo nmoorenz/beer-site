@@ -7,7 +7,7 @@
     nah:  { emoji: "👎", label: "Nah" },
   };
 
-  var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", sort: "newest", page: 0 };
+  var state = { beers: [], year: "all", rating: "all", brewery: "all", type: "all", tag: "all", abv: "all", size: "all", sort: "newest", page: 0 };
   var PAGE_SIZE = 36;
   var lb = { beer: null, index: 0 };
 
@@ -22,6 +22,8 @@
     brewery:  document.getElementById("brewery-filter"),
     type:     document.getElementById("type-filter"),
     tag:      document.getElementById("tag-filter"),
+    abv:      document.getElementById("abv-filter"),
+    size:     document.getElementById("size-filter"),
     sort:     document.getElementById("sort-order"),
     pager:    document.getElementById("pager"),
     lightbox: document.getElementById("lightbox"),
@@ -55,6 +57,22 @@
     if (d.length < 6) return "";
     var m = parseInt(d.slice(4, 6), 10);
     return (MONTHS[m] || "") + " " + d.slice(0, 4);
+  }
+
+  function abvVal(b) {
+    var m = String(b.abv == null ? "" : b.abv).match(/[\d.]+/);
+    return m ? parseFloat(m[0]) : null;
+  }
+  function abvBand(b) {
+    var v = abvVal(b);
+    if (v === null) return null;
+    if (v >= 10) return "10+";
+    var lo = Math.floor(v);
+    return lo + "-" + lo + ".9";
+  }
+  function sizeMl(s) {
+    var m = String(s).match(/(\d+)\s*ml/i);
+    return m ? parseInt(m[1], 10) : Infinity;
   }
 
   // -- Load --
@@ -111,6 +129,20 @@
     fillSelect(els.type, "All types", function (b) { return b.type; }, "asc", "");
     fillSelect(els.tag, "All hashtags", function (b) { return b.tags || []; }, "asc", "#");
 
+    // ABV bands: always show every band 0-0.9 .. 9-9.9 then 10+ (even empty ones)
+    var abvc = {};
+    state.beers.forEach(function (b) { var k = abvBand(b); if (k) abvc[k] = (abvc[k] || 0) + 1; });
+    var abvBands = [];
+    for (var i = 0; i <= 9; i++) abvBands.push(i + "-" + i + ".9");
+    abvBands.push("10+");
+    abvBands.forEach(function (k) { els.abv.appendChild(new Option(k + " (" + (abvc[k] || 0) + ")", k)); });
+
+    // sizes with ml labels, ordered by volume
+    var sc = {};
+    state.beers.forEach(function (b) { if (b.size) sc[b.size] = (sc[b.size] || 0) + 1; });
+    Object.keys(sc).sort(function (a, b) { return sizeMl(a) - sizeMl(b) || a.localeCompare(b); })
+      .forEach(function (k) { els.size.appendChild(new Option(k + " (" + sc[k] + ")", k)); });
+
     // rating select is static markup; annotate the options with counts
     var rc = countMap(function (b) { return b.rating; });
     var names = { yeah: "\uD83D\uDC4D Yeah", eh: "\uD83D\uDE10 Eh", nah: "\uD83D\uDC4E Nah" };
@@ -127,7 +159,9 @@
              (state.rating === "all" || b.rating === state.rating) &&
              (state.brewery === "all" || b.brewery === state.brewery) &&
              (state.type === "all" || b.type === state.type) &&
-             (state.tag === "all" || (b.tags || []).indexOf(state.tag) >= 0);
+             (state.tag === "all" || (b.tags || []).indexOf(state.tag) >= 0) &&
+             (state.abv === "all" || abvBand(b) === state.abv) &&
+             (state.size === "all" || b.size === state.size);
     });
     if (state.sort === "brewery") {
       list.sort(function (a, b) { return (a.brewery || "").localeCompare(b.brewery || ""); });
@@ -267,6 +301,8 @@
   els.brewery.addEventListener("change", function () { state.brewery = this.value; state.page = 0; render(); });
   els.type.addEventListener("change", function () { state.type = this.value; state.page = 0; render(); });
   els.tag.addEventListener("change", function () { state.tag = this.value; state.page = 0; render(); });
+  els.abv.addEventListener("change", function () { state.abv = this.value; state.page = 0; render(); });
+  els.size.addEventListener("change", function () { state.size = this.value; state.page = 0; render(); });
   els.sort.addEventListener("change", function () { state.sort = this.value; state.page = 0; render(); });
 
   document.getElementById("lb-prev").addEventListener("click", function () { nav(-1); });

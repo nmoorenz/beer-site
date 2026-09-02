@@ -190,3 +190,12 @@ select {
   .sidebar { position: static; top: auto; flex-direction: row; flex-wrap: wrap; flex-basis: auto; margin: 20px 0 16px; }
   .sidebar select { width: auto; flex: 1 1 140px; }
 }
+
+.sidebar-link {
+  margin-top: 4px; font-size: 14px; font-weight: 500; text-decoration: none;
+  color: var(--amber-deep); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 12px; background: var(--card); text-align: center;
+  transition: border-color .15s, background .15s;
+}
+.sidebar-link:hover { border-color: var(--amber); background: var(--amber-soft); }
+@media (max-width: 700px) { .sidebar-link { flex: 1 1 100%; } }

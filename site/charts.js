@@ -15,6 +15,41 @@
     return m ? parseInt(m[1], 10) : Infinity;   // non-ml (Pint, Handle) sort last
   }
 
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function monthName(mm) { return MONTHS[parseInt(mm, 10) - 1] || mm; }
+
+  // collapse the many free-text styles into a handful of families
+  function styleFamily(b) {
+    var t = (b.type || "").toLowerCase();
+    if (/cider/.test(t)) return "Cider";
+    if (/sour|gose|berliner|lambic|\bwild\b|brett/.test(t)) return "Sour";
+    if (/stout|porter/.test(t)) return "Stout/Porter";
+    if (/ipa|india pale/.test(t)) return "IPA";
+    if (/pale|\bapa\b|xpa/.test(t)) return "Pale";
+    if (/wheat|weiss|hefe|witbier|\bwit\b/.test(t)) return "Wheat";
+    if (/pilsner|pils/.test(t)) return "Pilsner";
+    if (/lager/.test(t)) return "Lager";
+    if (/\bale\b|saison|tripel|dubbel|blond|bitter/.test(t)) return "Ale";
+    return "Other";
+  }
+  var STYLE_ORDER = ["IPA", "Pale", "Lager", "Pilsner", "Wheat", "Stout/Porter", "Sour", "Ale", "Cider", "Other"];
+
+  function abvBand(b) {
+    var v = abvOf(b);
+    if (v === null) return null;
+    if (v >= 10) return "10+";
+    var lo = Math.floor(v);
+    return lo + "-" + lo + ".9";
+  }
+  function abvBandsPresent() {
+    var present = {};
+    beers.forEach(function (b) { var k = abvBand(b); if (k) present[k] = 1; });
+    var out = [];
+    for (var i = 0; i <= 9; i++) { var k = i + "-" + i + ".9"; if (present[k]) out.push(k); }
+    if (present["10+"]) out.push("10+");
+    return out;
+  }
+
   var beers = [];
 
   function countBy(getter) {
@@ -77,6 +112,43 @@
       .sort(function (a, b) { return sizeMl(a.label) - sizeMl(b.label) || a.label.localeCompare(b.label); });
   }
 
+  // -- heat-map data builders --
+  function dataHeatYM() {
+    var cells = {}, years = {}, max = 0;
+    beers.forEach(function (b) {
+      var d = String(b.date || ""); if (d.length < 6) return;
+      var y = d.slice(0, 4), mo = d.slice(4, 6);
+      years[y] = 1; cells[y] = cells[y] || {};
+      cells[y][mo] = (cells[y][mo] || 0) + 1;
+      if (cells[y][mo] > max) max = cells[y][mo];
+    });
+    return { rows: Object.keys(years).sort(), cols: ["01","02","03","04","05","06","07","08","09","10","11","12"], cells: cells, max: max };
+  }
+  function dataHeatStyleAbv() {
+    var cells = {}, max = 0;
+    beers.forEach(function (b) {
+      var k = abvBand(b); if (!k) return;
+      var f = styleFamily(b);
+      cells[f] = cells[f] || {};
+      cells[f][k] = (cells[f][k] || 0) + 1;
+      if (cells[f][k] > max) max = cells[f][k];
+    });
+    return { rows: STYLE_ORDER.filter(function (f) { return cells[f]; }), cols: abvBandsPresent(), cells: cells, max: max };
+  }
+  function dataHeatBreweryStyle() {
+    var top = sortedByCount(countBy(function (b) { return b.brewery; })).slice(0, 12).map(function (d) { return d.label; });
+    var topSet = {}; top.forEach(function (b) { topSet[b] = 1; });
+    var cells = {}, famUsed = {}, max = 0;
+    beers.forEach(function (b) {
+      if (!topSet[b.brewery]) return;
+      var f = styleFamily(b); famUsed[f] = 1;
+      cells[b.brewery] = cells[b.brewery] || {};
+      cells[b.brewery][f] = (cells[b.brewery][f] || 0) + 1;
+      if (cells[b.brewery][f] > max) max = cells[b.brewery][f];
+    });
+    return { rows: top, cols: STYLE_ORDER.filter(function (f) { return famUsed[f]; }), cells: cells, max: max };
+  }
+
   // -- chart registry (single source of truth for the dropdown) --
   var CHARTS = [
     { v: "brewery", label: "Breweries", sub: "more than one; singles listed below",
@@ -110,7 +182,13 @@
         fmt: function (l) { return String(parseFloat(l)); } }); } },
     { v: "size", label: "Size", sub: "",
       render: function () { drawVBar("#chart", dataSize(), {
-        rotate: false, fmt: function (l) { return String(l).replace(/ml$/i, ""); } }); } }
+        rotate: false, fmt: function (l) { return String(l).replace(/ml$/i, ""); } }); } },
+    { v: "heat-ym", label: "Heat map: year x month", sub: "beers logged each month",
+      render: function () { drawHeatmap("#chart", dataHeatYM(), { left: 52, cellH: 26, colFmt: monthName }); } },
+    { v: "heat-style-abv", label: "Heat map: style x ABV", sub: "count by style family and ABV band",
+      render: function () { drawHeatmap("#chart", dataHeatStyleAbv(), { left: 108, cellH: 30, top: 26 }); } },
+    { v: "heat-brewery-style", label: "Heat map: brewery x style", sub: "top 12 breweries by style family",
+      render: function () { drawHeatmap("#chart", dataHeatBreweryStyle(), { left: 132, cellH: 26, rotateCols: true, top: 54 }); } }
   ];
 
   var picker = document.getElementById("chart-picker");
@@ -215,5 +293,51 @@
     if (opts.rotate) {
       gx.selectAll("text").attr("transform", "rotate(-45)").attr("text-anchor", "end").attr("dx", "-0.5em").attr("dy", "0.3em");
     }
+  }
+
+  // -- heat map --
+  function drawHeatmap(sel, hm, opts) {
+    opts = opts || {};
+    var host = document.querySelector(sel);
+    host.innerHTML = "";
+    if (!hm.rows.length || !hm.cols.length) return;
+    var width = host.clientWidth || 900;
+    var m = { top: opts.top || 26, right: 8, bottom: 6, left: opts.left || 120 };
+    var innerW = width - m.left - m.right;
+    var cell = innerW / hm.cols.length;
+    var cellH = opts.cellH || Math.min(cell, 34);
+    var innerH = hm.rows.length * cellH;
+    var height = innerH + m.top + m.bottom;
+
+    var svg = d3.select(host).append("svg").attr("viewBox", "0 0 " + width + " " + height);
+    var g = svg.append("g").attr("transform", "translate(" + m.left + "," + m.top + ")");
+    var color = d3.scaleLinear().domain([0, hm.max || 1]).range(["#FBF6EC", "#854F0B"]).interpolate(d3.interpolateRgb);
+
+    hm.rows.forEach(function (r, ri) {
+      hm.cols.forEach(function (c, ci) {
+        var v = (hm.cells[r] && hm.cells[r][c]) || 0;
+        var rect = g.append("rect").attr("class", "hcell")
+          .attr("x", ci * cell).attr("y", ri * cellH)
+          .attr("width", cell - 2).attr("height", cellH - 2).attr("rx", 3)
+          .attr("fill", v ? color(v) : "#FBF6EC");
+        rect.append("title").text(r + " / " + (opts.colFmt ? opts.colFmt(c) : c) + ": " + v);
+        if (v && cell >= 24 && cellH >= 18) {
+          g.append("text").attr("class", "hval")
+            .attr("x", ci * cell + (cell - 2) / 2).attr("y", ri * cellH + cellH / 2).attr("dy", "0.35em")
+            .attr("text-anchor", "middle").attr("fill", v > hm.max * 0.55 ? "#fff" : "var(--ink)")
+            .text(v);
+        }
+      });
+      g.append("text").attr("class", "hlabel")
+        .attr("x", -8).attr("y", ri * cellH + cellH / 2).attr("dy", "0.35em")
+        .attr("text-anchor", "end").text(r);
+    });
+
+    hm.cols.forEach(function (c, ci) {
+      var cx = ci * cell + (cell - 2) / 2;
+      var t = g.append("text").attr("class", "hlabel").attr("y", -8).text(opts.colFmt ? opts.colFmt(c) : c);
+      if (opts.rotateCols) t.attr("x", 0).attr("text-anchor", "end").attr("transform", "translate(" + cx + ",0) rotate(-35)");
+      else t.attr("x", cx).attr("text-anchor", "middle");
+    });
   }
 })();

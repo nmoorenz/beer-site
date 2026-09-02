@@ -11,7 +11,7 @@ A plain static site: no framework, one small build step. Netlify serves this fol
 | `app.js`     | Fetches the manifest and handles filtering, sorting, and the lightbox.        |
 | `config.js`  | Written at deploy time by `scripts/generate_config.py`; holds the manifest URL. Gitignored — never edit or commit. |
 | `favicon.svg`, `favicon-16/32.png`, `favicon.ico`, `apple-touch-icon.png` | Pint-glass favicon and fallbacks. |
-| `charts.html` / `charts.js` | Unlinked stats page at `/charts.html` — a dropdown picks one D3 bar chart at a time (brewery, type, hashtag, year, month, ABV, size). Not in any nav, `noindex`. |
+| `charts.html` / `charts.js` | Stats page at `/charts.html`, linked from the sidebar and `noindex`. A dropdown picks one D3 chart at a time: bar charts (brewery, type, hashtag, year, month, ABV, size) and heat maps (year x month, style family x ABV band, top-12 breweries x style family). |
 
 ## How it loads
 
@@ -51,7 +51,7 @@ Each photo has a `thumb` (grid) and `full` (lightbox) URL. The untouched origina
 ## What the UI does
 
 - **Header** — just the title.
-- **Filters** — a left sidebar of dropdowns for year, rating, brewery, type, hashtag, ABV (banded: `0-0.9`, `1-1.9`, … `10+`), and size, plus a sort (newest / oldest / by brewery). Each option shows a count, e.g. `2025 (13)`, `#ipa (20)`. Filters combine with AND; all client-side, no reload. `year` is used only for filtering and is never shown on a card.
+- **Filters** — a left sidebar of dropdowns for year, rating, brewery, type, hashtag, ABV (banded: `0-0.9`, `1-1.9`, … `10+`), and size, plus a sort (newest / oldest / by brewery) and a link to the charts page. Each option shows a count, e.g. `2025 (13)`, `#ipa (20)`. Filters combine with AND; all client-side, no reload. `year` is used only for filtering and is never shown on a card.
 - **Grid** — one card per beer: cover photo, brewery with the month and year (e.g. `Jun 2026`) right-aligned on the same line, name, type · ABV, a rating pill, and a photo-count badge when there's more than one shot. Thumbnails are a uniform 3:4 portrait crop. The grid is paginated at 36 beers per page, with Prev/Next controls at the bottom.
 - **Lightbox** — a card opens to a photo carousel (arrow keys, on-screen arrows, dots), then brewery, name, notes, the type / ABV / size / date row, and the `#hashtags`. The card sizes to each photo's aspect ratio, so landscape shots display wider than portraits. `Esc` closes it; empty fields are hidden.
 

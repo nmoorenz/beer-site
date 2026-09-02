@@ -134,6 +134,19 @@
     });
     return { rows: STYLE_ORDER.filter(function (f) { return cells[f]; }), cols: abvBandsAll(), cells: cells, max: max };
   }
+  function dataHeatBreweryAbv() {
+    var top = sortedByCount(countBy(function (b) { return b.brewery; })).slice(0, 12).map(function (d) { return d.label; });
+    var topSet = {}; top.forEach(function (b) { topSet[b] = 1; });
+    var cells = {}, max = 0;
+    beers.forEach(function (b) {
+      if (!topSet[b.brewery]) return;
+      var k = abvBand(b); if (!k) return;
+      cells[b.brewery] = cells[b.brewery] || {};
+      cells[b.brewery][k] = (cells[b.brewery][k] || 0) + 1;
+      if (cells[b.brewery][k] > max) max = cells[b.brewery][k];
+    });
+    return { rows: top, cols: abvBandsAll(), cells: cells, max: max };
+  }
   function dataHeatBreweryStyle() {
     var top = sortedByCount(countBy(function (b) { return b.brewery; })).slice(0, 12).map(function (d) { return d.label; });
     var topSet = {}; top.forEach(function (b) { topSet[b] = 1; });
@@ -187,7 +200,9 @@
     { v: "heat-style-abv", label: "Heat map: style x ABV", sub: "count by style family and ABV band",
       render: function () { drawHeatmap("#chart", dataHeatStyleAbv(), { left: 108, cellH: 30, top: 26 }); } },
     { v: "heat-brewery-style", label: "Heat map: brewery x style", sub: "top 12 breweries by style family",
-      render: function () { drawHeatmap("#chart", dataHeatBreweryStyle(), { left: 132, cellH: 26, top: 24 }); } }
+      render: function () { drawHeatmap("#chart", dataHeatBreweryStyle(), { left: 132, cellH: 26, top: 24 }); } },
+    { v: "heat-brewery-abv", label: "Heat map: brewery x ABV", sub: "top 12 breweries by ABV band",
+      render: function () { drawHeatmap("#chart", dataHeatBreweryAbv(), { left: 132, cellH: 26, top: 24 }); } }
   ];
 
   var picker = document.getElementById("chart-picker");

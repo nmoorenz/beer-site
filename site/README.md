@@ -11,7 +11,7 @@ A plain static site: no framework, one small build step. Netlify serves this fol
 | `app.js`     | Fetches the manifest and handles filtering, sorting, and the lightbox.        |
 | `config.js`  | Written at deploy time by `scripts/generate_config.py`; holds the manifest URL. Gitignored — never edit or commit. |
 | `favicon.svg`, `favicon-16/32.png`, `favicon.ico`, `apple-touch-icon.png` | Pint-glass favicon and fallbacks. |
-| `charts.html` / `charts.js` | Stats page at `/charts.html`, linked from the sidebar and `noindex`. A dropdown picks one D3 chart at a time: bar charts (brewery, type, hashtag, year, month, ABV, size) and heat maps (year x month, style family x ABV band, top-12 breweries x style family). |
+| `charts.html` / `charts.js` | Stats page at `/charts.html`, linked from the sidebar and `noindex`. A dropdown picks one D3 chart at a time: bar charts (brewery, type, hashtag, year, month, ABV, size) and heat maps (year x month, style family x ABV band, top-12 breweries x style family, top-12 breweries x ABV band). |
 
 ## How it loads
 

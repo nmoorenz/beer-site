@@ -99,13 +99,17 @@ aws s3 ls s3://YOUR-BUCKET --recursive --summarize --human-readable --profile nm
 
 ## Committing
 
-`beers.csv` and `manifest.json` are both tracked, so a normal add/commit/push captures the change and gives you a readable diff of what the site now serves:
+`sync` publishes the photos and the manifest straight to S3, so the site is live the moment it finishes — before you commit. `beers.csv` and `manifest.json` are both tracked, so the commit records the change and gives you a readable diff of what the site now serves:
 
 ```bash
 git add -A
-git commit -m "Add beers"
+git commit -m "Add beers [skip ci]"
 git push
 ```
+
+The `[skip ci]` tag keeps the GitHub Action from running. The Action does the resize and manifest rebuild for the phone flow; after a `sync` that work is already done, so a push from your computer carries `[skip ci]` and the site stays exactly as `sync` left it.
+
+After a phone update the Action commits a fresh `manifest.json`, so `git pull` before your next computer session to pick it up.
 
 ## Updating from your phone (Android)
 

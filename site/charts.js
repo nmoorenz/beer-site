@@ -24,6 +24,7 @@
     if (/cider/.test(t)) return "Cider";
     if (/sour|gose|berliner|lambic|\bwild\b|brett/.test(t)) return "Sour";
     if (/stout|porter/.test(t)) return "Stout/Porter";
+    if (/lager/.test(t) && /ipa|india|pale/.test(t)) return "Lager";  // India Pale Lager etc.
     if (/ipa|india pale/.test(t)) return "IPA";
     if (/pale|\bapa\b|xpa/.test(t)) return "Pale";
     if (/wheat|weiss|hefe|witbier|\bwit\b/.test(t)) return "Wheat";
@@ -41,12 +42,10 @@
     var lo = Math.floor(v);
     return lo + "-" + lo + ".9";
   }
-  function abvBandsPresent() {
-    var present = {};
-    beers.forEach(function (b) { var k = abvBand(b); if (k) present[k] = 1; });
+  function abvBandsAll() {
     var out = [];
-    for (var i = 0; i <= 9; i++) { var k = i + "-" + i + ".9"; if (present[k]) out.push(k); }
-    if (present["10+"]) out.push("10+");
+    for (var i = 0; i <= 9; i++) out.push(i + "-" + i + ".9");
+    out.push("10+");
     return out;
   }
 
@@ -133,7 +132,7 @@
       cells[f][k] = (cells[f][k] || 0) + 1;
       if (cells[f][k] > max) max = cells[f][k];
     });
-    return { rows: STYLE_ORDER.filter(function (f) { return cells[f]; }), cols: abvBandsPresent(), cells: cells, max: max };
+    return { rows: STYLE_ORDER.filter(function (f) { return cells[f]; }), cols: abvBandsAll(), cells: cells, max: max };
   }
   function dataHeatBreweryStyle() {
     var top = sortedByCount(countBy(function (b) { return b.brewery; })).slice(0, 12).map(function (d) { return d.label; });
@@ -188,7 +187,7 @@
     { v: "heat-style-abv", label: "Heat map: style x ABV", sub: "count by style family and ABV band",
       render: function () { drawHeatmap("#chart", dataHeatStyleAbv(), { left: 108, cellH: 30, top: 26 }); } },
     { v: "heat-brewery-style", label: "Heat map: brewery x style", sub: "top 12 breweries by style family",
-      render: function () { drawHeatmap("#chart", dataHeatBreweryStyle(), { left: 132, cellH: 26, rotateCols: true, top: 54 }); } }
+      render: function () { drawHeatmap("#chart", dataHeatBreweryStyle(), { left: 132, cellH: 26, top: 24 }); } }
   ];
 
   var picker = document.getElementById("chart-picker");
@@ -210,8 +209,6 @@
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
       beers = (data && data.beers) || [];
-      document.getElementById("summary").textContent =
-        beers.length + " beers logged" + (data.generated ? " · updated " + data.generated.slice(0, 10) : "");
       CHARTS.forEach(function (c) { picker.appendChild(new Option(c.label, c.v)); });
       var saved;
       try { saved = localStorage.getItem("beerChart"); } catch (e) {}
@@ -222,7 +219,6 @@
       window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(renderCurrent, 200); });
     })
     .catch(function (err) {
-      document.getElementById("summary").textContent = "Couldn't load the beer data.";
       console.error(err);
     });
 

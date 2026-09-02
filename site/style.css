@@ -180,14 +180,14 @@ select {
 .pg-info { font-size: 14px; color: var(--ink-soft); }
 
 /* -- Layout: left sidebar of filters + content -- */
-.layout { display: flex; gap: 28px; align-items: flex-start; }
-.sidebar { flex: 0 0 190px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 80px; margin: 24px 0 20px; }
+.layout { display: flex; gap: 28px; align-items: flex-start; margin-top: 20px; }
+.sidebar { flex: 0 0 190px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 80px; }
 .sidebar[hidden] { display: none; }
 .sidebar select { width: 100%; }
 .content { flex: 1 1 auto; min-width: 0; }
 @media (max-width: 700px) {
   .layout { flex-direction: column; }
-  .sidebar { position: static; top: auto; flex-direction: row; flex-wrap: wrap; flex-basis: auto; margin: 20px 0 16px; }
+  .sidebar { position: static; top: auto; flex-direction: row; flex-wrap: wrap; flex-basis: auto; margin: 0 0 16px; }
   .sidebar select { width: auto; flex: 1 1 140px; }
 }
 

@@ -1,12 +1,36 @@
 {
-  "generated": "2026-09-02T05:51:58.622788+00:00",
+  "generated": "2026-09-03T18:19:19.500466+00:00",
   "counts": {
-    "total": 356,
-    "yeah": 356,
+    "total": 357,
+    "yeah": 357,
     "eh": 0,
     "nah": 0
   },
   "beers": [
+    {
+      "id": "20260903-a",
+      "date": "20260903",
+      "year": "2026",
+      "dateDisplay": "3 Sep 2026",
+      "brewery": "Sawmill",
+      "name": "Hazy Pale Ale",
+      "type": "Hazy Pale Ale",
+      "tags": [
+        "hazy",
+        "pale",
+        "ale"
+      ],
+      "abv": "5",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "Snowflake",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260903-a/thumb/20260903-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260903-a/full/20260903-a-1.jpg"
+        }
+      ]
+    },
     {
       "id": "20260711-a",
       "date": "20260711",

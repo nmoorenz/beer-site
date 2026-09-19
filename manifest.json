@@ -1,29 +1,111 @@
 {
-  "generated": "2026-09-07T11:00:05.833291+00:00",
+  "generated": "2026-09-19T09:49:54.036302+00:00",
   "counts": {
-    "total": 433,
-    "yeah": 433,
-    "nah": 0,
-    "eh": 0
+    "total": 442,
+    "yeah": 442,
+    "eh": 0,
+    "nah": 0
   },
   "beers": [
+    {
+      "id": "20260916-a",
+      "date": "20260916",
+      "year": "2026",
+      "dateDisplay": "16 Sep 2026",
+      "brewery": "Duncan's",
+      "name": "Montes",
+      "type": "NZIPA",
+      "tags": [
+        "nzipa"
+      ],
+      "abv": "6.5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "Vale Road",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260916-a/thumb/20260916-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260916-a/full/20260916-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260916-a/thumb/20260916-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260916-a/full/20260916-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260916-a/thumb/20260916-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260916-a/full/20260916-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260913-a",
+      "date": "20260913",
+      "year": "2026",
+      "dateDisplay": "13 Sep 2026",
+      "brewery": "Murphy's",
+      "name": "Murphy's Irish Stout",
+      "type": "Stout",
+      "tags": [
+        "stout"
+      ],
+      "abv": "4",
+      "size": "Pint",
+      "rating": "yeah",
+      "notes": "CRL Opening Day",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260913-a/thumb/20260913-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260913-a/full/20260913-a-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260912-a",
+      "date": "20260912",
+      "year": "2026",
+      "dateDisplay": "12 Sep 2026",
+      "brewery": "Duncan's",
+      "name": "Marshmallow Egg",
+      "type": "Imperial Pastry Stout",
+      "tags": [
+        "imperial",
+        "pastry",
+        "stout"
+      ],
+      "abv": "10",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260912-a/thumb/20260912-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260912-a/full/20260912-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260912-a/thumb/20260912-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260912-a/full/20260912-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260912-a/thumb/20260912-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260912-a/full/20260912-a-3.jpg"
+        }
+      ]
+    },
     {
       "id": "20260905-a",
       "date": "20260905",
       "year": "2026",
       "dateDisplay": "5 Sep 2026",
-      "brewery": "Duncan's",
-      "name": "Feijoa Crumble",
-      "type": "Ice Cream Sour",
+      "brewery": "New World",
+      "name": "Top 25 Beer & Cider Awards",
+      "type": "Booklet",
       "tags": [
-        "ice",
-        "cream",
-        "sour"
+        "booklet"
       ],
-      "abv": "5",
-      "size": "440ml",
+      "abv": "",
+      "size": "",
       "rating": "yeah",
-      "notes": "",
+      "notes": "Just in case I want to check things out",
       "photos": [
         {
           "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-1.jpg",
@@ -36,6 +118,26 @@
         {
           "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-3.jpg",
           "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-3.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-4.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-4.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-5.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-5.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-6.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-6.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-7.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-7.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-a/thumb/20260905-a-8.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-a/full/20260905-a-8.jpg"
         }
       ]
     },
@@ -60,6 +162,165 @@
         {
           "thumb": "https://cdn.beer.nmoore.nz/20260903-a/thumb/20260903-a-1.jpg",
           "full": "https://cdn.beer.nmoore.nz/20260903-a/full/20260903-a-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260822-a",
+      "date": "20260822",
+      "year": "2026",
+      "dateDisplay": "22 Aug 2026",
+      "brewery": "Duncan's",
+      "name": "Apostle San Nicholas",
+      "type": "Strong Spiced Ale",
+      "tags": [
+        "strong",
+        "spiced",
+        "ale"
+      ],
+      "abv": "8",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260822-a/thumb/20260822-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260822-a/full/20260822-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260822-a/thumb/20260822-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260822-a/full/20260822-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260822-a/thumb/20260822-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260822-a/full/20260822-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260819-a",
+      "date": "20260819",
+      "year": "2026",
+      "dateDisplay": "19 Aug 2026",
+      "brewery": "Duncan's",
+      "name": "Raspberry Ripple",
+      "type": "Ice Cream Sour",
+      "tags": [
+        "ice",
+        "cream",
+        "sour"
+      ],
+      "abv": "5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260819-a/thumb/20260819-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260819-a/full/20260819-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260819-a/thumb/20260819-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260819-a/full/20260819-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260819-a/thumb/20260819-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260819-a/full/20260819-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260814-a",
+      "date": "20260814",
+      "year": "2026",
+      "dateDisplay": "14 Aug 2026",
+      "brewery": "Duncan's",
+      "name": "Maple Peanut Crunch",
+      "type": "Imperial Pastry Stout",
+      "tags": [
+        "imperial",
+        "pastry",
+        "stout"
+      ],
+      "abv": "9",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260814-a/thumb/20260814-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260814-a/full/20260814-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260814-a/thumb/20260814-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260814-a/full/20260814-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260814-a/thumb/20260814-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260814-a/full/20260814-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260812-a",
+      "date": "20260812",
+      "year": "2026",
+      "dateDisplay": "12 Aug 2026",
+      "brewery": "Duncan's",
+      "name": "Apostle San Isidore",
+      "type": "Fruited Sour",
+      "tags": [
+        "fruited",
+        "sour"
+      ],
+      "abv": "5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260812-a/thumb/20260812-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260812-a/full/20260812-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260812-a/thumb/20260812-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260812-a/full/20260812-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260812-a/thumb/20260812-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260812-a/full/20260812-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260718-a",
+      "date": "20260718",
+      "year": "2026",
+      "dateDisplay": "18 Jul 2026",
+      "brewery": "Duncan's",
+      "name": "Mango Grapefruju",
+      "type": "Ice Cream Sour",
+      "tags": [
+        "ice",
+        "cream",
+        "sour"
+      ],
+      "abv": "5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260718-a/thumb/20260718-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260718-a/full/20260718-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260718-a/thumb/20260718-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260718-a/full/20260718-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260718-a/thumb/20260718-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260718-a/full/20260718-a-3.jpg"
         }
       ]
     },
@@ -121,6 +382,28 @@
         {
           "thumb": "https://cdn.beer.nmoore.nz/20260709-a/thumb/20260709-a-3.jpg",
           "full": "https://cdn.beer.nmoore.nz/20260709-a/full/20260709-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260708-a",
+      "date": "20260708",
+      "year": "2026",
+      "dateDisplay": "8 Jul 2026",
+      "brewery": "Duncan's",
+      "name": "Mix Pack",
+      "type": "Variety",
+      "tags": [
+        "variety"
+      ],
+      "abv": "",
+      "size": "5280ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260708-a/thumb/20260708-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260708-a/full/20260708-a-1.jpg"
         }
       ]
     },

@@ -1,7 +1,7 @@
 # Copy to terraform.tfvars and edit.
 
 # Globally-unique S3 bucket name for beer photos
-bucket_name = "nmoore-beer-photos"
+bucket_name = "example-beer-photos"
 
 # AWS region
 aws_region = "ap-southeast-6"

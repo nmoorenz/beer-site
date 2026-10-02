@@ -1,12 +1,96 @@
 {
-  "generated": "2026-09-19T10:01:55.351997+00:00",
+  "generated": "2026-10-02T09:57:58.449999+00:00",
   "counts": {
-    "total": 442,
-    "yeah": 442,
+    "total": 445,
+    "yeah": 445,
     "eh": 0,
     "nah": 0
   },
   "beers": [
+    {
+      "id": "20261001-a",
+      "date": "20261001",
+      "year": "2026",
+      "dateDisplay": "1 Oct 2026",
+      "brewery": "Duncan's",
+      "name": "Montes",
+      "type": "NZIPA",
+      "tags": [
+        "nzipa"
+      ],
+      "abv": "6.5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261001-a/thumb/20261001-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261001-a/full/20261001-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261001-a/thumb/20261001-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261001-a/full/20261001-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261001-a/thumb/20261001-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261001-a/full/20261001-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260922-b",
+      "date": "20260922",
+      "year": "2026",
+      "dateDisplay": "22 Sep 2026",
+      "brewery": "Panhead",
+      "name": "Supercharger",
+      "type": "American Pale Ale",
+      "tags": [
+        "american",
+        "pale",
+        "ale"
+      ],
+      "abv": "5.7",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "AWS",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260922-b/thumb/20260922-b-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260922-b/full/20260922-b-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260922-b/thumb/20260922-b-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260922-b/full/20260922-b-2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260922-a",
+      "date": "20260922",
+      "year": "2026",
+      "dateDisplay": "22 Sep 2026",
+      "brewery": "Hallertau",
+      "name": "09",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "4.5",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "AWS",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260922-a/thumb/20260922-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260922-a/full/20260922-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260922-a/thumb/20260922-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260922-a/full/20260922-a-2.jpg"
+        }
+      ]
+    },
     {
       "id": "20260916-a",
       "date": "20260916",

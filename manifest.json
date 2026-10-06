@@ -1,12 +1,38 @@
 {
-  "generated": "2026-10-02T09:57:58.449999+00:00",
+  "generated": "2026-10-06T09:49:39.930529+00:00",
   "counts": {
-    "total": 445,
-    "yeah": 445,
+    "total": 446,
+    "yeah": 446,
     "eh": 0,
     "nah": 0
   },
   "beers": [
+    {
+      "id": "20261003-a",
+      "date": "20261003",
+      "year": "2026",
+      "dateDisplay": "3 Oct 2026",
+      "brewery": "Coopers Brewery",
+      "name": "Sparkling Ale",
+      "type": "Ale",
+      "tags": [
+        "ale"
+      ],
+      "abv": "5.8",
+      "size": "750ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261003-a/thumb/20261003-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261003-a/full/20261003-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261003-a/thumb/20261003-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261003-a/full/20261003-a-2.jpg"
+        }
+      ]
+    },
     {
       "id": "20261001-a",
       "date": "20261001",

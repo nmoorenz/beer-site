@@ -1,12 +1,38 @@
 {
-  "generated": "2026-10-06T09:49:39.930529+00:00",
+  "generated": "2026-10-06T09:51:57.251537+00:00",
   "counts": {
-    "total": 446,
-    "yeah": 446,
-    "eh": 0,
-    "nah": 0
+    "total": 447,
+    "yeah": 447,
+    "nah": 0,
+    "eh": 0
   },
   "beers": [
+    {
+      "id": "20261006-a",
+      "date": "20261006",
+      "year": "2026",
+      "dateDisplay": "6 Oct 2026",
+      "brewery": "Coopers Brewery",
+      "name": "Best Extra Stout",
+      "type": "Stout",
+      "tags": [
+        "stout"
+      ],
+      "abv": "6.3",
+      "size": "750ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261006-a/thumb/20261006-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261006-a/full/20261006-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261006-a/thumb/20261006-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261006-a/full/20261006-a-2.jpg"
+        }
+      ]
+    },
     {
       "id": "20261003-a",
       "date": "20261003",

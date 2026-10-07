@@ -1,12 +1,38 @@
 {
-  "generated": "2026-10-06T09:51:57.251537+00:00",
+  "generated": "2026-10-07T06:17:19.551974+00:00",
   "counts": {
-    "total": 447,
-    "yeah": 447,
-    "nah": 0,
-    "eh": 0
+    "total": 448,
+    "eh": 0,
+    "yeah": 448,
+    "nah": 0
   },
   "beers": [
+    {
+      "id": "20261007-a",
+      "date": "20261007",
+      "year": "2026",
+      "dateDisplay": "7 Oct 2026",
+      "brewery": "Peroni",
+      "name": "Peroni Nastro Azzurro",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "5.1",
+      "size": "Glass",
+      "rating": "yeah",
+      "notes": "Portofino",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261007-a/thumb/20261007-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261007-a/full/20261007-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261007-a/thumb/20261007-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261007-a/full/20261007-a-2.jpg"
+        }
+      ]
+    },
     {
       "id": "20261006-a",
       "date": "20261006",

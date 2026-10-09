@@ -1,12 +1,34 @@
 {
-  "generated": "2026-10-07T06:17:19.551974+00:00",
+  "generated": "2026-10-09T06:43:09.138269+00:00",
   "counts": {
-    "total": 448,
-    "eh": 0,
-    "yeah": 448,
-    "nah": 0
+    "total": 449,
+    "yeah": 449,
+    "nah": 0,
+    "eh": 0
   },
   "beers": [
+    {
+      "id": "20261009-a",
+      "date": "20261009",
+      "year": "2026",
+      "dateDisplay": "9 Oct 2026",
+      "brewery": "Kirin Brewery",
+      "name": "Kirin Ichiban",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "5.0",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261009-a/thumb/20261009-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261009-a/full/20261009-a-1.jpg"
+        }
+      ]
+    },
     {
       "id": "20261007-a",
       "date": "20261007",

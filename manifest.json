@@ -1,12 +1,96 @@
 {
-  "generated": "2026-10-09T06:43:09.138269+00:00",
+  "generated": "2026-10-18T07:43:50.778152+00:00",
   "counts": {
-    "total": 449,
-    "yeah": 449,
+    "total": 452,
+    "eh": 0,
     "nah": 0,
-    "eh": 0
+    "yeah": 452
   },
   "beers": [
+    {
+      "id": "20261018-a",
+      "date": "20261018",
+      "year": "2026",
+      "dateDisplay": "18 Oct 2026",
+      "brewery": "Guinness",
+      "name": "Draft",
+      "type": "Stout",
+      "tags": [
+        "stout"
+      ],
+      "abv": "4.2",
+      "size": "Pint",
+      "rating": "yeah",
+      "notes": "Irish Society",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261018-a/thumb/20261018-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261018-a/full/20261018-a-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261017-a",
+      "date": "20261017",
+      "year": "2026",
+      "dateDisplay": "17 Oct 2026",
+      "brewery": "North End Brewery",
+      "name": "Iron Sands",
+      "type": "Oat Rye Stout",
+      "tags": [
+        "oat",
+        "rye",
+        "stout"
+      ],
+      "abv": "6",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261017-a/thumb/20261017-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261017-a/full/20261017-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261017-a/thumb/20261017-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261017-a/full/20261017-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261017-a/thumb/20261017-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261017-a/full/20261017-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261012-a",
+      "date": "20261012",
+      "year": "2026",
+      "dateDisplay": "12 Oct 2026",
+      "brewery": "Guinness",
+      "name": "Draught",
+      "type": "Stout",
+      "tags": [
+        "stout"
+      ],
+      "abv": "4.2",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261012-a/thumb/20261012-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261012-a/full/20261012-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261012-a/thumb/20261012-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261012-a/full/20261012-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261012-a/thumb/20261012-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261012-a/full/20261012-a-3.jpg"
+        }
+      ]
+    },
     {
       "id": "20261009-a",
       "date": "20261009",

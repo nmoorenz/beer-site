@@ -16,7 +16,7 @@ id,brewery,name,type,abv,size,rating,notes
 20260709-a,Duncan's,Olympus,NZIPA,6.5,440ml,yeah,
 20260711-a,Duncan's,Grapefruit Satellite,Hazy IPA,6,440ml,yeah,
 20250705-a,Urbanaut,Dankenstein,Terpene IPA,5.9,440ml,yeah,
-20250714-a,Orion,Draft Beer,Draft Beer,5,Handle,yeah,Daikoku Teppanyaki
+20250714-a,Orion,Draft Beer,Lager,5,Handle,yeah,Daikoku Teppanyaki
 20250718-a,Urbanaut,Coronado,Double IPA,7.9,440ml,yeah,
 20250725-a,Urbanaut,Jam Donut,Hazy IPA,5.6,440ml,yeah,
 20250801-a,Urbanaut,Salted Caramel Stout,Salted Caramel Stout,6,440ml,yeah,Paired with Whittaker's Dark Salted Caramel
@@ -44,7 +44,7 @@ id,brewery,name,type,abv,size,rating,notes
 20160317-a,Suntory,The Premium Malts,Pilsner,5.5,350ml,yeah,
 20160501-a,Harrington's,The Wobbly Boot,Porter,5,500ml,yeah,
 20160508-a,Tuatara,Land of Hops of Glory,IPA,5,500ml,yeah,
-20160508-b,Galbraith's,NZ Pale Alle,NZ Pale Ale,5,500ml,yeah,
+20160508-b,Galbraith's,NZ Pale Ale,NZ Pale Ale,5,500ml,yeah,
 20160618-a,Panhead,Port Road Pils,Pilsner,5.2,500ml,yeah,
 20160618-b,Epic,No Agenda,ITM Brown Ale,7.5,500ml,yeah,
 20160711-a,Moa,St Josephs,Belgian Tripel,9.5,500ml,yeah,
@@ -250,7 +250,7 @@ id,brewery,name,type,abv,size,rating,notes
 20201230-a,Behemoth Brewing,Chur!,NZ Pale Ale,5.5,500ml,yeah,
 20210106-a,Mac's,Apparition,Hazy IPA,5.6,330ml,yeah,
 20210126-a,Crabbie's,Original Alcoholic Ginger Beer,Ginger Beer,4,500ml,yeah,
-20210206-a,Deep Creek,Lotus,Pale Ale,4.5,330ml,yeah,Brown-Hawke Wedding
+20210206-a,Deep Creek,Lotus,Pale Ale,4.5,330ml,yeah,Wedding
 20210305-a,Garage Project,Peached As,Sour,7.9,440ml,yeah,
 20210306-a,Garage Project,Trip-Hop,Extra Special Bitter,5.6,440ml,yeah,
 20210313-a,Liberty Brewing Co,Citra,Double IPA,9,500ml,yeah,
@@ -451,5 +451,12 @@ id,brewery,name,type,abv,size,rating,notes
 20261009-a,Kirin Brewery,Kirin Ichiban,Lager,5.0,330ml,yeah,
 20261012-a,Guinness,Draught,Stout,4.2,440ml,yeah,
 20261017-a,North End Brewery,Iron Sands,Oat Rye Stout,6,440ml,yeah,
-20261018-a,Guinness,Draft,Stout,4.2,Pint,yeah,Irish Society
-201261018-b,State of Play,Sunbreaker Ale,Ale,0.5,330ml,yeah,
+20261018-a,Guinness,Draught,Stout,4.2,Pint,yeah,Irish Society
+20260905-b,Duncan's,Feijoa Crumble,Ice Cream Sour,5,440ml,yeah,
+20261016-a,Orion,Draft,Lager,5,Handle,yeah,Sushi Train
+20261018-b,State of Play,Sunbreaker Ale,Ale,0.5,330ml,yeah,
+20261021-a,Sawmill,Bare Beer,Pale Ale,0.5,330ml,yeah,Pitchblack Playback
+20261021-b,Behemoth Brewing,Dump the Trump, American IPA,6,440ml,yeah,gift
+20261023-a,Behemoth Brewing,Get Busy Hopping,West Coast IPA,6.9,440ml,yeah,gift
+20261024-a,Guinness,Draught,Stout,4.2,440ml,yeah,gift
+20261025-a,Good George Brewing Co,Pilsner,Pilsner,5,Pint,yeah,Voucher

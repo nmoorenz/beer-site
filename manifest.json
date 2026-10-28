@@ -1,19 +1,199 @@
 {
-  "generated": "2026-10-18T07:43:50.778152+00:00",
+  "generated": "2026-10-28T09:58:18.321824+00:00",
   "counts": {
-    "total": 452,
-    "eh": 0,
+    "total": 460,
+    "yeah": 460,
     "nah": 0,
-    "yeah": 452
+    "eh": 0
   },
   "beers": [
+    {
+      "id": "20261025-a",
+      "date": "20261025",
+      "year": "2026",
+      "dateDisplay": "25 Oct 2026",
+      "brewery": "Good George Brewing Co",
+      "name": "Pilsner",
+      "type": "Pilsner",
+      "tags": [
+        "pilsner"
+      ],
+      "abv": "5",
+      "size": "Pint",
+      "rating": "yeah",
+      "notes": "Voucher",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261025-a/thumb/20261025-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261025-a/full/20261025-a-1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261024-a",
+      "date": "20261024",
+      "year": "2026",
+      "dateDisplay": "24 Oct 2026",
+      "brewery": "Guinness",
+      "name": "Draught",
+      "type": "Stout",
+      "tags": [
+        "stout"
+      ],
+      "abv": "4.2",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "gift",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261024-a/thumb/20261024-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261024-a/full/20261024-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261024-a/thumb/20261024-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261024-a/full/20261024-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261024-a/thumb/20261024-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261024-a/full/20261024-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261023-a",
+      "date": "20261023",
+      "year": "2026",
+      "dateDisplay": "23 Oct 2026",
+      "brewery": "Behemoth Brewing",
+      "name": "Get Busy Hopping",
+      "type": "West Coast IPA",
+      "tags": [
+        "west",
+        "coast",
+        "ipa"
+      ],
+      "abv": "6.9",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "gift",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261023-a/thumb/20261023-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261023-a/full/20261023-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261023-a/thumb/20261023-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261023-a/full/20261023-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261023-a/thumb/20261023-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261023-a/full/20261023-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261021-b",
+      "date": "20261021",
+      "year": "2026",
+      "dateDisplay": "21 Oct 2026",
+      "brewery": "Behemoth Brewing",
+      "name": "Dump the Trump",
+      "type": "American IPA",
+      "tags": [
+        "american",
+        "ipa"
+      ],
+      "abv": "6",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "gift",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-b/thumb/20261021-b-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-b/full/20261021-b-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-b/thumb/20261021-b-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-b/full/20261021-b-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-b/thumb/20261021-b-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-b/full/20261021-b-3.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-b/thumb/20261021-b-4.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-b/full/20261021-b-4.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261021-a",
+      "date": "20261021",
+      "year": "2026",
+      "dateDisplay": "21 Oct 2026",
+      "brewery": "Sawmill",
+      "name": "Bare Beer",
+      "type": "Pale Ale",
+      "tags": [
+        "pale",
+        "ale"
+      ],
+      "abv": "0.5",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "Pitchblack Playback",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-a/thumb/20261021-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-a/full/20261021-a-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-a/thumb/20261021-a-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-a/full/20261021-a-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261021-a/thumb/20261021-a-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261021-a/full/20261021-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261018-b",
+      "date": "20261018",
+      "year": "2026",
+      "dateDisplay": "18 Oct 2026",
+      "brewery": "State of Play",
+      "name": "Sunbreaker Ale",
+      "type": "Ale",
+      "tags": [
+        "ale"
+      ],
+      "abv": "0.5",
+      "size": "330ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261018-b/thumb/20261018-b-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261018-b/full/20261018-b-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261018-b/thumb/20261018-b-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261018-b/full/20261018-b-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261018-b/thumb/20261018-b-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261018-b/full/20261018-b-3.jpg"
+        }
+      ]
+    },
     {
       "id": "20261018-a",
       "date": "20261018",
       "year": "2026",
       "dateDisplay": "18 Oct 2026",
       "brewery": "Guinness",
-      "name": "Draft",
+      "name": "Draught",
       "type": "Stout",
       "tags": [
         "stout"
@@ -58,6 +238,28 @@
         {
           "thumb": "https://cdn.beer.nmoore.nz/20261017-a/thumb/20261017-a-3.jpg",
           "full": "https://cdn.beer.nmoore.nz/20261017-a/full/20261017-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20261016-a",
+      "date": "20261016",
+      "year": "2026",
+      "dateDisplay": "16 Oct 2026",
+      "brewery": "Orion",
+      "name": "Draft",
+      "type": "Lager",
+      "tags": [
+        "lager"
+      ],
+      "abv": "5",
+      "size": "Handle",
+      "rating": "yeah",
+      "notes": "Sushi Train",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20261016-a/thumb/20261016-a-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20261016-a/full/20261016-a-1.jpg"
         }
       ]
     },
@@ -356,6 +558,38 @@
         {
           "thumb": "https://cdn.beer.nmoore.nz/20260912-a/thumb/20260912-a-3.jpg",
           "full": "https://cdn.beer.nmoore.nz/20260912-a/full/20260912-a-3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "20260905-b",
+      "date": "20260905",
+      "year": "2026",
+      "dateDisplay": "5 Sep 2026",
+      "brewery": "Duncan's",
+      "name": "Feijoa Crumble",
+      "type": "Ice Cream Sour",
+      "tags": [
+        "ice",
+        "cream",
+        "sour"
+      ],
+      "abv": "5",
+      "size": "440ml",
+      "rating": "yeah",
+      "notes": "",
+      "photos": [
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-b/thumb/20260905-b-1.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-b/full/20260905-b-1.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-b/thumb/20260905-b-2.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-b/full/20260905-b-2.jpg"
+        },
+        {
+          "thumb": "https://cdn.beer.nmoore.nz/20260905-b/thumb/20260905-b-3.jpg",
+          "full": "https://cdn.beer.nmoore.nz/20260905-b/full/20260905-b-3.jpg"
         }
       ]
     },
@@ -1286,10 +1520,9 @@
       "dateDisplay": "14 Jul 2025",
       "brewery": "Orion",
       "name": "Draft Beer",
-      "type": "Draft Beer",
+      "type": "Lager",
       "tags": [
-        "draft",
-        "beer"
+        "lager"
       ],
       "abv": "5",
       "size": "Handle",
@@ -6540,7 +6773,7 @@
       "abv": "4.5",
       "size": "330ml",
       "rating": "yeah",
-      "notes": "Brown-Hawke Wedding",
+      "notes": "Wedding",
       "photos": [
         {
           "thumb": "https://cdn.beer.nmoore.nz/20210206-a/thumb/20210206-a-1.jpg",
@@ -11980,7 +12213,7 @@
       "year": "2016",
       "dateDisplay": "8 May 2016",
       "brewery": "Galbraith's",
-      "name": "NZ Pale Alle",
+      "name": "NZ Pale Ale",
       "type": "NZ Pale Ale",
       "tags": [
         "nz",

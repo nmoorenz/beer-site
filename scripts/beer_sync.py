@@ -2,27 +2,32 @@
 """
 beer_sync.py - Beer Necessities CLI tool
 
-Photo filenames carry only identity: 20260112-a-1.jpg = <date>-<group>-<photo#>.
-A beer is every photo sharing the same date-group prefix (its id). All the
-descriptive detail lives in beers.csv, keyed by that id:
+Photos keep their original filenames. beers.csv maps each beer to its photos:
 
-    id,brewery,name,type,abv,size,rating,notes
+    date,group,photos,brewery,name,type,abv,size,rating,notes
 
-Photos are stored in S3 in three tiers per beer:
-    <id>/thumb/<stem>.jpg   small, for the grid            (in manifest)
-    <id>/full/<stem>.jpg    display size, for the lightbox (in manifest)
-    <id>/orig/<filename>    untouched original, archived   (NOT in manifest)
+`date` (8 digits) and `group` (a, b, c ...) together form the beer's id,
+<date>-<group> (e.g. 20260112-a), which is the S3 key prefix. The `photos`
+column lists a beer's source filenames in display order, separated by ';'
+(e.g. img_4821.jpg;img_4822.jpg).
+
+Each beer's photos are stored in S3 in three tiers. The thumb and full tiers use
+stable index names derived from the id and the photo's position; the original
+keeps its own filename:
+
+    <id>/thumb/<id>-<n>.jpg   small, for the grid            (in manifest)
+    <id>/full/<id>-<n>.jpg    display size, for the lightbox (in manifest)
+    <id>/orig/<filename>      untouched original, archived   (NOT in manifest)
 
 Commands:
-    python scripts/beer_sync.py sync        # upload new local photos, then rebuild
-                                            # manifest from EVERYTHING in S3
-    python scripts/beer_sync.py check       # join local photos + beers.csv, no AWS
-    python scripts/beer_sync.py download    # pull originals from S3 into ./photos
-                                            # (also prints bucket size)
+    sync              upload new local photos, then rebuild manifest from all of S3
+    check             join local photos + beers.csv, no AWS
+    download          pull originals from S3 into ./photos (also prints bucket size)
+    process-incoming  turn S3 incoming/ originals into tiers + rebuild (used by CI)
 
 Output levels:
     default       upload/sync progress + summaries (no CSV warnings)
-    -v/--verbose  also show CSV warnings (bad rating, no photo/row match) + per-beer listing
+    -v/--verbose  also show CSV warnings (bad rating, photo/row mismatch) + per-beer listing
     -q/--quiet    only errors and summaries
 
 Config: copy env.example to .env and fill in your values.
@@ -50,7 +55,8 @@ BEERS_CSV  = Path(os.environ.get("BEERS_CSV", "./beers.csv"))
 
 IMAGE_EXTS    = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 VALID_RATINGS = {"yeah", "eh", "nah"}
-FILENAME_RE   = re.compile(r"^(\d{8})-([a-z]+)-(\d+)$", re.IGNORECASE)
+# Tier stems look like <date>-<group>-<n>, e.g. 20260112-a-3
+STEM_RE       = re.compile(r"^(\d{8})-([a-z]+)-(\d+)$", re.IGNORECASE)
 
 THUMB_MAX    = 600
 FULL_MAX     = 1600
@@ -86,20 +92,10 @@ def human_size(n):
     return f"{x:.1f} PB"
 
 
-# -- Filename + metadata parsing --------------------------------------------
+# -- Metadata parsing -------------------------------------------------------
 
-def parse_photo_filename(filename):
-    stem = Path(filename).stem
-    m = FILENAME_RE.match(stem)
-    if not m:
-        warn(f"WARN: skipping '{filename}': expected <date>-<group>-<photo#>, e.g. 20260112-a-1.jpg")
-        return None
-    date, group, photo_num = m.group(1), m.group(2).lower(), int(m.group(3))
-    return f"{date}-{group}", photo_num
-
-
-def format_date(group_id):
-    date = group_id.split("-")[0]
+def format_date(beer_id):
+    date = beer_id.split("-")[0]
     try:
         d = datetime.strptime(date, "%Y%m%d")
     except ValueError:
@@ -119,23 +115,31 @@ def tags_from_type(type_str):
     return seen
 
 
+def parse_photos_cell(cell):
+    return [p.strip() for p in (cell or "").split(";") if p.strip()]
+
+
 def load_beers_csv():
     if not BEERS_CSV.exists():
         print(f"ERROR: {BEERS_CSV} not found. Create it with header:", file=sys.stderr)
-        print("   id,brewery,name,type,abv,size,rating,notes", file=sys.stderr)
+        print("   date,group,photos,brewery,name,type,abv,size,rating,notes", file=sys.stderr)
         sys.exit(1)
     rows = {}
     with BEERS_CSV.open(newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
-        required = {"id", "brewery", "name", "type", "abv", "size", "rating", "notes"}
+        required = {"date", "group", "brewery", "name", "type", "abv", "size", "rating", "notes"}
         missing = required - set(reader.fieldnames or [])
         if missing:
             print(f"ERROR: {BEERS_CSV} is missing column(s): {sorted(missing)}", file=sys.stderr)
             sys.exit(1)
+        if "photos" not in (reader.fieldnames or []):
+            warn("WARN: no 'photos' column in beers.csv - run scripts/beers_migrate.py.")
         for row in reader:
-            beer_id = (row.get("id") or "").strip()
-            if not beer_id:
+            date = (row.get("date") or "").strip()
+            group = (row.get("group") or "").strip()
+            if not date or not group:
                 continue
+            beer_id = f"{date}-{group}"
             rating = (row.get("rating") or "").strip().lower()
             if rating not in VALID_RATINGS:
                 warn(f"WARN: beer {beer_id}: rating '{rating}' is not one of {sorted(VALID_RATINGS)}.")
@@ -147,6 +151,7 @@ def load_beers_csv():
                 "size":    (row.get("size") or "").strip(),
                 "rating":  rating,
                 "notes":   (row.get("notes") or "").strip(),
+                "photos":  parse_photos_cell(row.get("photos")),
             }
     return rows
 
@@ -204,34 +209,47 @@ def base_url():
 
 # -- Grouping / manifest ----------------------------------------------------
 
-def group_photos(filenames):
+def meta_groups(meta):
+    """id -> ordered tier stems (<id>-1, <id>-2, ...) from the photos column."""
+    out = {}
+    for beer_id, row in meta.items():
+        n = len(row["photos"])
+        if n:
+            out[beer_id] = [f"{beer_id}-{i}" for i in range(1, n + 1)]
+    return out
+
+
+def s3_groups(objs):
+    """id -> ordered tier stems, rebuilt from the full-tier keys in S3."""
     groups = defaultdict(list)
-    for fn in filenames:
-        parsed = parse_photo_filename(fn)
-        if parsed:
-            group_id, photo_num = parsed
-            groups[group_id].append((photo_num, fn))
-    return {gid: [fn for _, fn in sorted(items)] for gid, items in groups.items()}
+    for o in objs:
+        parts = o["Key"].split("/")
+        if len(parts) == 3 and parts[1] == "full":
+            stem = Path(parts[2]).stem
+            m = STEM_RE.match(stem)
+            if m:
+                beer_id = f"{m.group(1)}-{m.group(2).lower()}"
+                groups[beer_id].append((int(m.group(3)), stem))
+    return {bid: [s for _, s in sorted(v)] for bid, v in groups.items()}
 
 
-def photo_entry(base, group_id, filename):
-    stem = Path(filename).stem
-    return {"thumb": f"{base}/{group_id}/thumb/{stem}.jpg",
-            "full":  f"{base}/{group_id}/full/{stem}.jpg"}
+def photo_entry(base, beer_id, stem):
+    return {"thumb": f"{base}/{beer_id}/thumb/{stem}.jpg",
+            "full":  f"{base}/{beer_id}/full/{stem}.jpg"}
 
 
 def build_manifest(groups, meta, base):
     beers = []
-    for group_id, filenames in groups.items():
-        row = meta.get(group_id)
+    for beer_id, stems in groups.items():
+        row = meta.get(beer_id)
         if row is None:
-            warn(f"WARN: {group_id}: {len(filenames)} photo(s) but no row in {BEERS_CSV.name} - skipping.")
+            warn(f"WARN: {beer_id}: {len(stems)} photo(s) but no row in {BEERS_CSV.name} - skipping.")
             continue
         beers.append({
-            "id":          group_id,
-            "date":        group_id.split("-")[0],
-            "year":        group_id[:4],
-            "dateDisplay": format_date(group_id),
+            "id":          beer_id,
+            "date":        beer_id.split("-")[0],
+            "year":        beer_id[:4],
+            "dateDisplay": format_date(beer_id),
             "brewery":     row["brewery"],
             "name":        row["name"],
             "type":        row["type"],
@@ -240,11 +258,11 @@ def build_manifest(groups, meta, base):
             "size":        row["size"],
             "rating":      row["rating"],
             "notes":       row["notes"],
-            "photos":      [photo_entry(base, group_id, fn) for fn in filenames],
+            "photos":      [photo_entry(base, beer_id, s) for s in stems],
         })
-    for beer_id in meta:
-        if beer_id not in groups:
-            warn(f"WARN: {beer_id}: row in {BEERS_CSV.name} but no photos found.")
+    for beer_id, row in meta.items():
+        if row["photos"] and beer_id not in groups:
+            warn(f"WARN: {beer_id}: listed in {BEERS_CSV.name} but no photos found.")
     beers.sort(key=lambda b: (b["date"], b["id"]), reverse=True)
     counts = {r: sum(1 for b in beers if b["rating"] == r) for r in VALID_RATINGS}
     return {"generated": datetime.now(timezone.utc).isoformat(),
@@ -282,22 +300,26 @@ def scan_local_filenames():
                   if p.is_file() and p.suffix.lower() in IMAGE_EXTS)
 
 
-def s3_full_filenames(objs):
-    # Rebuild from the full-size derivatives: keys look like <id>/full/<stem>.jpg
-    out = []
-    for o in objs:
-        parts = o["Key"].split("/")
-        if len(parts) == 3 and parts[1] == "full":
-            out.append(parts[2])
-    return out
+def validate_local(meta):
+    """Warn about listed files missing on disk and local files not listed."""
+    local = set(scan_local_filenames())
+    listed = set()
+    for row in meta.values():
+        for fn in row["photos"]:
+            listed.add(fn)
+            if fn not in local:
+                warn(f"WARN: listed photo '{fn}' is not in {PHOTOS_DIR}.")
+    for fn in sorted(local - listed):
+        warn(f"WARN: '{fn}' is in {PHOTOS_DIR} but not listed in any beers.csv row.")
 
 
 # -- Commands ---------------------------------------------------------------
 
 def cmd_check():
     info(f"\nJoining photos in {PHOTOS_DIR} with {BEERS_CSV} (no upload)\n")
-    groups = group_photos(scan_local_filenames())
-    manifest = build_manifest(groups, load_beers_csv(), base_url())
+    meta = load_beers_csv()
+    validate_local(meta)
+    manifest = build_manifest(meta_groups(meta), meta, base_url())
     write_manifest_local(manifest)
     report(manifest)
 
@@ -306,39 +328,38 @@ def cmd_sync():
     from botocore.exceptions import ClientError
     s3 = _s3()
     meta = load_beers_csv()
+    local = set(scan_local_filenames())
 
     # 1. upload any new local photos (resized tiers + original)
-    local = group_photos(scan_local_filenames())
     uploaded = skipped = 0
-    if local:
-        info(f"\nSyncing photos from {PHOTOS_DIR} -> s3://{BUCKET}\n")
-        for group_id, files in local.items():
-            for fn in files:
-                stem = Path(fn).stem
-                full_key = f"{group_id}/full/{stem}.jpg"
-                local_path = PHOTOS_DIR / fn
-                try:
-                    s3.head_object(Bucket=BUCKET, Key=full_key)
-                    info(f"   skip {group_id}/{fn}")
-                    skipped += 1
-                    continue
-                except ClientError:
-                    pass
-                info(f"   up   {group_id}/{fn}  (thumb + full + orig) ...", end="")
-                put_jpeg(s3, f"{group_id}/thumb/{stem}.jpg", resize_jpeg(local_path, THUMB_MAX))
-                put_jpeg(s3, full_key, resize_jpeg(local_path, FULL_MAX))
-                s3.upload_file(str(local_path), BUCKET, f"{group_id}/orig/{fn}",
-                               ExtraArgs={"ContentType": mime_type(local_path),
-                                          "CacheControl": "public, max-age=31536000, immutable"})
-                info(" done")
-                uploaded += 1
-        print(f"Uploaded {uploaded}, skipped {skipped}.")
-    else:
-        info(f"\nNo local photos in {PHOTOS_DIR}; rebuilding manifest from S3 only.")
+    info(f"\nSyncing photos from {PHOTOS_DIR} -> s3://{BUCKET}\n")
+    for beer_id, row in meta.items():
+        for i, fn in enumerate(row["photos"], 1):
+            if fn not in local:
+                warn(f"WARN: {beer_id}: listed photo '{fn}' not in {PHOTOS_DIR} - skipping.")
+                continue
+            stem = f"{beer_id}-{i}"
+            full_key = f"{beer_id}/full/{stem}.jpg"
+            local_path = PHOTOS_DIR / fn
+            try:
+                s3.head_object(Bucket=BUCKET, Key=full_key)
+                info(f"   skip {beer_id}/{fn}")
+                skipped += 1
+                continue
+            except ClientError:
+                pass
+            info(f"   up   {beer_id}/{fn} -> {stem} (thumb + full + orig) ...", end="")
+            put_jpeg(s3, f"{beer_id}/thumb/{stem}.jpg", resize_jpeg(local_path, THUMB_MAX))
+            put_jpeg(s3, full_key, resize_jpeg(local_path, FULL_MAX))
+            s3.upload_file(str(local_path), BUCKET, f"{beer_id}/orig/{fn}",
+                           ExtraArgs={"ContentType": mime_type(local_path),
+                                      "CacheControl": "public, max-age=31536000, immutable"})
+            info(" done")
+            uploaded += 1
+    print(f"Uploaded {uploaded}, skipped {skipped}.")
 
     # 2. rebuild the manifest from EVERYTHING in S3 (all machines' uploads)
-    groups = group_photos(s3_full_filenames(list_objects(s3)))
-    manifest = build_manifest(groups, meta, base_url())
+    manifest = build_manifest(s3_groups(list_objects(s3)), meta, base_url())
     write_manifest_s3(s3, manifest)
     report(manifest)
 
@@ -368,49 +389,63 @@ def cmd_download():
 
 def cmd_process_incoming():
     import tempfile
+    from botocore.exceptions import ClientError
     s3 = _s3()
     meta = load_beers_csv()
-    incoming = [o["Key"] for o in list_objects(s3)
+    objs = list_objects(s3)
+    incoming = {Path(o["Key"]).name: o["Key"] for o in objs
                 if o["Key"].startswith("incoming/")
-                and Path(o["Key"]).suffix.lower() in IMAGE_EXTS]
+                and Path(o["Key"]).suffix.lower() in IMAGE_EXTS}
     if incoming:
-        info(f"\nProcessing {len(incoming)} incoming photo(s)\n")
+        info(f"\nProcessing up to {len(incoming)} incoming photo(s)\n")
+
     processed = 0
-    for key in incoming:
-        fname = Path(key).name
-        parsed = parse_photo_filename(fname)
-        if not parsed:
-            warn(f"WARN: leaving '{key}' in incoming (name must be <date>-<group>-<photo#>).")
-            continue
-        group_id = parsed[0]
-        stem = Path(fname).stem
-        with tempfile.NamedTemporaryFile(suffix=Path(fname).suffix, delete=False) as tf:
-            tmp = tf.name
-        try:
-            s3.download_file(BUCKET, key, tmp)
-            info(f"   process {fname} -> {group_id}/ ...", end="")
-            put_jpeg(s3, f"{group_id}/thumb/{stem}.jpg", resize_jpeg(Path(tmp), THUMB_MAX))
-            put_jpeg(s3, f"{group_id}/full/{stem}.jpg", resize_jpeg(Path(tmp), FULL_MAX))
-            s3.copy_object(Bucket=BUCKET, Key=f"{group_id}/orig/{fname}",
-                           CopySource={"Bucket": BUCKET, "Key": key},
-                           ContentType=mime_type(Path(fname)),
-                           CacheControl="public, max-age=31536000, immutable",
-                           MetadataDirective="REPLACE")
-            s3.delete_object(Bucket=BUCKET, Key=key)
-            info(" done")
-            processed += 1
-        finally:
-            os.remove(tmp)
+    matched = set()
+    for beer_id, row in meta.items():
+        for i, fn in enumerate(row["photos"], 1):
+            key = incoming.get(fn)
+            if not key:
+                continue
+            matched.add(fn)
+            stem = f"{beer_id}-{i}"
+            full_key = f"{beer_id}/full/{stem}.jpg"
+            try:
+                s3.head_object(Bucket=BUCKET, Key=full_key)
+                s3.delete_object(Bucket=BUCKET, Key=key)  # already processed; clear incoming
+                continue
+            except ClientError:
+                pass
+            with tempfile.NamedTemporaryFile(suffix=Path(fn).suffix, delete=False) as tf:
+                tmp = tf.name
+            try:
+                s3.download_file(BUCKET, key, tmp)
+                info(f"   process {fn} -> {beer_id}/{stem} ...", end="")
+                put_jpeg(s3, f"{beer_id}/thumb/{stem}.jpg", resize_jpeg(Path(tmp), THUMB_MAX))
+                put_jpeg(s3, full_key, resize_jpeg(Path(tmp), FULL_MAX))
+                s3.copy_object(Bucket=BUCKET, Key=f"{beer_id}/orig/{fn}",
+                               CopySource={"Bucket": BUCKET, "Key": key},
+                               ContentType=mime_type(Path(fn)),
+                               CacheControl="public, max-age=31536000, immutable",
+                               MetadataDirective="REPLACE")
+                s3.delete_object(Bucket=BUCKET, Key=key)
+                info(" done")
+                processed += 1
+            finally:
+                os.remove(tmp)
+    for fn, key in incoming.items():
+        if fn not in matched:
+            warn(f"WARN: leaving '{key}' in incoming (no beers.csv row lists '{fn}').")
     print(f"Processed {processed} incoming photo(s).")
-    groups = group_photos(s3_full_filenames(list_objects(s3)))
-    manifest = build_manifest(groups, meta, base_url())
+
+    manifest = build_manifest(s3_groups(list_objects(s3)), meta, base_url())
     write_manifest_s3(s3, manifest)
     report(manifest)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Beer Necessities CLI")
-    parser.add_argument("command", choices=["sync", "check", "download", "process-incoming"],
+    parser.add_argument("command",
+                        choices=["sync", "check", "download", "process-incoming"],
                         help="sync: upload new photos + rebuild manifest from S3 | "
                              "check: join local photos + beers.csv (no AWS) | "
                              "download: pull originals from S3 into ./photos | "

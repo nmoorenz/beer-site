@@ -1,180 +1,168 @@
 #!/usr/bin/env python3
+"""
+check-beers.py - validate beers.csv against the photos/ folder (no AWS, no deps).
 
+Checks the current schema:
+
+    date,group,photos,brewery,name,type,abv,size,rating,notes
+
+- every required column is present
+- each row has a valid `date` (YYYYMMDD) and `group` (letters)
+- each date's groups run sequentially from `a` with no gaps (a, b, e is flagged)
+- no two rows share the same date+group id
+- `rating` is yeah / eh / nah (blank is allowed but counted)
+- no photo filename is listed by more than one row
+
+Pass `--photos DIR` to also cross-check the listed filenames against a folder
+(every listed file present, no unlisted file left over). This only makes sense
+when that folder holds *all* of the photos; a partial local cache will report
+every S3-only photo as missing, so it is off by default.
+
+Then prints the distinct ids and a short summary.
+
+Usage (from the repo root):
+    python scripts/check-beers.py                      # validate ./beers.csv
+    python scripts/check-beers.py --photos ./photos    # also cross-check a folder
+"""
+
+import argparse
+import csv
 import re
-import sys
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+from string import ascii_lowercase
+from collections import defaultdict
+
+REPO_ROOT = Path(__file__).resolve().parent.parent   # scripts/ -> repo root
+
+REQUIRED = ["date", "group", "photos", "brewery", "name",
+            "type", "abv", "size", "rating", "notes"]
+VALID_RATINGS = {"yeah", "eh", "nah"}
+IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+GROUP_RE = re.compile(r"^[a-z]+$")
 
 
-FILENAME_RE = re.compile(
-    r"^(\d{8})-([a-z])-(\d+)\.jpg$",
-    re.IGNORECASE
-)
-
-
-def validate_date(date_string):
-    """Check that YYYYMMDD is a real date."""
+def valid_date(s):
     try:
-        datetime.strptime(date_string, "%Y%m%d")
+        datetime.strptime(s, "%Y%m%d")
         return True
     except ValueError:
         return False
 
 
-def validate_date_files(date, files):
-    """
-    Validate all files for one date.
-
-    Rules:
-    - Must start with a-1.
-    - Letters must be consecutive: a, then b, then c.
-    - Numbers for each letter must be consecutive: 1, then 2.
-    """
-
-    errors = []
-
-    letters = sorted(set(letter for letter, number in files))
-
-    # a-1 is mandatory.
-    if ("a", 1) not in files:
-        errors.append(f"{date}: missing required {date}-a-1.jpg")
-
-    # Letters must be consecutive starting at a.
-    expected_letters = list(
-        "abcdefghijklmnopqrstuvwxyz"[:len(letters)]
-    )
-
-    if letters != expected_letters:
-        errors.append(
-            f"{date}: letters must be consecutive starting with a "
-            f"(found: {', '.join(letters)})"
-        )
-
-    # Numbers for each letter must be consecutive starting at 1.
-    for letter in letters:
-        numbers = sorted(
-            number for l, number in files if l == letter
-        )
-
-        expected_numbers = list(range(1, len(numbers) + 1))
-
-        if numbers != expected_numbers:
-            errors.append(
-                f"{date}-{letter}: numbers must be consecutive "
-                f"starting at 1 (found: {numbers})"
-            )
-
-    return errors
-
-
-def validate_folder(folder):
-    folder = Path(folder)
-
+def photos_in_folder(folder):
     if not folder.is_dir():
-        print(f"Error: '{folder}' is not a directory.")
-        sys.exit(1)
-
-    jpg_files = sorted(
-        path for path in folder.iterdir()
-        if path.is_file() and path.suffix.lower() == ".jpg"
-    )
-
-    if not jpg_files:
-        print("No .jpg files found.")
-        return
-
-    invalid_files = []
-    files_by_date = {}
-
-    # Parse every filename.
-    for path in jpg_files:
-        match = FILENAME_RE.match(path.name)
-
-        if not match:
-            invalid_files.append(
-                f"{path.name}: invalid filename format"
-            )
-            continue
-
-        date, letter, number = match.groups()
-        letter = letter.lower()
-        number = int(number)
-
-        # Validate date.
-        if not validate_date(date):
-            invalid_files.append(
-                f"{path.name}: invalid date {date}"
-            )
-            continue
-
-        files_by_date.setdefault(date, []).append(
-            (letter, number)
-        )
-
-    # Validate each date's sequence.
-    for date, entries in files_by_date.items():
-
-        # Detect duplicates.
-        if len(entries) != len(set(entries)):
-            duplicates = sorted(
-                set(
-                    entry for entry in entries
-                    if entries.count(entry) > 1
-                )
-            )
-
-            for letter, number in duplicates:
-                invalid_files.append(
-                    f"{date}-{letter}-{number}.jpg: duplicate"
-                )
-
-        invalid_files.extend(
-            validate_date_files(date, set(entries))
-        )
-
-    # ------------------------------------------------------------
-    # Output
-    # ------------------------------------------------------------
-
-    print(f"Checked {len(jpg_files)} JPG file(s) in: {folder.resolve()}")
-    print()
-
-    if invalid_files:
-        print("PROBLEMS FOUND:")
-
-        for error in invalid_files:
-            print(f"  {error}")
-
-        print()
-        print(f"Found {len(invalid_files)} problem(s).")
-    else:
-        print("All JPG filenames and sequences are valid.")
-
-    # Distinct yyyymmdd-x codes.
-    distinct_codes = set()
-
-    for date, entries in files_by_date.items():
-        for letter, number in entries:
-            distinct_codes.add(f"{date}-{letter}")
-
-    print()
-    print("DISTINCT CODES:")
-
-    for code in sorted(distinct_codes):
-        print(code)
+        return None
+    return sorted(p.name for p in folder.iterdir()
+                  if p.is_file() and p.suffix.lower() in IMAGE_EXTS)
 
 
 def main():
-    # Default to the current working directory.
-    folder = sys.argv[1] if len(sys.argv) > 1 else "."
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--beers", type=Path, default=REPO_ROOT / "beers.csv")
+    ap.add_argument("--photos", type=Path, default=None,
+                    help="optional folder to cross-check listed photos against")
+    args = ap.parse_args()
 
-    if len(sys.argv) > 2:
-        print(
-            f"Usage: {Path(sys.argv[0]).name} [folder]"
-        )
-        sys.exit(1)
+    if not args.beers.exists():
+        print(f"Error: {args.beers} not found.")
+        raise SystemExit(1)
 
-    validate_folder(folder)
+    with args.beers.open(newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames or []
+        rows = list(reader)
+
+    problems = []
+
+    missing_cols = [c for c in REQUIRED if c not in fieldnames]
+    if missing_cols:
+        print(f"Error: beers.csv is missing column(s): {', '.join(missing_cols)}")
+        raise SystemExit(1)
+
+    ids = {}
+    listed = {}          # filename -> list of ids that list it
+    groups_by_date = defaultdict(list)
+    blank_rating = 0
+    for i, row in enumerate(rows, 2):   # row 2 = first data row
+        date = (row.get("date") or "").strip()
+        group = (row.get("group") or "").strip()
+        rating = (row.get("rating") or "").strip().lower()
+
+        if not date and not group and not (row.get("name") or "").strip():
+            continue  # blank line
+
+        if not valid_date(date):
+            problems.append(f"row {i}: invalid date {date!r}")
+        if not GROUP_RE.match(group):
+            problems.append(f"row {i}: invalid group {group!r} (expected letters a, b, c ...)")
+        elif valid_date(date):
+            groups_by_date[date].append(group)
+
+        beer_id = f"{date}-{group}"
+        if beer_id in ids:
+            problems.append(f"row {i}: duplicate id {beer_id} (also row {ids[beer_id]})")
+        else:
+            ids[beer_id] = i
+
+        if rating == "":
+            blank_rating += 1
+        elif rating not in VALID_RATINGS:
+            problems.append(f"row {i} ({beer_id}): invalid rating {rating!r}")
+
+        files = [p.strip() for p in (row.get("photos") or "").split(";") if p.strip()]
+        if not files:
+            problems.append(f"row {i} ({beer_id}): no photos listed")
+        for fn in files:
+            listed.setdefault(fn, []).append(beer_id)
+
+    for date in sorted(groups_by_date):
+        uniq = sorted(set(groups_by_date[date]))
+        expected = list(ascii_lowercase[:len(uniq)])
+        if uniq != expected:
+            problems.append(f"date {date}: groups not sequential from 'a' "
+                            f"(found {','.join(uniq)}, expected {','.join(expected)})")
+
+    for fn, owners in listed.items():
+        if len(owners) > 1:
+            problems.append(f"photo '{fn}' listed by {len(owners)} rows: {', '.join(owners)}")
+
+    on_disk = []
+    if args.photos is not None:
+        on_disk = photos_in_folder(args.photos)
+        if on_disk is None:
+            problems.append(f"photos folder not found: {args.photos} (skipping file cross-check)")
+            on_disk = []
+        else:
+            disk_set = set(on_disk)
+            for fn in sorted(listed):
+                if fn not in disk_set:
+                    problems.append(f"listed photo not in {args.photos}: {fn}")
+            for fn in on_disk:
+                if fn not in listed:
+                    problems.append(f"'{fn}' in {args.photos} but not listed in any row")
+
+    print(f"Checked {len(rows)} row(s) in {args.beers}")
+    print()
+    if problems:
+        print("PROBLEMS FOUND:")
+        for p in problems:
+            print(f"  {p}")
+        print()
+        print(f"Found {len(problems)} problem(s).")
+    else:
+        print("All rows valid; photos and folder are in sync.")
+
+    print()
+    print("DISTINCT IDS:")
+    for beer_id in sorted(ids):
+        print(beer_id)
+
+    print()
+    folder_part = f"{len(on_disk)} file(s) in {args.photos}, " if args.photos is not None else ""
+    print(f"Summary: {len(ids)} beer(s), {len(listed)} photo(s) listed, "
+          f"{folder_part}{blank_rating} blank rating(s).")
 
 
 if __name__ == "__main__":

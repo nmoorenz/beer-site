@@ -2,6 +2,7 @@
 
 - **`beer_sync.py`** — the CLI you run from your machine to add beers and update the site.
 - **`generate_config.py`** — a Netlify build step (writes `site/config.js` from `BEER_MANIFEST_URL`); you never run it by hand.
+- **`check-beers.py`** — a quick, dependency-free check of `beers.csv` (no AWS): valid `date`/`group`, no duplicate ids, valid ratings, no photo listed twice. Add `--photos ./photos` to also cross-check listed filenames against a folder that holds all the photos. Run `python scripts/check-beers.py`.
 
 Commands run from the repo root and read your `.env`. Output has three levels:
 

@@ -48,10 +48,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+REPO_ROOT  = Path(__file__).resolve().parent.parent   # scripts/ -> repo root
+
 BUCKET     = os.environ.get("S3_BUCKET")
 REGION     = os.environ.get("AWS_REGION", "ap-southeast-6")
-PHOTOS_DIR = Path(os.environ.get("LOCAL_PHOTOS_DIR", "./photos"))
-BEERS_CSV  = Path(os.environ.get("BEERS_CSV", "./beers.csv"))
+PHOTOS_DIR = Path(os.environ["LOCAL_PHOTOS_DIR"]) if os.environ.get("LOCAL_PHOTOS_DIR") else REPO_ROOT / "photos"
+BEERS_CSV  = Path(os.environ["BEERS_CSV"]) if os.environ.get("BEERS_CSV") else REPO_ROOT / "beers.csv"
+MANIFEST   = REPO_ROOT / "manifest.json"
 
 IMAGE_EXTS    = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 VALID_RATINGS = {"yeah", "eh", "nah"}
@@ -281,7 +284,7 @@ def report(manifest):
 
 
 def write_manifest_local(manifest):
-    Path("./manifest.json").write_text(
+    MANIFEST.write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
 
 

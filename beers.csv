@@ -1,30 +1,12 @@
 date,group,photos,brewery,name,type,abv,size,rating,notes
-20251217,a,20251217-a-1.jpg;20251217-a-2.jpg;20251217-a-3.jpg,Duncan's,Lychee Lemonade,Sorbet Sour,5,440ml,yeah,
-20251217,b,20251217-b-1.jpg;20251217-b-2.jpg;20251217-b-3.jpg,Duncan's,Bunchie Cra,Imperial Pastry Stout,10,440ml,yeah,
-20260112,a,20260112-a-1.jpg;20260112-a-2.jpg;20260112-a-3.jpg,Duncan's,Malbec Brett,Wild Sour,8.5,440ml,yeah,
-20260125,a,20260125-a-1.jpg;20260125-a-2.jpg;20260125-a-3.jpg,Duncan's,San Nicholas,Strong Spiced Ale,8,440ml,yeah,
-20260130,a,20260130-a-1.jpg;20260130-a-2.jpg;20260130-a-3.jpg,Duncan's,Peach & Basil,Fruited Sour,5.1,440ml,yeah,
-20260205,a,20260205-a-1.jpg;20260205-a-2.jpg;20260205-a-3.jpg,Duncan's,Peanut Butter Jelly,Pastry Sour,6,440ml,yeah,
-20260319,a,20260319-a-1.jpg,Guinness,Guinness,Stout,4.2,Pint,yeah,O'Dowd's Irish Bar and Eatery Ellerslie
-20260404,a,20260404-a-1.jpg;20260404-a-2.jpg,Sawmill,Hazy IPA,Hazy IPA,5.9,330ml,yeah,
-20260410,a,20260410-a-1.jpg;20260410-a-2.jpg;20260410-a-3.jpg,Duncan's,Marshmallow Egg,Imperial Pastry Stout,10,440ml,yeah,
-20260417,a,20260417-a-1.jpg;20260417-a-2.jpg;20260417-a-3.jpg,Duncan's,Peach & Basil,Fruited Sour,5.1,440ml,yeah,
-20260417,b,20260417-b-1.jpg;20260417-b-2.jpg;20260417-b-3.jpg,Duncan's,Calamansi & Dragonfruit,Sorbet Sour,4.5,440ml,yeah,
-20260522,a,20260522-a-1.jpg;20260522-a-2.jpg;20260522-a-3.jpg,Duncan's,Pizza Pils,Italian Pilsner,4.5,440ml,yeah,
-20260613,a,20260613-a-1.jpg;20260613-a-2.jpg;20260613-a-3.jpg,Duncan's,Lychee Lemonade,Sorbet Sour,5,440ml,yeah,
-20260613,b,20260613-b-1.jpg;20260613-b-2.jpg;20260613-b-3.jpg;20260613-b-4.jpg,State of Play,Chocolate Stout,Chocolate Stout,<0.5,330ml,yeah,
-20260709,a,20260709-a-1.jpg;20260709-a-2.jpg;20260709-a-3.jpg,Duncan's,Olympus,NZIPA,6.5,440ml,yeah,
-20260711,a,20260711-a-1.jpg;20260711-a-2.jpg;20260711-a-3.jpg,Duncan's,Grapefruit Satellite,Hazy IPA,6,440ml,yeah,
-20250705,a,20250705-a-1.jpg;20250705-a-2.jpg;20250705-a-3.jpg,Urbanaut,Dankenstein,Terpene IPA,5.9,440ml,yeah,
-20250714,a,20250714-a-1.jpg,Orion,Draft Beer,Lager,5,Handle,yeah,Daikoku Teppanyaki
-20250718,a,20250718-a-1.jpg;20250718-a-2.jpg;20250718-a-3.jpg,Urbanaut,Coronado,Double IPA,7.9,440ml,yeah,
-20250725,a,20250725-a-1.jpg;20250725-a-2.jpg;20250725-a-3.jpg,Urbanaut,Jam Donut,Hazy IPA,5.6,440ml,yeah,
-20250801,a,20250801-a-1.jpg,Urbanaut,Salted Caramel Stout,Salted Caramel Stout,6,440ml,yeah,Paired with Whittaker's Dark Salted Caramel
-20250808,a,20250808-a-1.jpg;20250808-a-2.jpg,Brave Brewing,Milk Stout,Milk Stout,5.7,500ml,yeah,
-20251121,a,20251121-a-1.jpg;20251121-a-2.jpg;20251121-a-3.jpg,Garage Project,Nov 25,Fresh IPA,7,440ml,yeah,
-20251128,a,20251128-a-1.jpg;20251128-a-2.jpg;20251128-a-3.jpg,Garage Project,Cosmic Balance,Hazy Double IPA,7.8,440ml,yeah,
-20151219,a,20151219-a-1.jpg,Garage Project,Pils 'n' Thrills,Pilsner,5.5,330ml,yeah,
+20131128,a,68351449082.jpg,Sawmill,12 Gauge,Strong Lager,6.5,500ml,yeah,tumblr
 20131231,a,20131231-a-1.jpg,Bramble's,Boysenberry Apple,Cider,4.5,568ml,yeah,
+20141108,a,102005038815.jpg,Eight Degrees Brewing,Knockmealdown Porter,Porter,5,330ml,yeah,tumblr; Kate Browne's
+20150102,a,106882922090.jpg,Tuatara,Helles,Lager,5,330ml,yeah,tumblr
+20150210,a,110621248960.jpg,Tuatara,Double Trouble,APA,9,500ml,yeah,tumblr
+20150210,b,110621323550.jpg,Boundary Road Brewery,Rum Runner,Spiced Rum Ale,5.5,330ml,yeah,tumblr; cannot find this online even amongst the designers https://andrealovetere.com/2019/04/22/boundary-road-brewery/
+20150222,a,111739486850.jpg,Mata,Matawhaka,Imperial IPA,8,500ml,yeah,tumblr
+20151219,a,20151219-a-1.jpg,Garage Project,Pils 'n' Thrills,Pilsner,5.5,330ml,yeah,
 20151225,a,20151225-a-1.jpg;20151225-a-2.jpg,Garage Project,La Calavera Catrina,Blonde Lager,6.9,330ml,yeah,
 20151225,b,20151225-b-1.jpg;20151225-b-2.jpg,Garage Project,Hops On Pointe,Garage Project,6.7,330ml,yeah,
 20151227,a,20151227-a-1.jpg;20151227-a-2.jpg;20151227-a-3.jpg,Baylands Brewery,Petone Pale Ale,Pale Ale,5,330ml,yeah,
@@ -38,22 +20,30 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20160201,a,20160201-a-1.jpg;20160201-a-2.jpg,Sierra Nevada,Pale Ale,Pale Ale,5.6,355ml,yeah,
 20160201,b,20160201-b-1.jpg,Sioux City,Root Beer,Root Beer,0,355ml,yeah,
 20160201,c,20160201-c-1.jpg;20160201-c-2.jpg,Dainton,Insane Uncle,IPA,6,330ml,yeah,
-20160204,a,20160204-a-1.jpg,Harrington's,Rogue Hop,Organic Pilsner,5,500ml,yeah,
+20160204,a,20160204-a-1.jpg,Harrington's Breweries,Rogue Hop,Organic Pilsner,5,500ml,yeah,
 20160212,a,20160212-a-1.jpg;20160212-a-2.jpg,Liberty Brewing Co,Imperial Oyster Stout,Imperial Stout,10,500ml,yeah,
 20160305,a,20160305-a-1.jpg,Mac's,Chilli + Lime,Cider,4,330ml,yeah,
+20160307,a,140601728740.jpg,Mountain Goat,Organic Steam Ale,Ale,4.5,330ml,yeah,tumblr
+20160308,a,140679038770_0.jpg;140679038770_1.jpg;140679038770_2.jpg,Thorndon Beer Club,Variety Pack,Variety,,1980ml,yeah,tumblr
+20160308,b,140679180010.jpg,Birthday Voucher Selection,Variety Pack,Variety,,3000ml,yeah,tumblr
+20160308,c,140679198605.jpg,Monteith's,Summer Ale,Summer Ale,5,330ml,yeah,tumblr; with a gin and tonic
 20160317,a,20160317-a-1.jpg,Suntory,The Premium Malts,Pilsner,5.5,350ml,yeah,
-20160501,a,20160501-a-1.jpg,Harrington's,The Wobbly Boot,Porter,5,500ml,yeah,
+20160416,a,142887055335.jpg,McLeod's,Paradise Pale Ale,Pale Ale,5.8,330ml,yeah,tumblr
+20160416,b,142887089870.jpg,Liberty Brewing Co,Oh Brother,Pale Ale,5.1,330ml,yeah,tumblr
+20160416,c,142887089871.jpg,Townshend's,Sutton Hoo,American Amber Ale,4.7,330ml,yeah,tumblr
+20160501,a,20160501-a-1.jpg,Harrington's Breweries,The Wobbly Boot,Porter,5,500ml,yeah,
 20160508,a,20160508-a-1.jpg,Tuatara,Land of Hops of Glory,IPA,5,500ml,yeah,
 20160508,b,20160508-b-1.jpg,Galbraith's,NZ Pale Ale,NZ Pale Ale,5,500ml,yeah,
 20160618,a,20160618-a-1.jpg,Panhead,Port Road Pils,Pilsner,5.2,500ml,yeah,
 20160618,b,20160618-b-1.jpg,Epic,No Agenda,ITM Brown Ale,7.5,500ml,yeah,
-20160711,a,20160711-a-1.jpg,Moa,St Josephs,Belgian Tripel,9.5,500ml,yeah,
-20160717,a,20160717-a-1.jpg,Moa,Five Hop,English Style IPA,6.2,500ml,yeah,
+20160711,a,20160711-a-1.jpg,Moa Brewing Co,St Josephs,Belgian Tripel,9.5,500ml,yeah,
+20160717,a,20160717-a-1.jpg,Moa Brewing Co,Five Hop,English Style IPA,6.2,500ml,yeah,
 20160723,a,20160723-a-1.jpg;20160723-a-2.jpg,Garage Project,Hapi Daze,Pacific Pale Ale,4.6,330ml,yeah,
 20160806,a,20160806-a-1.jpg;20160806-a-2.jpg,Liberty Brewing Co,Knife Party,IPA,7.1,500ml,yeah,
-20160813,a,20160813-a-1.jpg,Harrington's,The Wobbly Boot,Porter,5,330ml,yeah,
-20160813,b,20160813-b-1.jpg,Harrington's,The Rogue Hop,NZ Pilsner,5,330ml,yeah,
-20160813,c,20160813-c-1.jpg,Harrington's,The Classy Red,Session Red IPA,4.8,330ml,yeah,
+20160813,a,20160813-a-1.jpg,Harrington's Breweries,The Wobbly Boot,Porter,5,330ml,yeah,
+20160813,b,20160813-b-1.jpg,Harrington's Breweries,The Rogue Hop,NZ Pilsner,5,330ml,yeah,
+20160813,c,20160813-c-1.jpg,Harrington's Breweries,The Classy Red,Session Red IPA,4.8,330ml,yeah,
+20160815,a,148973610795.jpg,Harrington's Breweries,The Pig and Whistle ,Mild Dark Ale,4,330ml,yeah,tumblr
 20160917,a,20160917-a-1.jpg,Orion,Draft Beer,Lager,5,500ml,yeah,
 20160923,a,20160923-a-1.jpg,Lakeman,Taupo Pale Ale,Pale Ale,5.7,330ml,yeah,
 20160923,b,20160923-b-1.jpg,Lakeman,Pilsner,Pilsner,,330ml,yeah,
@@ -66,43 +56,139 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20161030,a,20161030-a-1.jpg;20161030-a-2.jpg,Epic,Awakening Pils,Pilsner,5.2,500ml,yeah,
 20161102,a,20161102-a-1.jpg;20161102-a-2.jpg;20161102-a-3.jpg,Behemoth Brewing,Chur!,NZ Pale Ale,5.5,500ml,yeah,
 20161105,a,20161105-a-1.jpg;20161105-a-2.jpg,Tuatara,Nui,APA,7,500ml,yeah,
+20161212,a,154367601595.jpg,Black Sands Brewing Co,Single Hop Pilsner,Pilsner,5.5,500ml,yeah,tumblr
+20161212,b,154367769450_0.jpg;154367769450_1.jpg,Tuatara,Mot Eureka,New Zealand Pilsner,5,330ml,yeah,tumblr
+20161212,c,154367807795.jpg,Moa Brewing Co,Imperial Stout,Oak Aged Stout,10.2,500ml,yeah,tumblr
 20161218,a,20161218-a-1.jpg;20161218-a-2.jpg,O'Hara's,Hop Adventure,IPA,5,500ml,yeah,
+20161222,a,154766497765.jpg,Three Boys Brewery,Oyster Stout,Stout,6.5,500ml,yeah,tumblr
+20161222,b,154767175995.jpg,Guinness,Draught,Stout,4.2,Pint,yeah,tumblr
+20161222,c,154780504305_0.jpg;154780504305_1.jpg,Tuatara,American Pale Ale,APA,5.8,500ml,yeah,tumblr
+20161222,d,154780592520.jpg,Bundaberg,Bundaberg Ginger Beer,Ginger Beer,0,375ml,yeah,tumblr
+20161224,a,154888548885_0.jpg;154888548885_1.jpg,Trouble Brewing,Graffiti Pale Ale,Pale Ale,3.6,500ml,yeah,tumblr
+20161224,b,154888575270_0.jpg;154888575270_1.jpg,Trouble Brewing,Graffiti Pale Ale,Pale Ale,3.6,500ml,yeah,tumblr
+20161229,a,155083802405_0.jpg;155083802405_1.jpg,Galway Hooker,Double IPA,Double IPA,8.6,500ml,yeah,tumblr
+20161229,b,155084264615.jpg,McGargle's,Pale Ale,Pale Ale,4.5,Pint,yeah,tumblr
+20161229,c,155084326345.jpg,Franciscan Well,Rebel Red,Red Ale,4.3,Pint,yeah,tumblr
+20161229,d,155084371235.jpg,King Puck,Irish Pale Ale,Irish Pale Ale,4.5,Pint,yeah,tumblr
+20161229,e,155084415560.jpg,Galway Hooker,Variety Box,Variety,,1500ml,yeah,tumblr
+20161229,f,155084475790_0.jpg;155084475790_1.jpg,Blacks of Kinsale,Black IPA,Black IPA,5,500ml,yeah,tumblr
+20161229,g,155084597875.jpg,O'Hara's,Irish Pale Ale,Irish Pale Ale,5.2,500ml,yeah,tumblr
+20170101,a,155219001415_0.jpg;155219001415_1.jpg,Guinness,Rye Pale Ale,Rye Pale Ale,5,500ml,yeah,tumblr
+20170101,b,155221561490_0.jpg;155221561490_1.jpg,Guinness,Dublin Porter,Porter,3.8,500ml,yeah,tumblr
 20170108,a,20170108-a-1.jpg;20170108-a-2.jpg,Crafty,Irish Lager,Irish Lager,5,500ml,yeah,
 20170124,a,20170124-a-1.jpg;20170124-a-2.jpg,Allan Scott,Gisborne 2015,Pinot Gris,,750ml,yeah,
+20170213,a,157157218180_0.jpg;157157218180_1.jpg,Mike's,Surf Spot ,Blackberry IPA,6,500ml,yeah,tumblr
+20170213,b,157157285060_0.jpg;157157285060_1.jpg;157607288620.gif,Panhead,Johnny Octane ,Red IPA,8,440ml,yeah,tumblr
+20170213,c,157157328690.jpg,Harrington's Breweries,The Ngahere Gold ,Strong Lager,7.2,330ml,yeah,tumblr
+20170224,a,157607286035.jpg,Garage Project,Garagista,IPA,5.8,330ml,yeah,tumblr
+20170224,b,157607320135_0.jpg;157607320135_1.jpg;157607320135_2.jpg,Croucher Brewing Company,Pilsner,Pilsner,5,330ml,yeah,tumblr
+20170224,c,157607330605_0.jpg;157607330605_1.jpg,Tuatara,Weiz Guy ,Hefeweizen,5,330ml,yeah,tumblr
 20170316,a,20170316-a-1.jpg,Parrotdog,Deadcanary,Pale Ale,5.3,330ml,yeah,
 20170316,b,20170316-b-1.jpg,Kingston,Original Cider,Cider,,330ml,yeah,
 20170324,a,20170324-a-1.jpg;20170324-a-2.jpg,Tuatara,Kapai,Aotearoa Pale Ale,5.8,330ml,yeah,
 20170413,a,20170413-a-1.jpg,Kingfisher,Premium,Lager,5,330ml,yeah,
-20170419,a,20170419-a-1.jpg;20170419-a-2.jpg,Boundary Road,Long Hop,India Pale Lager,5,330ml,yeah,
+20170419,a,20170419-a-1.jpg;20170419-a-2.jpg,Boundary Road Brewery,Long Hop,India Pale Lager,5,330ml,yeah,
 20170429,a,20170429-a-1.jpg;20170429-a-2.jpg;20170429-a-3.jpg,Liberty Brewing Co,The Elixir,Bright Ale,4.7,440ml,yeah,
 20170514,a,20170514-a-1.jpg,Abbaye,Leffe Brune,Belgian Dark Ale,6.5,500ml,yeah,
-20170520,a,20170520-a-1.jpg;20170520-a-2.jpg,McCashin's,Stoke Pilsner,Pilsner,4.8,330ml,yeah,
-20170520,b,20170520-b-1.jpg;20170520-b-2.jpg,McCashin's,Stoke Lager,Lager,4.5,330ml,yeah,
-20170520,c,20170520-c-1.jpg;20170520-c-2.jpg,McCashin's,Stoke Gold,Golden Ale,4.5,330ml,yeah,
+20170520,a,20170520-a-1.jpg;20170520-a-2.jpg,McCashin's Brewery,Stoke Pilsner,Pilsner,4.8,330ml,yeah,
+20170520,b,20170520-b-1.jpg;20170520-b-2.jpg,McCashin's Brewery,Stoke Lager,Lager,4.5,330ml,yeah,
+20170520,c,20170520-c-1.jpg;20170520-c-2.jpg,McCashin's Brewery,Stoke Gold,Golden Ale,4.5,330ml,yeah,
 20170521,a,20170521-a-1.jpg,Steinlager,Tokyo Dry,Lager,5,500ml,yeah,
-20170524,a,20170524-a-1.jpg;20170524-a-2.jpg,McCashin's,Stoke Dark,Dark Ale,4.5,330ml,yeah,
-20170610,a,20170610-a-1.jpg,Harrington's,The Belgian Tempest,Spiced Belgian Strong Ale,7,500ml,yeah,
+20170524,a,20170524-a-1.jpg;20170524-a-2.jpg,McCashin's Brewery,Stoke Dark,Dark Ale,4.5,330ml,yeah,
+20170610,a,20170610-a-1.jpg,Harrington's Breweries,The Belgian Tempest,Spiced Belgian Strong Ale,7,500ml,yeah,
+20170627,a,162312808370_1.jpg;162312808370_0.jpg,GABS,Great Australasian Beer Festival 2017,Variety,,,yeah,tumblr
+20170707,a,162700901385_1.jpg;162700901385_0.jpg,Tuatara,Kapai ,Aotearoa Pale Ale,5.8,500ml,yeah,tumblr
+20170707,b,162700921335_0.jpg;162700921335_1.jpg;162700921335_2.jpg,Garage Project,Hops on Point ,Champagne Pilsner,6.7,650ml,yeah,tumblr
+20170713,a,162931374650_0.jpg;162931374650_1.jpg,Crafty Beggars,Guide to Beer,Variety,,,yeah,tumblr; The best beer in the world is one in my hand
+20170713,b,162931700225_0.jpg;162931700225_1.jpg;162931700225_2.jpg,St Mel's Brewing Company,Spring Bock,Maibock,5.4,500ml,yeah,tumblr
+20170713,c,162931726010_0.jpg;162931726010_1.jpg,McGargle's,Cousin Rosie's Pale Ale,Pale Ale,4.5,500ml,yeah,tumblr
+20170713,d,162931741080_0.jpg;162931741080_1.jpg,Harper's Brewing Co,Medusa,Ruby Red Ale,5,500ml,yeah,tumblr
+20170713,e,162931759315_0.jpg;162931759315_1.jpg,Witchwood Brewery,Hobgoblin,Ruby Beer,5.2,500ml,yeah,tumblr
+20170810,a,163992565420_0.jpg;163992565420_1.jpg,Clever Man,Little Willie Tank,American Pale Ale,4.5,500ml,yeah,tumblr
+20170810,b,163994812005_1.jpg;163994812005_0.jpg,O'Shea's,Traditional Irish Pale Ale,Pale Ale,4.3,500ml,yeah,tumblr
+20170810,c,163994880180_0.jpg;163994880180_1.jpg,O'Hara's,Irish Pale Ale,Dry Hopped IPA,5.2,500ml,yeah,tumblr
+20170810,d,163994880310.jpg,Wicklow Wolf Brewing Co,Dry Hopped India Pale Ale,IPA,6.3,500ml,yeah,tumblr
+20170810,e,163995000745.jpg,John Smith's,Extra Smooth,Ale,3.4,Pint,yeah,tumblr
+20170810,f,163995019970.jpg,Thornbridge Brwery,Huck,Double IPA,8.2,330ml,yeah,tumblr
+20170812,a,164070236020.jpg,Peroni,Gran Riserva,Doppio Malto,6.6,330ml,yeah,tumblr
+20170812,b,164070255440.jpg,Sambrock's Brewery,Pumphouse Pale Ale,Pale Ale,4.2,Pint,yeah,tumblr
+20170812,c,164070290565.jpg,Curious,IPA,IPA,5.6,330ml,yeah,tumblr
+20170812,d,164070302615.jpg,The Draft House,Probably Hazy,Hazy,,Pint,yeah,tumblr
+20170812,e,164070326065.jpg,Bangla,Premium Beer,Lager,4.8,660ml,yeah,tumblr
 20170819,a,20170819-a-1.jpg;20170819-a-2.jpg;20170819-a-3.jpg,Garage Project,L'il Red Rye,Red Ale,6.5,650ml,yeah,https://thebottleneck.net/2015/07/20/garage-project-photo-chop-shop/
+20170902,a,164891374675.jpg,Speights,Old Dark,5 Malt Ale,4,330ml,yeah,tumblr
+20170902,b,164891396590_0.jpg;164891396590_1.jpg,McCashin's Brewery,Stoke Pilsner,Pilsner,4.8,330ml,yeah,tumblr
 20170919,a,20170919-a-1.jpg,Grupo Modelo,Negra Modelo,Dark Lager,6.5,355ml,yeah,
 20170927,a,20170927-a-1.jpg;20170927-a-2.jpg,Lagunitas,India Pale Ale,IPA,5,355ml,yeah,
 20171007,a,20171007-a-1.jpg;20171007-a-2.jpg,Panhead,Black Top Oat,Stout,5.5,500ml,yeah,
 20171007,b,20171007-b-1.jpg;20171007-b-2.jpg,Monteith's,Velvet Stout,Stout,4.9,500ml,yeah,
 20171022,a,20171022-a-1.jpg,Good George Brewing Co,XPA,XPA,5,946ml,yeah,
 20171028,a,20171028-a-1.jpg;20171028-a-2.jpg,Good George Brewing Co,IPA,IPA,5.8,946ml,yeah,
+20171203,a,168119893890_1.jpg;168119893890_0.jpg;168119893890_2.jpg,Garage Project,Garagista,IPA,5.8,330ml,yeah,tumblr
+20171205,a,168190124245_0.jpg;168190124245_1.jpg,Garage Project,Orange Sunshine,Citrus Wheat,4.6,330ml,yeah,tumblr
+20171210,a,168364030190_1.jpg;168364030190_0.jpg,The Shakespeare,The Bastard,India Pale Ale,5.9,500ml,yeah,tumblr
+20171229,a,169056942915_0.jpg;169056942915_1.jpg,Blacks of Kinsale,KPA,KPA,5,500ml,yeah,tumblr
+20171229,b,169056946125_0.jpg;169056946125_1.jpg,Galway Hooker,Irish Stout,Irish Stout,4.5,500ml,yeah,tumblr
+20171229,c,169056950425_0.jpg;169056950425_1.jpg;169056950425_2.jpg,Crafty Divils,Iron Bridge,Amber Ale,4.3,500ml,yeah,tumblr
+20171229,d,169056997915_0.jpg;169056997915_1.jpg,O'Hara's,Hop Adventure,Single Hop India Pale Ale,5,500ml,yeah,tumblr
+20171230,a,169103143645_0.jpg;169103143645_1.jpg,Epic,Hop Zombie,Double IPA,8.5,500ml,yeah,tumblr
+20171230,b,169103143655_1.jpg;169103143655_0.jpg,Epic,Magic Dust,Lupulin IPA,6.9,500ml,yeah,tumblr
+20171230,c,169103145630_0.jpg;169103145630_1.jpg;169103145630_2.jpg,Mike's,Long Line,Lager,4.8,330ml,yeah,tumblr
+20171230,d,169103160410_2.jpg;169103160410_1.jpg;169103160410_0.jpg,Mike's,Leaky Boat,Grapefruit Pale Ale,5.2,355ml,yeah,tumblr
+20171230,e,169103192955_0.jpg;169103192955_1.jpg,Moa Brewing Co,Imperial Stout,Oak Aged Stout,10.2,500ml,yeah,tumblr
+20171230,f,169103202075_0.jpg;169103202075_1.jpg,Epic,Static,IPA,6.3,500ml,yeah,tumblr
+20171230,g,169103214280_0.jpg;169103214280_1.jpg,Epic,Thunder APA,American Pale Ale,5.8,500ml,yeah,tumblr
+20171230,h,169103288170_1.jpg;169103288170_0.jpg,Epic,Lager,Lager,5,500ml,yeah,tumblr
+20171230,i,169103329370_0.jpg;169103329370_1.jpg,Epic,Son of Thor,IPA,6.8,500ml,yeah,tumblr
+20171230,j,169103339900_0.jpg;169103339900_1.jpg,Epic,Awakening Pils,Pilsner,5.2,500ml,yeah,tumblr
+20171230,k,169103353275_0.jpg;169103353275_1.jpg,Parrotdog,Bitterbitch,IPA,5.8,330ml,yeah,tumblr
+20171230,l,169103361465_1.jpg;169103361465_0.jpg,Epic,Pale Ale,Pale Ale,5.4,500ml,yeah,tumblr
+20171230,m,169103370245_0.jpg;169103370245_1.jpg,Epic,Armageddon,IPA,6.66,500ml,yeah,tumblr
+20171230,n,169104352360_2.jpg;169104352360_1.jpg;169104352360_0.jpg;169104352360_3.jpg;169104352360_4.jpg;169104352360_5.jpg,Mike's,Black Box Sampler Pack,Variety,,1980ml,yeah,tumblr
+20180102,a,169193131270_0.jpg;169193131270_1.jpg,Epic,Hopshine,Sunny Pale Ale,5.5,500ml,yeah,tumblr
+20180102,b,169193165965_0.jpg;169193165965_1.jpg;169193165965_2.jpg,Mike's,Pils-Nah,Pilsner,5,330ml,yeah,tumblr
+20180102,c,169193181700_0.jpg;169193181700_1.jpg;169193181700_2.jpg,Mike's,Flight of the Falcon,APA,5.7,355ml,yeah,tumblr
+20180102,d,169193197315_1.jpg;169193197315_0.jpg;169193197315_2.jpg,Mike's,OMPA One More Pale Ale,Pale Ale,5.5,330ml,yeah,tumblr
+20180102,e,169193210940_0.jpg;169193210940_1.jpg;169193210940_2.jpg,Mike's,Smash Full Nelson,IPA,7,330ml,yeah,tumblr
+20180102,f,169193220840_0.jpg;169193220840_1.jpg,Epic,Solar Flare,Xtreme Pale Ale,4.8,500ml,yeah,tumblr
+20180313,a,171801849370_0.jpg;171801849370_1.jpg,Garage Project,Party & Bullshit,IPA,6.8,440ml,yeah,tumblr
+20180313,b,171801875580_0.jpg;171801875580_1.jpg;171801875580_2.jpg,Double Vision Brewing,Castaway,Pacific Pale Ale,4.8,330ml,yeah,tumblr
+20180313,c,171801887685.jpg,Tuatara,Amarillo,American Dark Ale,5,330ml,yeah,tumblr
+20180313,d,171801999005_0.jpg;171801999005_1.jpg,Funk Estate,Shout Out,Stout,5,330ml,yeah,tumblr
+20180313,e,171802001195_0.jpg;171802001195_2.jpg,Funk Estate,Get Up Get Down,Dry Hop Sour Ale,4,330ml,yeah,tumblr; Ocean Beach
+20180313,f,171802028430_0.jpg;171802028430_1.jpg,Funk Estate,Sophisticuffs,IPA,6,330ml,yeah,tumblr; Ocean Beach
+20180313,g,171802054180_0.jpg;171802054180_1.jpg,Funk Estate,Parleyer,Pilsner,4.5,330ml,yeah,tumblr; Ocean Beach
+20180313,h,171802094690_0.jpg;171802094690_1.jpg,Funk Estate,Yes Yes Y'all,Session Pale Ale,3.5,330ml,yeah,tumblr; Ocean Beach
+20180313,i,171802124000_0.jpg;171802124000_1.jpg,Funk Estate,Oh Lordy,Pale Ale,5.5,330ml,yeah,tumblr; Ocean Beach
+20180313,j,171802214440_0.jpg;171802214440_1.jpg,Moa Brewing Co,Festive IPA,IPA,6.7,500ml,yeah,tumblr; Limited Release Pine Edition
+20180313,k,171802240385_0.jpg;171802240385_1.jpg,Monteith's,Highway IPA,IPA,5.4,330ml,yeah,tumblr
+20180313,l,171802337395_0.jpg;171802337395_1.jpg;171802337395_2.jpg;171802337395_3.jpg,Moa Brewing Co,Session Pale Ale,Pale Ale,4.3,330ml,yeah,tumblr
+20180313,m,171802347500_0.jpg;171802347500_1.jpg,Epic,Double Geddon,Double IPA,8,500ml,yeah,tumblr
+20180427,a,173349292990_0.jpg;173349292990_1.jpg,Duncan's,Big George,Double IPA,8,500ml,yeah,tumblr
+20180427,b,173349302600_0.jpg;173349302600_1.jpg,Monteith's,Double Hopped IPA,Double IPA,7.5,500ml,yeah,tumblr
+20180427,c,173349317795_0.jpg;173349317795_1.jpg,Garage Project,Hatsukoi Neo Tokyo,Lager,5,330ml,yeah,tumblr
+20180427,d,173349629375_0.jpg;173349629375_1.jpg;173349629375_2.jpg,Garage Project,Aro Noir,Stout,7,500ml,yeah,tumblr
+20180427,e,173349651590_0.jpg;173349651590_1.jpg,Tuatara,Mot Eureka,Pilsner,5,330ml,yeah,tumblr
+20180427,f,173349658260_0.jpg;173349658260_1.jpg,Tuatara,Sauvinova,Single Hop Pale Ale,4.7,330ml,yeah,tumblr
+20180427,g,173350208350.jpg,Kilkenny,Kilkenny,Irish Ale,4.3,440ml,yeah,tumblr
+20180428,a,173380545050_0.jpg;173380545050_1.jpg,Panhead,Green Fog,Fresh Hop IPA,7.5,440ml,yeah,tumblr
+20180504,a,173570460030_0.jpg;173570460030_1.jpg,Duncan's,Pilsner,Pilsner,4.9,500ml,yeah,tumblr
 20180505,a,20180505-a-1.jpg;20180505-a-2.jpg;20180505-a-3.jpg,Emerson's,Bird Dog,IPA,7,500ml,yeah,
 20180505,b,20180505-b-1.jpg;20180505-b-2.jpg;20180505-b-3.jpg,Emerson's,Daredevil,Red IPA,6.4,500ml,yeah,
 20180506,a,20180506-a-1.jpg;20180506-a-2.jpg,Emerson's,Hop Wops,Session Pale Ale,4,500ml,yeah,
 20180511,a,20180511-a-1.jpg;20180511-a-2.jpg;20180511-a-3.jpg,Parrotdog,Kowhai,Double IPA,7.9,500ml,yeah,
 20180516,a,20180516-a-1.jpg;20180516-a-2.jpg,Birkenhead,Pacific Pale Ale,Pacific Pale Ale,4.6,888ml,yeah,
-20180603,a,20180603-a-1.jpg;20180603-a-2.jpg,Boundary Road,Stolen Base,American Double IPA,8,500ml,yeah,
-20180603,b,20180603-b-1.jpg;20180603-b-2.jpg,Boundary Road,Jack the Sipper,London Porter,5.6,500ml,yeah,
+20180602,a,174494167065_0.jpg;174494167065_1.jpg,Altitude Brewing,Moonlight Track,Stout,6.5,500ml,yeah,tumblr
+20180602,b,174494175395_0.jpg;174494175395_1.jpg,Altitude Brewing,Mischievous Kea,IPA,5.5,500ml,yeah,tumblr
+20180603,a,20180603-a-1.jpg;20180603-a-2.jpg,Boundary Road Brewery,Stolen Base,American Double IPA,8,500ml,yeah,
+20180603,b,20180603-b-1.jpg;20180603-b-2.jpg,Boundary Road Brewery,Jack the Sipper,London Porter,5.6,500ml,yeah,
 20180607,a,20180607-a-1.jpg;20180607-a-2.jpg,Dr Brown's,Original Root Beer,Root Beer,0,355ml,yeah,Federal Deli
 20180705,a,20180705-a-1.jpg,Asahi,Dry Zero,Lager,0,330ml,yeah,
 20180712,a,20180712-a-1.jpg;20180712-a-2.jpg;20180712-a-3.jpg,Birkenhead,Pacific Pale Ale,Pacific Pale Ale,4.6,888ml,yeah,
 20180715,a,20180715-a-1.jpg;20180715-a-2.jpg;20180715-a-3.jpg,Mata,Wai-iti Waka,NZ Pale Ale,5.5,500ml,yeah,
-20180715,b,20180715-b-1.jpg;20180715-b-2.jpg;20180715-b-3.jpg,Croucher,Enduro,Pale Ale,5,500ml,yeah,
+20180715,b,20180715-b-1.jpg;20180715-b-2.jpg;20180715-b-3.jpg,Croucher Brewing Company,Enduro,Pale Ale,5,500ml,yeah,
 20180720,a,20180720-a-1.jpg;20180720-a-2.jpg;20180720-a-3.jpg,Garage Project,Beer,Beer,4.8,330ml,yeah,
-20180721,a,20180721-a-1.jpg;20180721-a-2.jpg,Boundary Road,Double Crossed,Double Lager,8,500ml,yeah,
+20180721,a,20180721-a-1.jpg;20180721-a-2.jpg,Boundary Road Brewery,Double Crossed,Double Lager,8,500ml,yeah,
 20180721,b,20180721-b-1.jpg;20180721-b-2.jpg,Bach,Driftwood,Pacific Pale Ale,5.1,500ml,yeah,
 20180814,a,20180814-a-1.jpg;20180814-a-2.jpg,Monteith's,American Pale Ale,American Pale Ale,5.7,500ml,yeah,
 20180914,a,20180914-a-1.jpg;20180914-a-2.jpg,Liberty Brewing Co,Oh Brother,Pale Ale,5.1,330ml,yeah,
@@ -141,7 +227,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20190417,b,20190417-b-1.jpg,Guinness,Hop House 13,Lager,4.1,330ml,yeah,
 20190419,a,20190419-a-1.jpg,Brewdog,Elvis Juice,IPA,6.5,330ml,yeah,
 20190419,b,20190419-b-1.jpg;20190419-b-2.jpg;20190419-b-3.jpg,Rascals,Happy Days,Pale Ale,4.1,330ml,yeah,
-20190419,c,20190419-c-1.jpg;20190419-c-2.jpg,Eight Degrees,Full Irish,Single Malt IPA,6,440ml,yeah,
+20190419,c,20190419-c-1.jpg;20190419-c-2.jpg,Eight Degrees Brewing,Full Irish,Single Malt IPA,6,440ml,yeah,
 20190419,d,20190419-d-1.jpg;20190419-d-2.jpg;20190419-d-3.jpg,Treaty City,Harris,Pale Ale,5,500ml,yeah,
 20190419,e,20190419-e-1.jpg,Sierra Nevada,Pale Ale,Pale Ale,5.6,473ml,yeah,
 20190425,a,20190425-a-1.jpg;20190425-a-2.jpg,Brooklyn,Brooklyn Lager,Lager,5.2,355ml,yeah,
@@ -151,7 +237,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20190430,b,20190430-b-1.jpg;20190430-b-2.jpg;20190430-b-3.jpg,Galway Bay,Bar,Bar,5,,yeah,
 20190430,c,20190430-c-1.jpg,Galway Bay,"Full Sail, Saison, Peach Sour, Founders",Paddle,5,800ml,yeah,
 20190430,d,20190430-d-1.jpg,Galway Bay,Red Ale (Probably),Red Ale,4.6,568ml,yeah,
-20190525,a,20190525-a-1.jpg;20190525-a-2.jpg,Moa,Bonus,Mandarin IPA,6.5,500ml,yeah,
+20190525,a,20190525-a-1.jpg;20190525-a-2.jpg,Moa Brewing Co,Bonus,Mandarin IPA,6.5,500ml,yeah,
 20190607,a,20190607-a-1.jpg,Steinlager,Pure,Lager,5,330ml,yeah,
 20190622,a,20190622-a-1.jpg;20190622-a-2.jpg,Shakespeare,The Bard,Pale Ale,4.5,500ml,yeah,
 20190622,b,20190622-b-1.jpg;20190622-b-2.jpg;20190622-b-3.jpg,Mata,64,NZ Pale Ale,5.5,500ml,yeah,
@@ -165,14 +251,14 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20191008,a,20191008-a-1.jpg;20191008-a-2.jpg,Tuatara,Iti,APA,3.3,330ml,yeah,
 20191012,a,20191012-a-1.jpg,Baltika,Zatecky Gus Svetly,Lager,4.6,900ml,yeah,
 20191020,a,20191020-a-1.jpg;20191020-a-2.jpg;20191020-a-3.jpg,Lakeman,Regal Royale,Barleywine,11,440ml,yeah,
-20191026,a,20191026-a-1.jpg;20191026-a-2.jpg;20191026-a-3.jpg,Croucher,Enduro,Pale Ale,5,330ml,yeah,
-20191026,b,20191026-b-1.jpg;20191026-b-2.jpg,Croucher,Ultra,IPA,7,330ml,yeah,
-20191026,c,20191026-c-1.jpg;20191026-c-2.jpg,Croucher,Sulfur City,Pilsner,5,330ml,yeah,
+20191026,a,20191026-a-1.jpg;20191026-a-2.jpg;20191026-a-3.jpg,Croucher Brewing Company,Enduro,Pale Ale,5,330ml,yeah,
+20191026,b,20191026-b-1.jpg;20191026-b-2.jpg,Croucher Brewing Company,Ultra,IPA,7,330ml,yeah,
+20191026,c,20191026-c-1.jpg;20191026-c-2.jpg,Croucher Brewing Company,Sulfur City,Pilsner,5,330ml,yeah,
 20191102,a,20191102-a-1.jpg,Emerson's,Hazed & Confused,Cloudy IPA,5.8,330ml,yeah,
 20191102,b,20191102-b-1.jpg,Garage Project,Shandy,Lager,2.4,330ml,yeah,
-20191103,a,20191103-a-1.jpg;20191103-a-2.jpg,Croucher,Moonride,Black IPA,5.5,330ml,yeah,
-20191104,a,20191104-a-1.jpg;20191104-a-2.jpg,Croucher,Volcanic,NZ APA,5.5,330ml,yeah,
-20191119,a,20191119-a-1.jpg;20191119-a-2.jpg,Boundary Road,The Chosen One,Golden Lager,5,330ml,yeah,
+20191103,a,20191103-a-1.jpg;20191103-a-2.jpg,Croucher Brewing Company,Moonride,Black IPA,5.5,330ml,yeah,
+20191104,a,20191104-a-1.jpg;20191104-a-2.jpg,Croucher Brewing Company,Volcanic,NZ APA,5.5,330ml,yeah,
+20191119,a,20191119-a-1.jpg;20191119-a-2.jpg,Boundary Road Brewery,The Chosen One,Golden Lager,5,330ml,yeah,
 20191203,a,20191203-a-1.jpg;20191203-a-2.jpg;20191203-a-3.jpg;20191203-a-4.jpg,Kererū,Advent Calendar,Mix Box,,3960ml,yeah,
 20191203,b,20191203-b-1.jpg,Kererū,Big Pigeon,Pilsner,5,330ml,yeah,
 20191203,c,20191203-c-1.jpg;20191203-c-2.jpg,Kererū,For Great Justice,Coconut Porter,4.5,330ml,yeah,
@@ -215,21 +301,21 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20200424,a,20200424-a-1.jpg;20200424-a-2.jpg,Tuatara,Roughneck,Hazy IPA,7.1,500ml,yeah,
 20200425,a,20200425-a-1.jpg;20200425-a-2.jpg,Epic,Pale Ale,Pale Ale,5.4,330ml,yeah,
 20200426,a,20200426-a-1.jpg;20200426-a-2.jpg,Epic,Awakening Pils,Pilsner,5.2,330ml,yeah,
-20200427,a,20200427-a-1.jpg;20200427-a-2.jpg,Boundary Road,Hoppelganger,NZ Double IPA,7,500ml,yeah,Risotto
+20200427,a,20200427-a-1.jpg;20200427-a-2.jpg,Boundary Road Brewery,Hoppelganger,NZ Double IPA,7,500ml,yeah,Risotto
 20200504,a,20200504-a-1.jpg;20200504-a-2.jpg,Epic,Lager,Lager,5,330ml,yeah,
 20200519,a,20200519-a-1.jpg;20200519-a-2.jpg,Duncan's,Juniper,IPA,7,500ml,yeah,
 20200522,a,20200522-a-1.jpg;20200522-a-2.jpg,Duncan's,Raspberry Ripple Ice Cream Sour,Raspberry Sour,5,440ml,yeah,
 20200530,a,20200530-a-1.jpg;20200530-a-2.jpg,Duncan's,Maple Pancake,Imperial Pastry Stout,10.8,330ml,yeah,
 20200601,a,20200601-a-1.jpg;20200601-a-2.jpg,Morland,Old Speckled Hen,English Pale Ale,5,500ml,yeah,
 20200731,a,20200731-a-1.jpg;20200731-a-2.jpg;20200731-a-3.jpg,Good George Brewing Co,Tarawera,IPA,6.7,946ml,yeah,
-20200808,a,20200808-a-1.jpg;20200808-a-2.jpg;20200808-a-3.jpg,Moa,Mixed Grain Toasted Ale,Ale,5,440ml,yeah,
-20200826,a,20200826-a-1.jpg;20200826-a-2.jpg,Moa,Milk Chocolate Stout,Stout,5.8,500ml,yeah,
+20200808,a,20200808-a-1.jpg;20200808-a-2.jpg;20200808-a-3.jpg,Moa Brewing Co,Mixed Grain Toasted Ale,Ale,5,440ml,yeah,
+20200826,a,20200826-a-1.jpg;20200826-a-2.jpg,Moa Brewing Co,Milk Chocolate Stout,Stout,5.8,500ml,yeah,
 20200829,a,20200829-a-1.jpg;20200829-a-2.jpg,Panhead,Black Top Oat,Stout,5.5,500ml,yeah,
 20200918,a,20200918-a-1.jpg;20200918-a-2.jpg,Sprig & Fern,APA,APA,,888ml,yeah,
-20200926,a,20200926-a-1.jpg;20200926-a-2.jpg,Boundary Road,Stolen Base,American Double IPA,8,500ml,yeah,
+20200926,a,20200926-a-1.jpg;20200926-a-2.jpg,Boundary Road Brewery,Stolen Base,American Double IPA,8,500ml,yeah,
 20201002,a,20201002-a-1.jpg;20201002-a-2.jpg,Badger,Fursty Ferret,Amber Ale,4.4,500ml,yeah,
 20201003,a,20201003-a-1.jpg;20201003-a-2.jpg,Tuatara,Roughneck,Hazy IPA,7.1,500ml,yeah,
-20201010,a,20201010-a-1.jpg;20201010-a-2.jpg;20201010-a-3.jpg,Moa,Change Maker,Pilsner,5.5,500ml,yeah,
+20201010,a,20201010-a-1.jpg;20201010-a-2.jpg;20201010-a-3.jpg,Moa Brewing Co,Change Maker,Pilsner,5.5,500ml,yeah,
 20201010,b,20201010-b-1.jpg;20201010-b-2.jpg;20201010-b-3.jpg,Duncan's,Change Maker,Pale Ale,5.6,500ml,yeah,
 20201024,a,20201024-a-1.jpg;20201024-a-2.jpg,Garage Project,Fugazi,Session Ale,2.2,330ml,yeah,
 20201026,a,20201026-a-1.jpg;20201026-a-2.jpg;20201026-a-3.jpg,Shepherd Neame,Spitfire,Amber Ale,4.5,500ml,yeah,
@@ -255,7 +341,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20210306,a,20210306-a-1.jpg;20210306-a-2.jpg,Garage Project,Trip-Hop,Extra Special Bitter,5.6,440ml,yeah,
 20210313,a,20210313-a-1.jpg;20210313-a-2.jpg,Liberty Brewing Co,Citra,Double IPA,9,500ml,yeah,
 20210317,a,20210317-a-1.jpg,??,??,Stout,,Pint,yeah,Lumsden
-20210319,a,20210319-a-1.jpg;20210319-a-2.jpg,McCashin's,Stoke Hazy,Juicy Pale Ale,4.2,330ml,yeah,
+20210319,a,20210319-a-1.jpg;20210319-a-2.jpg,McCashin's Brewery,Stoke Hazy,Juicy Pale Ale,4.2,330ml,yeah,
 20210327,a,20210327-a-1.jpg;20210327-a-2.jpg,Duncan's,Tangelo Ripple,Ice Cream Sour,5,440ml,yeah,
 20210331,a,20210331-a-1.jpg,??,??,Stout,,Pint,yeah,Lumsden
 20210401,a,20210401-a-1.jpg;20210401-a-2.jpg;20210401-a-3.jpg,Emerson's,London Porter,Porter,5,500ml,yeah,
@@ -290,21 +376,21 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20211214,b,20211214-b-1.jpg,Abbaye,Leffe Brune,Belgian Dark Ale,6.5,500ml,yeah,Occidental
 20211224,a,20211224-a-1.jpg;20211224-a-2.jpg;20211224-a-3.jpg,Cassels,NZ Pale Alle,NZ Pale Ale,5.3,330ml,yeah,
 20211225,a,20211225-a-1.jpg,Otherside,Indie,XPA,5.2,440ml,yeah,
-20211225,b,20211225-b-1.jpg;20211225-b-2.jpg;20211225-b-3.jpg,Double Vision,Beetle Juice,Hazy IPA,6,440ml,yeah,
+20211225,b,20211225-b-1.jpg;20211225-b-2.jpg;20211225-b-3.jpg,Double Vision Brewing,Beetle Juice,Hazy IPA,6,440ml,yeah,
 20211225,c,20211225-c-1.jpg;20211225-c-2.jpg;20211225-c-3.jpg,Derelict,Lemon Meringue,Sour Ale Sorbet,5.3,500ml,yeah,
 20211229,a,20211229-a-1.jpg;20211229-a-2.jpg;20211229-a-3.jpg,Ground Up,Alpine Start,Oatmeal Stout,5.2,440ml,yeah,
 20220102,a,20220102-a-1.jpg;20220102-a-2.jpg;20220102-a-3.jpg,Pal's,Central Otago Passionfruit Peach and Soda,Soda,0,330ml,yeah,
 20220108,a,20220108-a-1.jpg;20220108-a-2.jpg;20220108-a-3.jpg,Ground Up,Punks in the Gym,NZ IPA,6.8,440ml,yeah,
 20220111,a,20220111-a-1.jpg;20220111-a-2.jpg,Tiger,Tiger,Lager,5,640ml,yeah,
 20220111,b,20220111-b-1.jpg;20220111-b-2.jpg,Krombacher,Pils,Pilsner,4.8,330ml,yeah,Birthday dinner
-20220114,a,20220114-a-1.jpg;20220114-a-2.jpg;20220114-a-3.jpg,Double Vision,No Brainer,Unfiltered IIPA,8,440ml,yeah,Wedding
+20220114,a,20220114-a-1.jpg;20220114-a-2.jpg;20220114-a-3.jpg,Double Vision Brewing,No Brainer,Unfiltered IIPA,8,440ml,yeah,Wedding
 20220117,a,20220117-a-1.jpg;20220117-a-2.jpg,Three Sisters,Hot Rod,Manuka Smoked Lager,5.2,500ml,yeah,
-20220122,a,20220122-a-1.jpg;20220122-a-2.jpg;20220122-a-3.jpg,Double Vision,Reverse Cowboy Passion Fruit & Guava,Ice Cream Sour,4.4,440ml,yeah,
+20220122,a,20220122-a-1.jpg;20220122-a-2.jpg;20220122-a-3.jpg,Double Vision Brewing,Reverse Cowboy Passion Fruit & Guava,Ice Cream Sour,4.4,440ml,yeah,
 20220126,a,20220126-a-1.jpg;20220126-a-2.jpg,Three Sisters,Hand & Flowers,Roasted Out Stout,6,500ml,yeah,
 20220129,a,20220129-a-1.jpg;20220129-a-2.jpg,Chouffe,La Chouffe,Belgian Pale Strong Ale,8,330ml,yeah,
 20220204,a,20220204-a-1.jpg;20220204-a-2.jpg;20220204-a-3.jpg,North End Brewery,Visitation,Belgian Quadruple,10.5,440ml,yeah,
 20220207,a,20220207-a-1.jpg,Beer Coasters,"Kereru, Epic, Mac's, Tom Crean's",Coaster,,,yeah,
-20220319,a,20220319-a-1.jpg;20220319-a-2.jpg;20220319-a-3.jpg,McCashin's,Stoke Legacy,West Coast IPA,5.9,440ml,yeah,
+20220319,a,20220319-a-1.jpg;20220319-a-2.jpg;20220319-a-3.jpg,McCashin's Brewery,Stoke Legacy,West Coast IPA,5.9,440ml,yeah,
 20220329,a,20220329-a-1.jpg,Urbanaut,Selection Box,Variety,,5280ml,yeah,
 20220329,b,20220329-b-1.jpg;20220329-b-2.jpg;20220329-b-3.jpg,Urbanaut,Kiwifruit & Feijoa,Gose,5,440ml,yeah,
 20220401,a,20220401-a-1.jpg;20220401-a-2.jpg;20220401-a-3.jpg,Urbanaut,La Mesa Guava Mango,Hazy IPA,6.2,440ml,yeah,
@@ -343,12 +429,12 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20221126,a,20221126-a-1.jpg;20221126-a-2.jpg;20221126-a-3.jpg,Mac's,Squeeze the Day,Citrus Lager,4.2,330ml,yeah,
 20221203,a,20221203-a-1.jpg;20221203-a-2.jpg;20221203-a-3.jpg,Lumber Jack Brewing,From the Woods,Barrel Aged Saison,6.4,500ml,yeah,
 20221211,a,20221211-a-1.jpg;20221211-a-2.jpg,Dot Brew,Spin Off Series,Dark Side Stout,4.2,440ml,yeah,
-20221216,a,20221216-a-1.jpg;20221216-a-2.jpg,St Mels Independent Brewing Co,I Will Yeah!,Juicy Pale Ale,4,440ml,yeah,
+20221216,a,20221216-a-1.jpg;20221216-a-2.jpg,St Mel's Brewing Company,I Will Yeah!,Juicy Pale Ale,4,440ml,yeah,
 20221224,a,20221224-a-1.jpg;20221224-a-2.jpg;20221224-a-3.jpg,Journeyman,Pale Ale,Pale Ale,4.6,500ml,yeah,
 20221225,a,20221225-a-1.jpg;20221225-a-2.jpg,The Crafty Brewing Co,Red Ale,Red Ale,4.1,500ml,yeah,
 20221226,a,20221226-a-1.jpg;20221226-a-2.jpg;20221226-a-3.jpg,Privatbrauerei Eichbaum,Steam Brew,Imperial IPA,7.6,330ml,yeah,
 20221228,a,20221228-a-1.jpg;20221228-a-2.jpg;20221228-a-3.jpg,Porterhouse Brew Co,Rambler,Juicy Pale Ale,4.6,440ml,yeah,
-20221229,a,20221229-a-1.jpg;20221229-a-2.jpg;20221229-a-3.jpg,Wicklow Wolf,Mammoth IPA,IPA,6.2,440ml,yeah,
+20221229,a,20221229-a-1.jpg;20221229-a-2.jpg;20221229-a-3.jpg,Wicklow Wolf Brewing Co,Mammoth IPA,IPA,6.2,440ml,yeah,
 20221230,a,20221230-a-1.jpg;20221230-a-2.jpg;20221230-a-3.jpg;20221230-a-4.jpg,Eight Degrees Brewing,Howling Gale,Irish Pale Ale,4.5,440ml,yeah,
 20221231,a,20221231-a-1.jpg;20221231-a-2.jpg;20221231-a-3.jpg,Porterhouse Brew Co,Red,Irish Ale,4.2,500ml,yeah,
 20230101,a,20230101-a-1.jpg;20230101-a-2.jpg;20230101-a-3.jpg,Pearse Lyons Brewery,Foxes Rock,Red Ale,4.5,500ml,yeah,
@@ -366,7 +452,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20230506,a,20230506-a-1.jpg;20230506-a-2.jpg;20230506-a-3.jpg,Duncan's,Super Fresh Hop,XPA,6,440ml,yeah,
 20230814,a,20230814-a-1.jpg;20230814-a-2.jpg;20230814-a-3.jpg;20230814-a-4.jpg,Duncan's,Passionfruit & Lime Ripple,Passionfruit & Lime Sour,5,440ml,yeah,
 20230822,a,20230822-a-1.jpg,Duncan's,Variety,Variety,,2640ml,yeah,
-20230822,b,20230822-b-1.jpg;20230822-b-2.jpg;20230822-b-3.jpg;20230822-b-4.jpg;20230822-b-5.jpg;20230822-b-6.jpg;20230822-b-7.jpg;20230822-b-8.jpg;20230822-b-9.jpg;20230822-b-10.jpg;20230822-b-11.jpg;20230822-b-12.jpg;20230822-b-13.jpg;20230822-b-14.jpg;20230822-b-15.jpg;20230822-b-16.jpg;20230822-b-17.jpg;20230822-b-18.jpg;20230822-b-19.jpg,Brewer’s Guild of NZ,Beer Awards 2022 Champions,Booklet,,,yeah,
+20230822,b,20230822-b-1.jpg;20230822-b-2.jpg;20230822-b-3.jpg;20230822-b-4.jpg;20230822-b-5.jpg;20230822-b-6.jpg;20230822-b-7.jpg;20230822-b-8.jpg;20230822-b-9.jpg;20230822-b-10.jpg;20230822-b-11.jpg;20230822-b-12.jpg;20230822-b-13.jpg;20230822-b-14.jpg;20230822-b-15.jpg;20230822-b-16.jpg;20230822-b-17.jpg;20230822-b-18.jpg;20230822-b-19.jpg,Brewer's Guild of NZ,Beer Awards 2022 Champions,Booklet,,,yeah,
 20230901,a,20230901-a-1.jpg;20230901-a-2.jpg,Duncan's,Yuzu Haze,Brett Hazy IPA,6,440ml,yeah,
 20230916,a,20230916-a-1.jpg;20230916-a-2.jpg,Duncan's,Mallow Guava Lava,Pastry Sour,6,440ml,yeah,
 20230920,a,20230920-a-1.jpg;20230920-a-2.jpg,Duncan's,Peanut Brittle,Pastry Blonde Ale,8,440ml,yeah,
@@ -402,7 +488,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20240613,a,20240613-a-1.jpg;20240613-a-2.jpg;20240613-a-3.jpg,Duncan's,Passionfruit Haze,Brett Hazy IPA,6,440ml,yeah,
 20240615,a,20240615-a-1.jpg;20240615-a-2.jpg;20240615-a-3.jpg,Duncan's,Red Velvet,Imperial Pastry Stout,10.5,440ml,yeah,
 20240621,a,20240621-a-1.jpg;20240621-a-2.jpg;20240621-a-3.jpg,Duncan's,Upcycle,Bourbon Barrel-Aged Imperial Pastry stout,10.2,440ml,yeah,
-20240718,a,20240718-a-1.jpg;20240718-a-2.jpg;20240718-a-3.jpg,Duncan’s,Big George,Double IPA,8,440ml,yeah,
+20240718,a,20240718-a-1.jpg;20240718-a-2.jpg;20240718-a-3.jpg,Duncan's,Big George,Double IPA,8,440ml,yeah,
 20240720,a,20240720-a-1.jpg;20240720-a-2.jpg;20240720-a-3.jpg,McLeod's,Blue Water,Single Hop Unfiltered Pale Ale,5.5,440ml,yeah,
 20240802,a,20240802-a-1.jpg;20240802-a-2.jpg;20240802-a-3.jpg,McLeod's,Far Away,India Pale Ale,6,440ml,yeah,
 20240901,a,20240901-a-1.jpg;20240901-a-2.jpg;20240901-a-3.jpg,McLeod's,Mountains Are Calling,Unfiltered NZ IPA,6.8,440ml,yeah,
@@ -414,7 +500,7 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20240928,a,20240928-a-1.jpg;20240928-a-2.jpg,Crimson Badger Brewing,Dark & Grizzly,Rum and Lime Ginger Beer,5.8,330ml,yeah,
 20241001,a,20241001-a-1.jpg;20241001-a-2.jpg,McLeod's,Big Brum Dark Mild,English Mild Ale,3.3,440ml,yeah,
 20241011,a,20241011-a-1.jpg;20241011-a-2.jpg,McLeod's,Celtic Warrior,Double IPA,8,440ml,yeah,
-20241018,a,20241018-a-1.jpg;20241018-a-2.jpg;20241018-a-3.jpg,Duncan’s,Mango Pudding,Smoothie Sour,6,440ml,yeah,
+20241018,a,20241018-a-1.jpg;20241018-a-2.jpg;20241018-a-3.jpg,Duncan's,Mango Pudding,Smoothie Sour,6,440ml,yeah,
 20241027,a,20241027-a-1.jpg;20241027-a-2.jpg,Good George Brewing Co,Social League,Low Carb Hazy IPA,4.2,330ml,yeah,
 20241108,a,20241108-a-1.jpg,State of Play,Sunbreaker,Ale,0.5,330ml,yeah,
 20241109,a,20241109-a-1.jpg,Good George Brewing Co,Fog City,Hazy IPA,5.8,330ml,yeah,
@@ -430,15 +516,39 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20250607,a,20250607-a-1.jpg;20250607-a-2.jpg,Duncan's,Passionfruit & Coconut Custard,Smoothie Sour,6,440ml,yeah,
 20250625,a,20250625-a-1.jpg;20250625-a-2.jpg;20250625-a-3.jpg,Urbanaut,Passionfruit Guava Sour,Passionfruit Guava Sour,5.7,440ml,yeah,
 20250627,a,20250627-a-1.jpg;20250627-a-2.jpg,Urbanaut,Sourade,Blue Raspberry Sour,3.8,440ml,yeah,
-20260903,a,20260903-a-1.jpg,Sawmill,Hazy Pale Ale,Hazy Pale Ale,5,330ml,yeah,Snowflake
-20260905,b,20260905-b-1.jpg;20260905-b-2.jpg;20260905-b-3.jpg,Duncan's,Feijoa Crumble,Ice Cream Sour,5,440ml,yeah,
+20250705,a,20250705-a-1.jpg;20250705-a-2.jpg;20250705-a-3.jpg,Urbanaut,Dankenstein,Terpene IPA,5.9,440ml,yeah,
+20250714,a,20250714-a-1.jpg,Orion,Draft Beer,Lager,5,Handle,yeah,Daikoku Teppanyaki
+20250718,a,20250718-a-1.jpg;20250718-a-2.jpg;20250718-a-3.jpg,Urbanaut,Coronado,Double IPA,7.9,440ml,yeah,
+20250725,a,20250725-a-1.jpg;20250725-a-2.jpg;20250725-a-3.jpg,Urbanaut,Jam Donut,Hazy IPA,5.6,440ml,yeah,
+20250801,a,20250801-a-1.jpg,Urbanaut,Salted Caramel Stout,Salted Caramel Stout,6,440ml,yeah,Paired with Whittaker's Dark Salted Caramel
+20250808,a,20250808-a-1.jpg;20250808-a-2.jpg,Brave Brewing,Milk Stout,Milk Stout,5.7,500ml,yeah,
+20251121,a,20251121-a-1.jpg;20251121-a-2.jpg;20251121-a-3.jpg,Garage Project,Nov-25,Fresh IPA,7,440ml,yeah,
+20251128,a,20251128-a-1.jpg;20251128-a-2.jpg;20251128-a-3.jpg,Garage Project,Cosmic Balance,Hazy Double IPA,7.8,440ml,yeah,
+20251217,a,20251217-a-1.jpg;20251217-a-2.jpg;20251217-a-3.jpg,Duncan's,Lychee Lemonade,Sorbet Sour,5,440ml,yeah,
+20251217,b,20251217-b-1.jpg;20251217-b-2.jpg;20251217-b-3.jpg,Duncan's,Bunchie Cra,Imperial Pastry Stout,10,440ml,yeah,
+20260112,a,20260112-a-1.jpg;20260112-a-2.jpg;20260112-a-3.jpg,Duncan's,Malbec Brett,Wild Sour,8.5,440ml,yeah,
+20260125,a,20260125-a-1.jpg;20260125-a-2.jpg;20260125-a-3.jpg,Duncan's,San Nicholas,Strong Spiced Ale,8,440ml,yeah,
+20260130,a,20260130-a-1.jpg;20260130-a-2.jpg;20260130-a-3.jpg,Duncan's,Peach & Basil,Fruited Sour,5.1,440ml,yeah,
+20260205,a,20260205-a-1.jpg;20260205-a-2.jpg;20260205-a-3.jpg,Duncan's,Peanut Butter Jelly,Pastry Sour,6,440ml,yeah,
+20260319,a,20260319-a-1.jpg,Guinness,Guinness,Stout,4.2,Pint,yeah,O'Dowd's Irish Bar and Eatery Ellerslie
+20260404,a,20260404-a-1.jpg;20260404-a-2.jpg,Sawmill,Hazy IPA,Hazy IPA,5.9,330ml,yeah,
+20260410,a,20260410-a-1.jpg;20260410-a-2.jpg;20260410-a-3.jpg,Duncan's,Marshmallow Egg,Imperial Pastry Stout,10,440ml,yeah,
+20260417,a,20260417-a-1.jpg;20260417-a-2.jpg;20260417-a-3.jpg,Duncan's,Peach & Basil,Fruited Sour,5.1,440ml,yeah,
+20260417,b,20260417-b-1.jpg;20260417-b-2.jpg;20260417-b-3.jpg,Duncan's,Calamansi & Dragonfruit,Sorbet Sour,4.5,440ml,yeah,
+20260522,a,20260522-a-1.jpg;20260522-a-2.jpg;20260522-a-3.jpg,Duncan's,Pizza Pils,Italian Pilsner,4.5,440ml,yeah,
+20260613,a,20260613-a-1.jpg;20260613-a-2.jpg;20260613-a-3.jpg,Duncan's,Lychee Lemonade,Sorbet Sour,5,440ml,yeah,
+20260613,b,20260613-b-1.jpg;20260613-b-2.jpg;20260613-b-3.jpg;20260613-b-4.jpg,State of Play,Chocolate Stout,Chocolate Stout,<0.5,330ml,yeah,
 20260708,a,20260708-a-1.jpg,Duncan's,Mix Pack,Variety,,5280ml,yeah,
+20260709,a,20260709-a-1.jpg;20260709-a-2.jpg;20260709-a-3.jpg,Duncan's,Olympus,NZIPA,6.5,440ml,yeah,
+20260711,a,20260711-a-1.jpg;20260711-a-2.jpg;20260711-a-3.jpg,Duncan's,Grapefruit Satellite,Hazy IPA,6,440ml,yeah,
 20260718,a,20260718-a-1.jpg;20260718-a-2.jpg;20260718-a-3.jpg,Duncan's,Mango Grapefruju,Ice Cream Sour,5,440ml,yeah,
 20260812,a,20260812-a-1.jpg;20260812-a-2.jpg;20260812-a-3.jpg,Duncan's,Apostle San Isidore,Fruited Sour,5,440ml,yeah,
 20260814,a,20260814-a-1.jpg;20260814-a-2.jpg;20260814-a-3.jpg,Duncan's,Maple Peanut Crunch,Imperial Pastry Stout,9,440ml,yeah,
 20260819,a,20260819-a-1.jpg;20260819-a-2.jpg;20260819-a-3.jpg,Duncan's,Raspberry Ripple,Ice Cream Sour,5,440ml,yeah,
 20260822,a,20260822-a-1.jpg;20260822-a-2.jpg;20260822-a-3.jpg,Duncan's,Apostle San Nicholas,Strong Spiced Ale,8,440ml,yeah,
+20260903,a,20260903-a-1.jpg,Sawmill,Hazy Pale Ale,Hazy Pale Ale,5,330ml,yeah,Snowflake
 20260905,a,20260905-a-1.jpg;20260905-a-2.jpg;20260905-a-3.jpg;20260905-a-4.jpg;20260905-a-5.jpg;20260905-a-6.jpg;20260905-a-7.jpg;20260905-a-8.jpg,New World,Top 25 Beer & Cider Awards,Booklet,,,yeah,Just in case I want to check things out
+20260905,b,20260905-b-1.jpg;20260905-b-2.jpg;20260905-b-3.jpg,Duncan's,Feijoa Crumble,Ice Cream Sour,5,440ml,yeah,
 20260912,a,20260912-a-1.jpg;20260912-a-2.jpg;20260912-a-3.jpg,Duncan's,Marshmallow Egg,Imperial Pastry Stout,10,440ml,yeah,
 20260913,a,20260913-a-1.jpg,Murphy's,Murphy's Irish Stout,Stout,4,Pint,yeah,CRL Opening Day
 20260916,a,20260916-a-1.jpg;20260916-a-2.jpg;20260916-a-3.jpg,Duncan's,Montes,NZIPA,6.5,440ml,yeah,Vale Road
@@ -448,12 +558,11 @@ date,group,photos,brewery,name,type,abv,size,rating,notes
 20261003,a,20261003-a-1.jpg;20261003-a-2.jpg,Coopers Brewery,Sparkling Ale,Ale,5.8,750ml,yeah,
 20261006,a,20261006-a-1.jpg;20261006-a-2.jpg,Coopers Brewery,Best Extra Stout,Stout,6.3,750ml,yeah,
 20261007,a,20261007-a-1.jpg;20261007-a-2.jpg,Peroni,Peroni Nastro Azzurro,Lager,5.1,Glass,yeah,Portofino
-20261009,a,20261009-a-1.jpg,Kirin Brewery,Kirin Ichiban,Lager,5.0,330ml,yeah,
+20261009,a,20261009-a-1.jpg,Kirin Brewery,Kirin Ichiban,Lager,5,330ml,yeah,
 20261012,a,20261012-a-1.jpg;20261012-a-2.jpg;20261012-a-3.jpg,Guinness,Draught,Stout,4.2,440ml,yeah,
+20261016,a,20261016-a-1.jpg,Orion,Draft,Lager,5,Handle,yeah,Sushi Train
 20261017,a,20261017-a-1.jpg;20261017-a-2.jpg;20261017-a-3.jpg,North End Brewery,Iron Sands,Oat Rye Stout,6,440ml,yeah,
 20261018,a,20261018-a-1.jpg,Guinness,Draught,Stout,4.2,Pint,yeah,Irish Society
-20260905,b,20260905-b-1.jpg;20260905-b-2.jpg;20260905-b-3.jpg,Duncan's,Feijoa Crumble,Ice Cream Sour,5,440ml,yeah,
-20261016,a,20261016-a-1.jpg,Orion,Draft,Lager,5,Handle,yeah,Sushi Train
 20261018,b,20261018-b-1.jpg;20261018-b-2.jpg;20261018-b-3.jpg,State of Play,Sunbreaker Ale,Ale,0.5,330ml,yeah,
 20261021,a,20261021-a-1.jpg;20261021-a-2.jpg;20261021-a-3.jpg,Sawmill,Bare Beer,Pale Ale,0.5,330ml,yeah,Pitchblack Playback
 20261021,b,20261021-b-1.jpg;20261021-b-2.jpg;20261021-b-3.jpg;20261021-b-4.jpg,Behemoth Brewing,Dump the Trump,American IPA,6,440ml,yeah,gift

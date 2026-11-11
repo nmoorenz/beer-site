@@ -87,7 +87,7 @@ Delete its objects from the S3 bucket and its row from `beers.csv`, then `python
 
 ## Setting up another computer
 
-Clone the repo (you get `beers.csv` and `manifest.json`), copy your `.env` across, then pull the photos down from S3:
+Clone the repo (you get `beers.csv`; `manifest.json` is generated, not tracked), copy your `.env` across, then pull the photos down from S3:
 
 ```bash
 python scripts/beer_sync.py download
@@ -101,17 +101,15 @@ aws s3 ls s3://YOUR-BUCKET --recursive --summarize --human-readable --profile nm
 
 ## Committing
 
-`sync` publishes the photos and the manifest straight to S3, so the site is live the moment it finishes — before you commit. `beers.csv` and `manifest.json` are both tracked, so the commit records the change and gives you a readable diff of what the site now serves:
+`sync` publishes the photos and the manifest straight to S3, so the site is live the moment it finishes — before you commit. `manifest.json` is a generated artifact and is not tracked (it is rebuilt from S3 on demand), so the only thing to commit is `beers.csv`:
 
 ```bash
-git add -A
+git add beers.csv
 git commit -m "Add beers [skip ci]"
 git push
 ```
 
-The `[skip ci]` tag keeps the GitHub Action from running. The Action does the resize and manifest rebuild for the phone flow; after a `sync` that work is already done, so a push from your computer carries `[skip ci]` and the site stays exactly as `sync` left it.
-
-After a phone update the Action commits a fresh `manifest.json`, so `git pull` before your next computer session to pick it up.
+The `[skip ci]` tag keeps the GitHub Action from running. The Action does the resize and manifest rebuild for the phone flow; after a `sync` that work is already done, so a push from your computer carries `[skip ci]` to skip the redundant run.
 
 ## Updating from your phone (Android)
 

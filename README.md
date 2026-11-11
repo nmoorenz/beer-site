@@ -42,7 +42,7 @@ beer-site/
 ├── infrastructure/        Terraform: S3, CloudFront, ACM, IAM
 ├── photos/                local photos to sync (contents gitignored)
 ├── beers.csv              the metadata — one row per beer
-├── manifest.json          the generated manifest (committed, so you can diff it)
+├── manifest.json          the generated manifest (rebuilt from S3; not tracked)
 ├── netlify.toml
 ├── requirements.txt
 └── env.example

@@ -6,7 +6,9 @@
 # Generated at build time
 site/config.js
 
-# Local preview manifest only (the tracked one is ./manifest.json at the repo root)
+# Generated manifest — rebuilt from S3 by sync / the Action and served from
+# CloudFront, so it is not tracked (neither the root copy nor the preview copy).
+manifest.json
 site/manifest.json
 
 # Secrets / env
